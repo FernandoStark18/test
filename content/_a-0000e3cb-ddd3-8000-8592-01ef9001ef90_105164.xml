@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec7f-d3cb-8000-9bcd-011c48011c48_16090</versionUuid>
+    <rule>
+        <name>TM_getJobTypeByModelUuids</name>
+        <uuid>_a-0000e3cb-ddd3-8000-8592-01ef9001ef90_105164</uuid>
+        <description>Returns Job Types By Process Model UUID</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289276</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_queryRecordType_v1"(
+  recordType: #"urn:appian:record-type:v1:b3b53bd9-776c-40c2-a42b-bd112b0fd293",
+  fields: {
+    #"urn:appian:record-field:v1:b3b53bd9-776c-40c2-a42b-bd112b0fd293/modelUuid"
+  },
+  filters: #"SYSTEM_SYSRULES_queryFilter"(
+    field: #"urn:appian:record-field:v1:b3b53bd9-776c-40c2-a42b-bd112b0fd293/modelUuid",
+    operator: "in",
+    value: ri!modelUuids
+  ),
+  pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: count(ri!modelUuids)
+  ),
+  fetchTotalCount: false
+)</definition>
+        <namedTypedValue>
+            <name>modelUuids</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>Default Job Type Transaction Cleanup Is Present</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{"0002e46f-5397-8000-855d-014d98014d98"}</a:value>
+                    <a:nameRef>modelUuids</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:resultAssertions>test!output.data[#"urn:appian:record-field:v1:b3b53bd9-776c-40c2-a42b-bd112b0fd293/modelUuid"] = "0002e46f-5397-8000-855d-014d98014d98"</a:resultAssertions>
+                </a:assertions>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e3cb-ddd3-8000-8592-01ef9001ef90_105182"/>
+        <historyInfo versionUuid="_a-0000e41e-1753-8000-9ba9-011c48011c48_3289379"/>
+        <historyInfo versionUuid="_a-0000e4d6-77d9-8000-8592-01ef9001ef90_107777"/>
+        <historyInfo versionUuid="_a-0000ec53-61b2-8000-9bbf-011c48011c48_9642"/>
+        <historyInfo versionUuid="_a-0000ec7f-d3cb-8000-9bcd-011c48011c48_16090"/>
+    </history>
+</contentHaul>

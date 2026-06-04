@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_13632</versionUuid>
+    <rule>
+        <name>TM_getTransactionIdsByStatusAndDate</name>
+        <uuid>_a-0000e46f-5290-8000-8592-01ef9001ef90_106702</uuid>
+        <description>Returns the transaction ids for a given status and date</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289276</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_queryRecordType_v1"(
+  recordType: #"urn:appian:record-type:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88",
+  fields: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/transactionId",
+  filters: {
+    #"SYSTEM_SYSRULES_queryFilter"(
+      field: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/statusId",
+      operator: "in",
+      value: ri!statusIds
+    ),
+    #"SYSTEM_SYSRULES_queryFilter"(
+      field: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/timestamp",
+      operator: "&lt;",
+      value: now() - ri!daysOlder
+    ),
+  },
+  pagingInfo: ri!pagingInfo
+).data[#"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/transactionId"]</definition>
+        <namedTypedValue>
+            <name>statusIds</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>daysOlder</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>pagingInfo</name>
+            <type>
+                <name>PagingInfo</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>No Errors</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">0</a:value>
+                    <a:nameRef>statusIds</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:int">0</a:value>
+                    <a:nameRef>daysOlder</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"SYSTEM_SYSRULES_pagingInfo"(
+  startIndex: 1,
+  batchSize: 1
+)</a:value>
+                    <a:nameRef>pagingInfo</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e46f-5290-8000-8592-01ef9001ef90_106761"/>
+        <historyInfo versionUuid="_a-0000e4d6-77d9-8000-8592-01ef9001ef90_107796"/>
+        <historyInfo versionUuid="_a-0000ec53-61b2-8000-9bbf-011c48011c48_9649"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10713"/>
+        <historyInfo versionUuid="_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_13632"/>
+    </history>
+</contentHaul>

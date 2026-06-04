@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e4d6-77d9-8000-8592-01ef9001ef90_107842</versionUuid>
+    <rule>
+        <name>TM_buildTransactionsFromQueue</name>
+        <uuid>_a-0000e3cb-ddd3-8000-8592-01ef9001ef90_105144</uuid>
+        <description>Builds TM_Transaction Objects Based On Job Type &amp; Queue</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289262</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!jobTypes: cast(
+    'type!{urn:com:appian:types:TM}TM_JobType',
+    #"_a-0000e3cb-ddd3-8000-8592-01ef9001ef90_105164"(
+      modelUuids: ri!transactions.modelUuid
+    ).data
+  ),
+  #"SYSTEM_SYSRULES_forEach"(
+    items: ri!transactions,
+    expression: 'type!{urn:com:appian:types:TM}TM_Transaction'(
+      jobTypeId: displayvalue(
+        fv!item.modelUuid,
+        local!jobTypes.modelUuid,
+        local!jobTypes.id,
+        null
+      ),
+      contextJson: if(
+        isnull(
+          fv!item.context
+        ),
+        #"SYSTEM_SYSRULES_toJson_v1"(
+          {}
+        ),
+        #"SYSTEM_SYSRULES_toJson_v1"(
+          fv!item.context
+        )
+      ),
+      scheduled: if(
+        isnull(
+          fv!item.scheduled
+        ),
+        now(),
+        fv!item.scheduled
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>transactions</name>
+            <type>
+                <name>TM_QueueTransaction?list</name>
+                <namespace>urn:com:appian:types:TM</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>Context Converted to JSON</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types:TM}TM_QueueTransaction'(
+  modelUuid: "uuid",
+  context: {
+    id: 123
+  }
+)</a:value>
+                    <a:nameRef>transactions</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:resultAssertions>test!output.contextJson = "{""id"":123}"</a:resultAssertions>
+                </a:assertions>
+            </el>
+            <el>
+                <a:name>Scheduled Date Generated</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types:TM}TM_QueueTransaction'(
+  modelUuid: "uuid"
+)</a:value>
+                    <a:nameRef>transactions</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:resultAssertions>test!output.scheduled[1] &lt;= now()</a:resultAssertions>
+                </a:assertions>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e3cb-ddd3-8000-8592-01ef9001ef90_105212"/>
+        <historyInfo versionUuid="_a-0000e41e-1753-8000-9ba9-011c48011c48_3289372"/>
+        <historyInfo versionUuid="_a-0000e4d6-77d9-8000-8592-01ef9001ef90_107842"/>
+    </history>
+</contentHaul>

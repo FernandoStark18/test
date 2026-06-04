@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec54-b070-8000-9bc1-011c48011c48_10858</versionUuid>
+    <rule>
+        <name>TM_ProcessModelPickerFilter</name>
+        <uuid>_a-0000e7da-c788-8000-d625-01ef9001ef90_29385</uuid>
+        <description>Helper function for Process Model Picker Filter</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289262</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!result: a!queryProcessAnalytics(
+    report: #"_a-0000e3b8-7177-8000-8592-01ef9001ef90_104819",
+    /*
+    c0 = Model Name
+    c1 = Model Id
+    c2 = Model UUID
+    */
+    query: #"SYSTEM_SYSRULES_query"(
+      filter: #"SYSTEM_SYSRULES_queryFilter"(
+        field: "c0",
+        operator: "includes",
+        value: ri!filter
+      ),
+      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+        startIndex: 1,
+        batchSize: 10,
+        sort: #"SYSTEM_SYSRULES_sortInfo"(field: "c0", ascending: true)
+      )
+    )
+  ),
+  #"SYSTEM_SYSRULES_dataSubset"(
+    startIndex: local!result.startIndex,
+    batchSize: local!result.batchSize,
+    totalCount: local!result.totalCount,
+    data: index(local!result.data, "c0", {}),
+    identifiers: index(local!result.data, "c2", {})
+  )
+)</definition>
+        <namedTypedValue>
+            <name>filter</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>Can find 'TM Add Transactions to Job Type'</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:string">TM Add Transactions to Job Type</a:value>
+                    <a:nameRef>filter</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:resultAssertions>test!output.identifiers = "0002e3ab-560e-8000-855d-014d98014d98"</a:resultAssertions>
+                </a:assertions>
+                <a:isDefault>true</a:isDefault>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_29396"/>
+        <historyInfo versionUuid="_a-0000ec53-364e-8000-9bbd-011c48011c48_9226"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10858"/>
+    </history>
+</contentHaul>

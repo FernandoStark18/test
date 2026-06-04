@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec7f-d3cb-8000-9bcd-011c48011c48_16092</versionUuid>
+    <rule>
+        <name>TM_getProcessModels</name>
+        <uuid>_a-0000e3b8-7177-8000-8592-01ef9001ef90_104830</uuid>
+        <description>Returns Existing Process Model Lookup Values</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289282</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!isModelUuidsPresent: a!isNotNullOrEmpty(ri!modelUuids),
+  local!batchSize: if(
+    local!isModelUuidsPresent,
+    count(ri!modelUuids),
+    0 /* Default to 0 if no relevant model UUIDs in the tm_job_type DB table */
+  ),
+  local!result: a!queryProcessAnalytics( /* replace the report by checking the tm_job_type table? */
+    report: #"_a-0000e3b8-7177-8000-8592-01ef9001ef90_104819",
+    query: #"SYSTEM_SYSRULES_query"(
+      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+        startIndex: 1,
+        batchSize: local!batchSize,
+        sort: #"SYSTEM_SYSRULES_sortInfo"(
+          field: "c1", /* ID */
+          ascending: true
+        )
+      ),
+      filter: #"SYSTEM_SYSRULES_queryFilter"(
+        field: "c2", /* UUID */
+        operator: "in",
+        value: ri!modelUuids,
+        applyWhen: local!isModelUuidsPresent
+      )
+    )
+  ),
+
+  if(
+    a!isNullOrEmpty(local!result.identifiers), /* merge() will throw an error on empty input */
+    null,
+    #"SYSTEM_SYSRULES_forEach"(
+      items: merge(
+        local!result.identifiers,
+        local!result.data.c2,
+        local!result.data.c0
+      ),
+      expression: 'type!{urn:com:appian:types:TM}TM_ProcessModel'(
+        id: fv!item[1],
+        uuid: fv!item[2],
+        name: fv!item[3]
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>modelUuids</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>ID and UUID Present</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"0002e46f-5397-8000-855d-014d98014d98"</a:value>
+                    <a:nameRef>modelUuids</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:resultAssertions>and(
+  count(
+    test!output.id
+  ) &gt; 0,
+  count(
+    test!output.uuid
+  ) &gt; 0
+)</a:resultAssertions>
+                </a:assertions>
+                <a:isDefault>false</a:isDefault>
+            </el>
+            <el>
+                <a:name>Return Type is TM_ProcessModel List</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"0002e46f-5397-8000-855d-014d98014d98"</a:value>
+                    <a:nameRef>modelUuids</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:resultAssertions>typename(typeof(test!output)) = "TM_ProcessModel?list"</a:resultAssertions>
+                </a:assertions>
+                <a:isDefault>false</a:isDefault>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e3b8-7177-8000-8592-01ef9001ef90_104849"/>
+        <historyInfo versionUuid="_a-0000e41e-1753-8000-9ba9-011c48011c48_3289404"/>
+        <historyInfo versionUuid="_a-0000e4d6-77d9-8000-8592-01ef9001ef90_107767"/>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_29416"/>
+        <historyInfo versionUuid="_a-0000ec53-364e-8000-9bbd-011c48011c48_9243"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10833"/>
+        <historyInfo versionUuid="_a-0000ec7f-d3cb-8000-9bcd-011c48011c48_16092"/>
+    </history>
+</contentHaul>
