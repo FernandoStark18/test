@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6719867</versionUuid>
+    <rule>
+        <name>PQR_ER_obtenerEmailIdPorEvento</name>
+        <uuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6719596</uuid>
+        <description>Obtiene ID de los emails a aprtir de datos de eventos</description>
+        <parentUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6408669</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>if(
+  and(
+    a!isNullOrEmpty(ri!tipoEventoFilter),
+    a!isNullOrEmpty(ri!approbalUserFilter)
+  ),
+  null,
+  #"SYSTEM_SYSRULES_queryRecordType_v4"(
+    recordType: #"urn:appian:record-type:v1:2cdee35a-ab08-4dda-ab21-91870f840348",
+    fields: #"SYSTEM_SYSRULES_aggregationFields"(
+      groupings: {
+        #"SYSTEM_SYSRULES_grouping"(
+          field: #"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/5bea5efd-f7cf-48b1-bc8c-fc7a98628e14",
+          alias: "APP_MAIL_POLLER_ID"
+        )
+      }
+    ),
+    filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+      operator: "AND",
+      filters: {
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/f54d21c3-52dc-4b3b-8134-98da2e9c25a3",
+          operator: "in",
+          value: a!defaultValue(ri!tipoEventoFilter, { 5, 6 })
+        ),
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/d905bb4a-e56a-417c-9504-66fbe5da37ca",
+          operator: "=",
+          value: ri!approbalUserFilter
+        ),
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/5bea5efd-f7cf-48b1-bc8c-fc7a98628e14",
+          operator: "not null"
+        )
+      },
+      ignoreFiltersWithEmptyValues: true
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 5000),
+    fetchTotalCount: true()
+  ).data
+)</definition>
+        <namedTypedValue>
+            <name>tipoEventoFilter</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>approbalUserFilter</name>
+            <type>
+                <name>User</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6719867"/>
+    </history>
+</contentHaul>
