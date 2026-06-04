@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6715711</versionUuid>
+    <rule>
+        <name>PQR_RGL_getMaiIdByTags</name>
+        <uuid>d2bd9bd4-518e-4cb7-a88d-e796db239f90</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!defaultValue(
+  #"SYSTEM_SYSRULES_queryRecordType_v4"(
+    recordType: #"urn:appian:record-type:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd",
+    fields: #"SYSTEM_SYSRULES_aggregationFields"(
+      groupings: {
+        #"SYSTEM_SYSRULES_grouping"(
+          field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/6459fe0c-816e-4666-a512-6d5bcfbaa191",
+          alias: "APP_MAIL_POLLER_ID"
+        )
+      }
+    ),
+    filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+      operator: "AND",
+      filters: {
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/b166a748-4a36-43a3-99a4-412a24157620",
+          operator: "in",
+          value: ri!tagFilter
+        ),
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/a93e1325-1e25-4a65-ae1c-0e9a91e1ff6f",
+          operator: "&gt;=",
+          value: ri!fromConfidenceFilter
+        ),
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/a93e1325-1e25-4a65-ae1c-0e9a91e1ff6f",
+          operator: "&lt;=",
+          value: ri!toConfidenceFilter
+        ),
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/6459fe0c-816e-4666-a512-6d5bcfbaa191",
+          operator: "not null"
+        )
+      },
+      ignoreFiltersWithEmptyValues: true
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+      startIndex: 1,
+      batchSize: 5000
+    ),
+    fetchTotalCount: true()
+  ).data,
+  -1
+)</definition>
+        <namedTypedValue>
+            <name>tagFilter</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>fromConfidenceFilter</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>toConfidenceFilter</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6715711"/>
+    </history>
+</contentHaul>

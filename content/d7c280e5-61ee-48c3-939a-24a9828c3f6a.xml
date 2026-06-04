@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6876364</versionUuid>
+    <outboundIntegration>
+        <name>PQR_INT_crearDocumento</name>
+        <uuid>d7c280e5-61ee-48c3-939a-24a9828c3f6a</uuid>
+        <description>Integración que crea un documento en el gestor documental</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition></definition>
+        <namedTypedValue>
+            <name>idExpediente</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>token</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>documento</name>
+            <type>
+                <name>CollaborationDocument</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>onSuccess</name>
+            <description>A list of saves or an HTTP response to execute after the smart service executes successfully. Created with a!save() or a!httpResponse(). The result of the request is available in the function variable fv!result.</description>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>onError</name>
+            <description>A list of saves or an HTTP response to execute after the smart service does not execute successfully. Created with a!save() or a!httpResponse(). The result of the request is available in the function variable fv!result. Information about the error is available in the function variable fv!error. If using a Connected System that uses OAuth, whenever there is an error due to missing user authorization, the Connected System will be available in the function variable fv!connectedSystem. The Connected System can be used with the a!authorizationLink function to generate a link end users can click to perform the authorization.</description>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr>{
+deferredRuleInputs: {
+    onSuccess: {
+      "fv!result": 'type!{http://www.appian.com/ae/types/2009}Dictionary'
+    },
+    onError: {
+      "fv!result": 'type!{http://www.appian.com/ae/types/2009}Dictionary',
+      "fv!error": 'type!{http://www.appian.com/ae/types/2009}Dictionary',
+      "fv!connectedSystem": 'type!{http://www.appian.com/ae/types/2009}ConnectedSystem'
+    }
+  }
+}</metadataExpr>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <sharedConfigParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <url xsi:type="xsd:string"/>
+                <isInheritedUrlOptionSelected xsi:type="xsd:boolean">true</isInheritedUrlOptionSelected>
+                <relativePath xsi:type="a:Expression">concat(
+  "/api/expedientes/",
+  ri!idExpediente,
+  "/documentos"
+)</relativePath>
+                <authType xsi:type="xsd:string">None</authType>
+                <authDetails xsi:type="xsd:string"/>
+            </a:Dictionary>
+        </sharedConfigParameters>
+        <configParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <contentType xsi:type="xsd:string">application/json</contentType>
+                <automaticallyConvert xsi:type="xsd:boolean">true</automaticallyConvert>
+                <shouldReceiveDocuments xsi:type="xsd:boolean">false</shouldReceiveDocuments>
+                <jsonSchema xsi:nil="true" xsi:type="a:NestedChoice?list"/>
+                <receiveFolderConfig xsi:type="a:Dictionary">
+                    <asExpr xsi:type="xsd:boolean">false</asExpr>
+                    <saveDocOption xsi:type="xsd:int">0</saveDocOption>
+                    <value xsi:type="a:Variant?list"/>
+                </receiveFolderConfig>
+                <bodyParseType xsi:type="xsd:string">application/json+19.3</bodyParseType>
+                <parameters xsi:type="a:NameValue?list"/>
+                <removeNullOrEmptyJsonFields xsi:type="xsd:boolean">true</removeNullOrEmptyJsonFields>
+                <method xsi:type="xsd:string">POST</method>
+                <headers xsi:type="a:NameValue?list">
+                    <item>
+                        <a:name>Authorization</a:name>
+                        <a:value xsi:type="a:Expression">concat(
+  "Bearer ",
+  ri!token
+)</a:value>
+                    </item>
+                </headers>
+                <excludeNullHeaders xsi:type="xsd:boolean">true</excludeNullHeaders>
+                <documentConfig xsi:type="xsd:string"/>
+                <excludeNullParams xsi:type="xsd:boolean">true</excludeNullParams>
+                <featureVersion xsi:type="xsd:int">1</featureVersion>
+                <timeout xsi:type="xsd:int">10</timeout>
+                <body xsi:type="a:Expression">{
+  CodigoTipoDocumental: "588",
+  Nombre: document(ri!documento, "name"),
+  Autor: "-",
+  FechaDocumento: document(ri!documento, "dateCreated"),
+  IdTipoDocumento: 1,
+  NombreArchivo: concat(
+    document(ri!documento, "name"),
+    ".",
+    document(ri!documento, "extension")
+  ),
+  Anexos: {},
+  IdCarpeta : 0,
+  Archivo64: ri!documento,
+  Metadatos: {},
+  FolioInicial: 0,
+  FolioFinal: 0
+}</body>
+                <flattenedJsonSchema xsi:nil="true" xsi:type="a:Text?list"/>
+            </a:Dictionary>
+        </configParameters>
+        <isWrite>true</isWrite>
+        <integrationType>system.http</integrationType>
+        <connectedSystemUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6709179</connectedSystemUuid>
+        <isConnectedSystemConnectionOptionSelected>true</isConnectedSystemConnectionOptionSelected>
+        <integrationOutputs>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <outputs xsi:type="a:IntegrationOutput?list"/>
+            </a:Dictionary>
+        </integrationOutputs>
+        <isRequestResponseLoggingEnabled>false</isRequestResponseLoggingEnabled>
+    </outboundIntegration>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6876343"().IdExpediente</a:value>
+                    <a:nameRef>idExpediente</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ilh0LW83aERicHVwQXotWlBtNkh4Q0ZXUzNjSSIsImtpZCI6Ilh0LW83aERicHVwQXotWlBtNkh4Q0ZXUzNjSSJ9.eyJhdWQiOiI1MTYwNmRlYi1iYWJiLTQ2MTktOWI0NS00NmZkYzk4NDRmNjkiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9jN2E3Y2EyYS0zMjljLTRiYmMtYWZkYi02NjZlMTExODliODMvIiwiaWF0IjoxNzc4NzI5NDUzLCJuYmYiOjE3Nzg3Mjk0NTMsImV4cCI6MTc3ODczMzM1MywiYWlvIjoiQVNRQTIvOGNBQUFBdVBrQm11TGg5SzMycjhMc2lEeDRvYVpIbjI0MXhyNFBXRHN2NC9UdnlyQT0iLCJhcHBpZCI6ImQ3YTE0NTAwLWUwNGQtNGFlZi1hN2ZlLThhNDhiZmEzYTAwNCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2M3YTdjYTJhLTMyOWMtNGJiYy1hZmRiLTY2NmUxMTE4OWI4My8iLCJvaWQiOiI5ZmRiMmU0Yi03MDYzLTQyMWMtODc4NS01NjgxM2U5YjA0OTciLCJyaCI6IjEuQVNZQUtzcW54NXd5dkV1djIyWnVFUmliZy10dFlGRzd1aGxHbTBWR19jbUVUMmtBQUFBbUFBLiIsInN1YiI6IjlmZGIyZTRiLTcwNjMtNDIxYy04Nzg1LTU2ODEzZTliMDQ5NyIsInRpZCI6ImM3YTdjYTJhLTMyOWMtNGJiYy1hZmRiLTY2NmUxMTE4OWI4MyIsInV0aSI6IjFkWHZMSksxb2syeC1VdVJSM1F1QUEiLCJ2ZXIiOiIxLjAiLCJ4bXNfZnRkIjoiU2l3b09MakFobVFqSjNNNDlMV0hBc2hpeXc4TFUyaFl0V1pSb0Ruanp6a0JkWE56YjNWMGFDMWtjMjF6In0.V40MksriysVV6G-iWLj29UR_BXFlnSB6tMp03HD9NvILIzeW2zeYA_p3LBMi-LeTLAeTRrpCRd1KaSDxVc7TzuOinlRPBS8wxCBVdhdA5mq7xYddfflUgDh0XyaomdfJNprr-iahVTGpmnKF46zWdBrlFfu8mrYRoj2LZunSqquf_D9dnx00zUdBr7YIFhxiLt79rDoARsy-zI1KWD9V_kFsJvb1fOqEGlc511roMTLfJwb5s6jntKsUTlyQW2ab0HS3JeEevrlgPySxQi7TZ5ROYCa2gk6rnZ2at3THck6R2QbPkkRtgaYVt6lJ_I9mEJmGtlqQqPsmFUtdtpr7QQ"</a:value>
+                    <a:nameRef>token</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">todocument(165840)</a:value>
+                    <a:nameRef>documento</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>onSuccess</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>onError</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6709207"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6876364"/>
+    </history>
+</contentHaul>

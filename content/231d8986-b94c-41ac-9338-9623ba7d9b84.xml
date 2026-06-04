@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6861975</versionUuid>
+    <outboundIntegration>
+        <name>PQR_INT_ObtenerToken</name>
+        <uuid>231d8986-b94c-41ac-9338-9623ba7d9b84</uuid>
+        <description>Integración que obtiene el token de autenticación</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition></definition>
+        <namedTypedValue>
+            <name>onSuccess</name>
+            <description>A list of saves or an HTTP response to execute after the smart service executes successfully. Created with a!save() or a!httpResponse(). The result of the request is available in the function variable fv!result.</description>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>onError</name>
+            <description>A list of saves or an HTTP response to execute after the smart service does not execute successfully. Created with a!save() or a!httpResponse(). The result of the request is available in the function variable fv!result. Information about the error is available in the function variable fv!error. If using a Connected System that uses OAuth, whenever there is an error due to missing user authorization, the Connected System will be available in the function variable fv!connectedSystem. The Connected System can be used with the a!authorizationLink function to generate a link end users can click to perform the authorization.</description>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr>{
+deferredRuleInputs: {
+    onSuccess: {
+      "fv!result": 'type!{http://www.appian.com/ae/types/2009}Dictionary'
+    },
+    onError: {
+      "fv!result": 'type!{http://www.appian.com/ae/types/2009}Dictionary',
+      "fv!error": 'type!{http://www.appian.com/ae/types/2009}Dictionary',
+      "fv!connectedSystem": 'type!{http://www.appian.com/ae/types/2009}ConnectedSystem'
+    }
+  }
+}</metadataExpr>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <sharedConfigParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <url xsi:type="xsd:string"/>
+                <isInheritedUrlOptionSelected xsi:type="xsd:boolean">true</isInheritedUrlOptionSelected>
+                <relativePath xsi:type="xsd:string">/c7a7ca2a-329c-4bbc-afdb-666e11189b83/oauth2/v2.0/token</relativePath>
+                <authType xsi:type="xsd:string">None</authType>
+                <authDetails xsi:type="xsd:string"/>
+            </a:Dictionary>
+        </sharedConfigParameters>
+        <configParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <contentType xsi:type="xsd:string">multipart/form-data - appian_internal</contentType>
+                <automaticallyConvert xsi:type="xsd:boolean">true</automaticallyConvert>
+                <shouldReceiveDocuments xsi:type="xsd:boolean">false</shouldReceiveDocuments>
+                <jsonSchema xsi:nil="true" xsi:type="a:NestedChoice?list"/>
+                <receiveFolderConfig xsi:type="a:Dictionary">
+                    <asExpr xsi:type="xsd:boolean">false</asExpr>
+                    <saveDocOption xsi:type="xsd:int">0</saveDocOption>
+                    <value xsi:type="a:Variant?list"/>
+                </receiveFolderConfig>
+                <bodyParseType xsi:type="xsd:string">application/json+19.3</bodyParseType>
+                <parameters xsi:type="a:NameValue?list"/>
+                <removeNullOrEmptyJsonFields xsi:type="xsd:boolean">true</removeNullOrEmptyJsonFields>
+                <method xsi:type="xsd:string">POST</method>
+                <headers xsi:type="a:NameValue?list"/>
+                <excludeNullHeaders xsi:type="xsd:boolean">true</excludeNullHeaders>
+                <documentConfig xsi:type="xsd:string"/>
+                <excludeNullParams xsi:type="xsd:boolean">true</excludeNullParams>
+                <featureVersion xsi:type="xsd:int">1</featureVersion>
+                <timeout xsi:type="xsd:int">10</timeout>
+                <body xsi:type="a:HttpFormPartInput?list">
+                    <item>
+                        <a:name>grant_type</a:name>
+                        <a:isCustomType>false</a:isCustomType>
+                        <a:contentType>text/plain</a:contentType>
+                        <a:value xsi:type="xsd:string">client_credentials</a:value>
+                    </item>
+                    <item>
+                        <a:name>scope</a:name>
+                        <a:isCustomType>false</a:isCustomType>
+                        <a:contentType>text/plain</a:contentType>
+                        <a:value xsi:type="xsd:string">51606deb-babb-4619-9b45-46fdc9844f69/.default</a:value>
+                    </item>
+                    <item>
+                        <a:name>client_id</a:name>
+                        <a:isCustomType>false</a:isCustomType>
+                        <a:contentType>text/plain</a:contentType>
+                        <a:value xsi:type="a:Expression">#"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6826878"[1]</a:value>
+                    </item>
+                    <item>
+                        <a:name>client_secret</a:name>
+                        <a:isCustomType>false</a:isCustomType>
+                        <a:contentType>text/plain</a:contentType>
+                        <a:value xsi:type="a:Expression">#"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6826878"[2]</a:value>
+                    </item>
+                </body>
+                <flattenedJsonSchema xsi:nil="true" xsi:type="a:Text?list"/>
+            </a:Dictionary>
+        </configParameters>
+        <isWrite>true</isWrite>
+        <integrationType>system.http</integrationType>
+        <connectedSystemUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6709100</connectedSystemUuid>
+        <isConnectedSystemConnectionOptionSelected>true</isConnectedSystemConnectionOptionSelected>
+        <integrationOutputs>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <outputs xsi:type="a:IntegrationOutput?list"/>
+            </a:Dictionary>
+        </integrationOutputs>
+        <isRequestResponseLoggingEnabled>false</isRequestResponseLoggingEnabled>
+    </outboundIntegration>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6709178"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6861975"/>
+    </history>
+</contentHaul>
