@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868068</versionUuid>
+    <rule>
+        <name>PQR_RGL_obtenerEtiquetas</name>
+        <uuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868057</uuid>
+        <description>Obtiene los ChoiceLabels y ChoiceValues para todas las etiquetas existentes</description>
+        <parentUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6408669</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_queryRecordType_v4"(
+  recordType: #"urn:appian:record-type:v1:f7d4a31b-036e-413a-b0bf-2215cb228832",
+  fields: {
+    #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c328359a-a4b1-488a-8324-7beafa21d9ae",
+    #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/2bcca99a-defc-4dc8-9f9c-4d388bc30236"
+  },
+  pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 180)
+).data</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868068"/>
+    </history>
+</contentHaul>

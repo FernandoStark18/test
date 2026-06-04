@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868032</versionUuid>
+    <rule>
+        <name>PQR_RGL_obtenerDatosEtiquetaPorPollerId</name>
+        <uuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868021</uuid>
+        <description>Obitiene los datos de las etiquetas asociadas a un poller ID</description>
+        <parentUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6408669</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_queryRecordType_v4"(
+  recordType: #"urn:appian:record-type:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd",
+  fields: #"SYSTEM_SYSRULES_aggregationFields"(
+    groupings: {
+      #"SYSTEM_SYSRULES_grouping"(
+        field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/2081b480-c047-45f8-bdd5-c823d085570b/c328359a-a4b1-488a-8324-7beafa21d9ae",
+        alias: "Etiqueta"
+      ),
+      #"SYSTEM_SYSRULES_grouping"(
+        field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/92253a1e-b309-4041-bfae-d5aa13d74756",
+        alias: "idEtiquetaXCorreo"
+      ),
+      #"SYSTEM_SYSRULES_grouping"(
+        field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/b166a748-4a36-43a3-99a4-412a24157620",
+        alias: "idTipoEtiqueta"
+      ),
+      #"SYSTEM_SYSRULES_grouping"(
+        field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/a93e1325-1e25-4a65-ae1c-0e9a91e1ff6f",
+        alias: "Confianza"
+      ),
+      #"SYSTEM_SYSRULES_grouping"(
+        field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/2081b480-c047-45f8-bdd5-c823d085570b/9f62d70b-327f-4373-bbe7-2c373e3bfe22",
+        alias: "Codigo"
+      )
+    }
+  ),
+  filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+    operator: "AND",
+    filters: {
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/6459fe0c-816e-4666-a512-6d5bcfbaa191",
+        operator: "=",
+        value: ri!APP_MAIL_POLLER_ID
+      )
+    },
+    ignoreFiltersWithEmptyValues: true
+  ),
+  pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 160),
+  fetchTotalCount: true()
+)</definition>
+        <namedTypedValue>
+            <name>APP_MAIL_POLLER_ID</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868032"/>
+    </history>
+</contentHaul>

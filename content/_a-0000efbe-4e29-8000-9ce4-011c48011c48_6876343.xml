@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6876354</versionUuid>
+    <rule>
+        <name>PQR_RGL_obtenerExpedienteActual</name>
+        <uuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6876343</uuid>
+        <description>Obtiene el expediente del mes en curso</description>
+        <parentUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6408669</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_queryEntity_v2"(
+  entity: #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6872228",
+  query: #"SYSTEM_SYSRULES_query"(
+    logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+      operator: "AND",
+      filters: {
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: "fechaCreacion",
+          operator: "between",
+          value: {
+            eomonth(today(), - 1) + 1,
+            eomonth(today(), 0)
+          }
+        )
+      },
+      ignoreFiltersWithEmptyValues: true
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+      startIndex: 1,
+      batchSize: 1
+    )
+  ),
+  fetchTotalCount: false
+).data</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6876354"/>
+    </history>
+</contentHaul>

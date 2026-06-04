@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efc9-21d9-8000-9ce6-011c48011c48_7043124</versionUuid>
+    <interface>
+        <name>PQR_INT_matricesDeConfusion</name>
+        <uuid>_a-0000efc9-21d9-8000-9ce6-011c48011c48_7037554</uuid>
+        <description>Interfaz para visualizar las matrices de confusión de cada skill de IA</description>
+        <parentUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6410881</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!opciones: {
+    { label: "Publicidad", value: 1 },
+    { label: "Huila y Llanos", value: 2 },
+    { label: "Frontera este", value: 3 },
+    { label: "Península y Magdalena", value: 4 },
+    { label: "Pacífico y Selva", value: 5 },
+    { label: "Sur y Amazonia", value: 6 },
+    { label: "Costa Norte", value: 7 },
+    { label: "Eje Cafetero", value: 8 },
+    { label: "Sur Occidente", value: 9 },
+    { label: "Santanderes", value: 10 }
+  },
+  local!seleccion,
+  {
+    #"SYSTEM_SYSRULES_dropdownField_v1"(
+      label: "Matriz de confusión",
+      placeholder: "Seleccione la Skill de IA",
+      value: local!seleccion,
+      choiceLabels: index(local!opciones, "label", null),
+      choiceValues: index(local!opciones, "value", null),
+      saveInto: local!seleccion
+    ),
+    #"SYSTEM_SYSRULES_imageField_v1"(
+      label: index(
+        local!opciones,
+        "label",
+        wherecontains(
+          local!seleccion,
+          cast(101, local!opciones.value)
+        ),
+        null
+      ),
+      labelPosition: "ABOVE",
+      images: {
+        #"SYSTEM_SYSRULES_documentImage"(
+          document: #"_a-0000efc9-21d9-8000-9ce6-011c48011c48_7037572"[local!seleccion]
+        )
+      },
+      size: "EXTRA_LARGE",
+      style: "STANDARD",
+      isThumbnail: false,
+      align: "CENTER",
+      showWhen: a!isNotNullOrEmpty(local!seleccion)
+    )
+  }
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000efc9-21d9-8000-9ce6-011c48011c48_7043124"/>
+    </history>
+</contentHaul>
