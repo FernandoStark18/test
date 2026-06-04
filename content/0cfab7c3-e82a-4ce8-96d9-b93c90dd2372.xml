@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef03-0467-8000-9bf2-011c48011c48_1559424</versionUuid>
+    <interface>
+        <name>PQR_CrearFuncionario</name>
+        <uuid>0cfab7c3-e82a-4ce8-96d9-b93c90dd2372</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo funcionario como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {}
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {}
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_dropdownField_v1"(
+          label: "Tipo de identificación",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione un tipo identificacion",
+          data: #"urn:appian:record-type:v1:011b596a-0b80-4827-be18-f6fd0de86dd0",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/086efb6e-f943-46c2-a1b7-da0cfbb1369e"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/086efb6e-f943-46c2-a1b7-da0cfbb1369e"],
+          choiceLabels: #"urn:appian:record-field:v1:011b596a-0b80-4827-be18-f6fd0de86dd0/c86e3fe0-c75c-4752-9aa8-8c9cabe7ad56",
+          choiceValues: #"urn:appian:record-field:v1:011b596a-0b80-4827-be18-f6fd0de86dd0/dd3b6913-ae4c-44df-8650-0d2639589871",
+          required: true,
+          searchDisplay: "AUTO"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Número de identificación",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/935884ab-1471-407c-8a70-3d5d7e4c7b8d"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/935884ab-1471-407c-8a70-3d5d7e4c7b8d"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Nombres",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3f5afcc1-8ca2-47ca-8950-271e971d370c"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3f5afcc1-8ca2-47ca-8950-271e971d370c"],
+          required: true,
+          characterLimit: 35,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Apellidos",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/cf29f7fa-5f07-4b0e-bfbb-4748d99d1e73"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/cf29f7fa-5f07-4b0e-bfbb-4748d99d1e73"],
+          required: true,
+          characterLimit: 35,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Apodo",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/86f14a6e-5782-47c9-93dd-e2ecc5700b46"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/86f14a6e-5782-47c9-93dd-e2ecc5700b46"],
+          required: true,
+          characterLimit: 35,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Iniciales",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/96a7ca28-2f89-4030-a8d7-e60bd391694e"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/96a7ca28-2f89-4030-a8d7-e60bd391694e"],
+          required: true,
+          characterLimit: 10,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Código",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/77581ed3-ab09-4f2c-8509-6e3df5ce70f1"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/77581ed3-ab09-4f2c-8509-6e3df5ce70f1"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Usuario",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/726e8710-2b0b-4a6f-8385-ab72cc1c254b"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/726e8710-2b0b-4a6f-8385-ab72cc1c254b"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_pickerFieldUsers"(
+          label: "Correo empresarial",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione un a correo empresarial",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d9eca622-48e6-44d8-b8bf-809c807bbe41"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d9eca622-48e6-44d8-b8bf-809c807bbe41"],
+          required: true,
+          maxSelections: 1,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_dropdownField_v1"(
+          label: "Vinculación",
+          labelPosition: "ABOVE",
+          helpTooltip: "",
+          placeholder: "Seleccione un tipo de vinculación",
+          data: #"urn:appian:record-type:v1:8150e182-a133-4bb8-a849-3286f903cb29",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/187a4a89-83cf-4435-8f84-39cbaef5af8b"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/187a4a89-83cf-4435-8f84-39cbaef5af8b"],
+          choiceLabels: #"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/73f753fb-cec5-433c-ad8d-284267bd2913",
+          choiceValues: #"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/2b1230d9-6f5e-40cc-8431-6392697951c4",
+          required: true
+        ),
+        #"SYSTEM_SYSRULES_pickerFieldRecords_v2"(
+          label: "Funcionario Supervisor",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione un funcionario supervisor",
+          recordType: #"urn:appian:record-type:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d2f5f702-6535-411d-b9d7-952f7feeee82"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d2f5f702-6535-411d-b9d7-952f7feeee82"],
+          required: true,
+          maxSelections: 1,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_dateField"(
+          label: "Fecha Ingreso",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/a83883ed-fe66-450c-b837-f4c42a7af959"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/a83883ed-fe66-450c-b837-f4c42a7af959"],
+          required: true,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_dateField"(
+          label: "Fecha Nacimiento",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/70397edd-9a77-4375-a954-8f1432719a83"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/70397edd-9a77-4375-a954-8f1432719a83"],
+          required: true,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Telefono",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/b4c90893-7dbb-489b-925a-b280b517fd88"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/b4c90893-7dbb-489b-925a-b280b517fd88"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Lugar Expedicion",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/32ca2167-77a1-4ac4-9fb9-9eee3ccb9f95"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/32ca2167-77a1-4ac4-9fb9-9eee3ccb9f95"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Correo Personal",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/e2311dd7-5b60-40ec-adc8-f5a23a51f379"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/e2311dd7-5b60-40ec-adc8-f5a23a51f379"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Direccion Residencia",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/ee98b182-8327-42d6-a688-50dcb825c20c"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/ee98b182-8327-42d6-a688-50dcb825c20c"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Barrio Localidad",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/e92d2132-fc31-4aa1-8607-b9e0a53143f1"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/e92d2132-fc31-4aa1-8607-b9e0a53143f1"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Coordenadas",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/9ca7d1d5-7e1e-47ed-b67c-f234a18de756"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/9ca7d1d5-7e1e-47ed-b67c-f234a18de756"],
+          required: true,
+          characterLimit: 40,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_radioButtonField_v1"(
+          label: "Tipo Estado Funcionario",
+          labelPosition: "ABOVE",
+          data: #"urn:appian:record-type:v1:781dd00f-3c71-4ac6-8d53-063eb567e4a6",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/cf998e37-ea09-4dd0-988c-b0d735f29bd6"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/cf998e37-ea09-4dd0-988c-b0d735f29bd6"],
+          choiceLabels: #"urn:appian:record-field:v1:781dd00f-3c71-4ac6-8d53-063eb567e4a6/2f16e71f-2cc5-4b45-ab0c-97fbbcce62fd",
+          choiceValues: #"urn:appian:record-field:v1:781dd00f-3c71-4ac6-8d53-063eb567e4a6/48b9b9ee-1d98-4e80-b409-1d89e92a72fa",
+          required: true,
+          marginAbove: "LESS",
+          choiceLayout: "COMPACT",
+          choiceStyle: "CARDS"
+        ),
+        #"SYSTEM_SYSRULES_dateField"(
+          label: "Fecha Salida",
+          labelPosition: "ABOVE",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/fe6da04c-5bfe-43e5-b51e-8f9ea6c20f79"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/fe6da04c-5bfe-43e5-b51e-8f9ea6c20f79"],
+          required: true,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_dropdownField_v1"(
+          label: "Entidad Publica",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione un entidad publica",
+          data: #"urn:appian:record-type:v1:fc71d9d0-6606-44d2-925f-c1307280df11",
+          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/e61ae7d8-9a0a-4d79-9229-b5da7540cd7e"],
+          saveInto: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/e61ae7d8-9a0a-4d79-9229-b5da7540cd7e"],
+          choiceLabels: #"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/a42f1b63-7bf1-49a1-a653-bbc56962b67b",
+          choiceValues: #"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/c3f00363-8d89-4ef9-ace9-9470577498ee",
+          required: true,
+          searchDisplay: "AUTO",
+          marginAbove: "LESS"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Crear",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Crear Funcionario",
+    secondaryText: "Introduzca los detalles del funcionario"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>Funcionario</name>
+            <type>
+                <name>1b6c0485-a30c-4da8-b598-4c1124db0e12</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="fcdd1756-dd4e-4a71-ab65-71bac098c744"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1559424"/>
+    </history>
+</contentHaul>

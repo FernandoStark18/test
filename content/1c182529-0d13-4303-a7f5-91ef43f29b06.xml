@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef03-0467-8000-9bf2-011c48011c48_1560920</versionUuid>
+    <interface>
+        <name>PQR_ActualizarTipoMedioRecepcion</name>
+        <uuid>1c182529-0d13-4303-a7f5-91ef43f29b06</uuid>
+        <description>Interfaz de formulario para actualizar un medio de recepción como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Nombre",
+          labelPosition: "ABOVE",
+          value: ri!pqrTipomediorecepcion[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/67b9f49d-8a67-4c4c-9383-23ad130549bf"],
+          saveInto: ri!pqrTipomediorecepcion[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/67b9f49d-8a67-4c4c-9383-23ad130549bf"],
+          required: true,
+          characterLimit: 100,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Código",
+          labelPosition: "ABOVE",
+          helpTooltip: "",
+          value: ri!pqrTipomediorecepcion[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/c3805b5c-322b-4cf7-8974-132492335248"],
+          saveInto: ri!pqrTipomediorecepcion[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/c3805b5c-322b-4cf7-8974-132492335248"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Guardar",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Actualizar medio de recepción",
+    secondaryText: "Actualizar los detalles del medio de recepción"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>pqrTipomediorecepcion</name>
+            <type>
+                <name>a75f27aa-d47e-45d9-ba93-22dbd2420d00</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="0161eb1f-e9f1-4e8c-b441-ba5be33ebffd"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1560920"/>
+    </history>
+</contentHaul>

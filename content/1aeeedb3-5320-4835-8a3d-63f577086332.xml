@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867994</versionUuid>
+    <interface>
+        <name>PQR_INT_actualizarTipoEstadoCorreoElectronico</name>
+        <uuid>1aeeedb3-5320-4835-8a3d-63f577086332</uuid>
+        <description>Interfaz de formulario para actualizar TipoEstadoCorreoElectronico como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Nombre",
+          labelPosition: "ABOVE",
+          value: ri!tipoestadocorreoelectronico[#"urn:appian:record-field:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/36d297ab-348b-443e-9f1a-a6a7118095ed"],
+          saveInto: ri!tipoestadocorreoelectronico[#"urn:appian:record-field:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/36d297ab-348b-443e-9f1a-a6a7118095ed"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Código",
+          labelPosition: "ABOVE",
+          value: ri!tipoestadocorreoelectronico[#"urn:appian:record-field:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/20d2856e-e25f-4171-a2a5-4f88dcef69d6"],
+          saveInto: ri!tipoestadocorreoelectronico[#"urn:appian:record-field:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/20d2856e-e25f-4171-a2a5-4f88dcef69d6"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Ícono",
+          labelPosition: "ABOVE",
+          value: ri!tipoestadocorreoelectronico[#"urn:appian:record-field:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/cda93314-f87a-4d6b-b34d-9e5b7ef783fa"],
+          saveInto: ri!tipoestadocorreoelectronico[#"urn:appian:record-field:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/cda93314-f87a-4d6b-b34d-9e5b7ef783fa"],
+          required: true,
+          characterLimit: 15,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Color",
+          labelPosition: "ABOVE",
+          value: ri!tipoestadocorreoelectronico[#"urn:appian:record-field:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/19629661-1a7b-498a-bed2-e4e0c3dc6a9b"],
+          saveInto: ri!tipoestadocorreoelectronico[#"urn:appian:record-field:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/19629661-1a7b-498a-bed2-e4e0c3dc6a9b"],
+          required: true,
+          characterLimit: 10,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Guardar",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Actualizar TipoEstadoCorreoElectronico",
+    secondaryText: "Actualizar los detalles del tipoestadocorreoelectronico"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>tipoestadocorreoelectronico</name>
+            <type>
+                <name>da2d4c98-9a7c-448d-97b5-6fe73589ad7e</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="eaca9ef7-25e7-491d-b688-926c61acd31a"/>
+        <historyInfo versionUuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1472874"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5505330"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867994"/>
+    </history>
+</contentHaul>
