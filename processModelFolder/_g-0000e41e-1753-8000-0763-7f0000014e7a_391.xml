@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<processModelFolderHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_g-0000e46f-5290-8000-855d-014d98014d98_43</versionUuid>
+    <processModelFolder>
+        <name>TM Job Type Models</name>
+        <uuid>_g-0000e41e-1753-8000-0763-7f0000014e7a_391</uuid>
+        <description>Folder For Transaction Manager Job Type Models</description>
+        <parentFolderUuid>_g-0000e393-277a-8000-855d-014d98014d98_15</parentFolderUuid>
+    </processModelFolder>
+    <roleMap>
+        <role name="ADMIN_OWNER">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e41e-1753-8000-9af5-01075c01075c_1143</groupUuid>
+            </groups>
+        </role>
+        <role name="EDITOR">
+            <users/>
+            <groups/>
+        </role>
+        <role name="EXPLICIT_NONMEMBER">
+            <users/>
+            <groups/>
+        </role>
+        <role name="VIEWER">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e41e-1753-8000-9af5-01075c01075c_1145</groupUuid>
+            </groups>
+        </role>
+        <role name="MANAGER">
+            <users/>
+            <groups/>
+        </role>
+        <role name="INITIATOR">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_g-0000e41e-1753-8000-0763-7f0000014e7a_394"/>
+        <historyInfo versionUuid="_g-0000e46f-5290-8000-855d-014d98014d98_43"/>
+    </history>
+</processModelFolderHaul>

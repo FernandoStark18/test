@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<processModelFolderHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_g-0000e4df-5d04-8000-855d-014d98014d98_46</versionUuid>
+    <processModelFolder>
+        <name>Examples</name>
+        <uuid>_g-0000e4df-5d04-8000-855d-014d98014d98_44</uuid>
+        <description></description>
+        <parentFolderUuid>_g-0000e41e-1753-8000-0763-7f0000014e7a_391</parentFolderUuid>
+    </processModelFolder>
+    <roleMap>
+        <role name="ADMIN_OWNER">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e41e-1753-8000-9af5-01075c01075c_1143</groupUuid>
+            </groups>
+        </role>
+        <role name="EDITOR">
+            <users/>
+            <groups/>
+        </role>
+        <role name="EXPLICIT_NONMEMBER">
+            <users/>
+            <groups/>
+        </role>
+        <role name="VIEWER">
+            <users/>
+            <groups/>
+        </role>
+        <role name="MANAGER">
+            <users/>
+            <groups/>
+        </role>
+        <role name="INITIATOR">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_g-0000e4df-5d04-8000-855d-014d98014d98_46"/>
+    </history>
+</processModelFolderHaul>

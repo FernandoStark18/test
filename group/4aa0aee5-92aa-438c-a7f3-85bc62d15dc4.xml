@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</versionUuid>
+    <group>
+        <name>PQR Administradores</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description>Asigna a los usuarios permisos de administrador para los objetos de la aplicación.</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users/>
+        <groups/>
+    </members>
+    <admins>
+        <users/>
+        <groups>
+            <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+        </groups>
+    </admins>
+    <ruleSet/>
+    <history>
+        <historyInfo versionUuid="4aa0aee5-92aa-438c-a7f3-85bc62d15dc4"/>
+    </history>
+</groupHaul>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6872226</versionUuid>
+    <dataStore>
+        <uuid>_a-0000eef0-95cd-8000-9bee-011c48011c48_1467463</uuid>
+        <name>SPK DBO.SUPPORTICALERP</name>
+        <description></description>
+        <dataSourceKey>_a-0000eb5c-0afc-8000-9bb3-011c48011c48_460874</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <autoUpdateSchema>true</autoUpdateSchema>
+        <entities>
+            <entity>
+                <uuid>45e20dcf-3899-4726-a9fd-7f3d0c6ef418</uuid>
+                <name>APP_MAIL_POLLER</name>
+                <type>{urn:com:supportical:types:APP}APP_MAIL_POLLER</type>
+            </entity>
+            <entity>
+                <uuid>2f5af7bc-0e78-44ab-8f5a-6ee60a1b55dc</uuid>
+                <name>APP_MAIL_POLLER_DOC</name>
+                <type>{urn:com:supportical:types:APP}APP_MAIL_POLLER_DOC</type>
+            </entity>
+            <entity>
+                <uuid>d7d95a34-3856-4730-a830-384b95538747</uuid>
+                <name>PQR_Ciudadano</name>
+                <type>{urn:com:supportical:types:PQR}PQR_Ciudadano</type>
+            </entity>
+            <entity>
+                <uuid>c48e4057-8d47-47ef-a2ed-7fad797a54d8</uuid>
+                <name>PQR_TipoEtiqueta</name>
+                <type>{urn:com:supportical:types:PQR}PQR_TipoEtiqueta</type>
+            </entity>
+            <entity>
+                <uuid>9df1473e-c67c-48ae-9890-0e33973cfa83</uuid>
+                <name>PQR_CDT_AITokens</name>
+                <type>{urn:com:appian:types:PQR}PQR_CDT_AITokens</type>
+            </entity>
+            <entity>
+                <uuid>63442fdc-c387-41de-a653-602d2ca687c7</uuid>
+                <name>PQR_CDT_expediente</name>
+                <type>{urn:com:appian:types:PQR}PQR_CDT_expediente</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups>
+                <groupUuid>2ecd9162-3121-486b-886b-00cba71a3a41</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1467642"/>
+        <historyInfo versionUuid="_a-0000ef00-59b8-8000-9bf0-011c48011c48_1510400"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1560047"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1583912"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5375324"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383503"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5391516"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6765682"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6781949"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6872226"/>
+    </history>
+</dataStoreHaul>

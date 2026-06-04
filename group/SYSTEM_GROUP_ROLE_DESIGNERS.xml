@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<groupHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_e-0000ed3e-d246-8000-9afa-01075c01075c_938</versionUuid>
+    <group>
+        <name>Designers</name>
+        <securityMap>SECURITYMAP_TEAM</securityMap>
+        <uuid>SYSTEM_GROUP_ROLE_DESIGNERS</uuid>
+        <groupTypeUuid>SYSTEM_GROUP_TYPE_CUSTOM</groupTypeUuid>
+        <description>Members of this group will be able to design applications.</description>
+        <delegatedCreation>false</delegatedCreation>
+        <memberPolicy>MEMBERPOLICY_CLOSED</memberPolicy>
+        <viewingPolicy>VIEWINGPOLICY_LOW</viewingPolicy>
+        <attributes/>
+    </group>
+    <members>
+        <users/>
+        <groups>
+            <groupUuid>SYSTEM_GROUP_PROCESS_MODEL_CREATORS</groupUuid>
+            <groupUuid>SYSTEM_GROUP_ROLE_DESIGN_LIBRARY_EDITORS</groupUuid>
+        </groups>
+    </members>
+    <admins>
+        <users/>
+        <groups>
+            <groupUuid>bb29fd48-2474-4461-b0fe-1d5a1c216569</groupUuid>
+        </groups>
+    </admins>
+    <ruleSet>
+        <expressions>
+            <entityTypeName>u</entityTypeName>
+            <conditions>
+                <attributeName>userTypeName</attributeName>
+                <operatorId>1</operatorId>
+                <value>Administrator</value>
+            </conditions>
+        </expressions>
+    </ruleSet>
+    <history>
+        <historyInfo versionUuid="_e-0000ed3e-d246-8000-9afa-01075c01075c_938"/>
+    </history>
+</groupHaul>

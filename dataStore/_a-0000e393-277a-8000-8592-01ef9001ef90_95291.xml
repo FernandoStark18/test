@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<dataStoreHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5375317</versionUuid>
+    <dataStore>
+        <uuid>_a-0000e393-277a-8000-8592-01ef9001ef90_95291</uuid>
+        <name>TM Transaction Manager</name>
+        <description>Data Store For Transaction Manager Application</description>
+        <dataSourceKey>jdbc/Appian</dataSourceKey>
+        <adaptingExplicitSqlNames>false</adaptingExplicitSqlNames>
+        <autoUpdateSchema>false</autoUpdateSchema>
+        <entities>
+            <entity>
+                <uuid>fc425333-8f7f-41ab-93c8-b2dc7cd5ee6d</uuid>
+                <name>TM_TransactionStatus</name>
+                <type>{urn:com:appian:types:TM}TM_TransactionStatus</type>
+            </entity>
+            <entity>
+                <uuid>dd5ec92b-58dc-4d22-a48e-df09144d30d0</uuid>
+                <name>TM_Transaction</name>
+                <type>{urn:com:appian:types:TM}TM_Transaction</type>
+            </entity>
+            <entity>
+                <uuid>9481ae23-e8e1-499d-9578-29e1f8f99518</uuid>
+                <name>TM_JobTypeTransactionCounts</name>
+                <type>{urn:com:appian:types:TM}TM_JobTypeTransactionCounts</type>
+            </entity>
+            <entity>
+                <uuid>f7e01637-8628-4075-a47b-9f362c5d529d</uuid>
+                <name>TM_JobType</name>
+                <type>{urn:com:appian:types:TM}TM_JobType</type>
+            </entity>
+            <entity>
+                <uuid>4b0e19b8-31a1-41b5-bc71-3ed8a007e211</uuid>
+                <name>TM_TransactionStatusHistory</name>
+                <type>{urn:com:appian:types:TM}TM_TransactionStatusHistory</type>
+            </entity>
+        </entities>
+    </dataStore>
+    <isPublished>true</isPublished>
+    <roleMap>
+        <role inherit="false" allowForAll="false" name="administrators">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e41e-1753-8000-9af5-01075c01075c_1143</groupUuid>
+            </groups>
+        </role>
+        <role inherit="false" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="readers">
+            <users/>
+            <groups>
+                <groupUuid>_e-0000e41e-1753-8000-9af5-01075c01075c_1145</groupUuid>
+            </groups>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e398-8061-8000-8592-01ef9001ef90_104256"/>
+        <historyInfo versionUuid="_a-0000e3ab-2e40-8000-8592-01ef9001ef90_104588"/>
+        <historyInfo versionUuid="_a-0000e3b0-7ca4-8000-8592-01ef9001ef90_104631"/>
+        <historyInfo versionUuid="_a-0000e3cb-ddd3-8000-8592-01ef9001ef90_105155"/>
+        <historyInfo versionUuid="_a-0000e3f8-3d9c-8000-9ba4-011c48011c48_3133227"/>
+        <historyInfo versionUuid="_a-0000e41e-1753-8000-9ba9-011c48011c48_3289352"/>
+        <historyInfo versionUuid="_a-0000e42e-bf9d-8000-8592-01ef9001ef90_106321"/>
+        <historyInfo versionUuid="_a-0000e470-9a48-8000-8592-01ef9001ef90_107244"/>
+        <historyInfo versionUuid="_a-0000e572-78a9-8000-d620-01ef9001ef90_24767"/>
+        <historyInfo versionUuid="_a-0000e844-c11d-8000-9bc9-011c48011c48_1106121"/>
+        <historyInfo versionUuid="_a-0000ec53-364e-8000-9bbd-011c48011c48_9137"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10637"/>
+        <historyInfo versionUuid="_a-0000ec5e-d78c-8000-9bc5-011c48011c48_11931"/>
+        <historyInfo versionUuid="_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_13621"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5375317"/>
+    </history>
+</dataStoreHaul>
