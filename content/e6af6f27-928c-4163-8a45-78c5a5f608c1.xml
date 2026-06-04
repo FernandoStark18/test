@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867978</versionUuid>
+    <interface>
+        <name>PQR_INT_eliminarTipoEtiqueta</name>
+        <uuid>e6af6f27-928c-4163-8a45-78c5a5f608c1</uuid>
+        <description>Interfaz de formulario para confirmar la eliminación de un registro</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: #"SYSTEM_SYSRULES_richTextDisplayField"(
+    labelPosition: "COLLAPSED",
+    value: {
+      "La etiqueta se eliminará permanentemente, así como las reglas asociadas a esta y los correos, y no podrá recuperarse"
+    },
+    marginAbove: "STANDARD",
+    marginBelow: "NONE",
+    align: "LEFT"
+  ),
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Eliminar",
+        submit: true,
+        color: "NEGATIVE",
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        color: "SECONDARY",
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "¿Eliminar etiqueta?",
+    backgroundColor: "#ffefef",
+    stampIcon: "exclamation-triangle",
+    stampColor: "NEGATIVE"
+  ),
+  backgroundColor: "#fbfbfb",
+  showTitleBarDivider: false,
+  showButtonDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="a5ef9e73-9927-4c6f-bd17-373956d50758"/>
+        <historyInfo versionUuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1471613"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6759731"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867978"/>
+    </history>
+</contentHaul>

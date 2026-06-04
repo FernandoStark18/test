@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5503490</versionUuid>
+    <interface>
+        <name>PQR_CreateInterviniente</name>
+        <uuid>c2579b6c-0f9b-4373-837a-dfaf58af48eb</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo Intervinientes como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_pickerFieldRecords_v2"(
+      label: "Ciudadano",
+      labelPosition: "ABOVE",
+      placeholder: "Seleccione un a ciudadano",
+      recordType: #"urn:appian:record-type:v1:0929493f-cd4a-4d2a-ac93-485c458c24e5",
+      value: ri!record[#"urn:appian:record-field:v1:5b535965-c91a-4088-a83b-d1632cc4a43b/40302409-c7f6-4de7-9b9d-f92797847402"],
+      saveInto: ri!record[#"urn:appian:record-field:v1:5b535965-c91a-4088-a83b-d1632cc4a43b/40302409-c7f6-4de7-9b9d-f92797847402"],
+      required: true,
+      maxSelections: 1
+    ),
+    #"SYSTEM_SYSRULES_dropdownField_v1"(
+      label: "PQRDSF",
+      labelPosition: "ABOVE",
+      placeholder: "Seleccione un pQRDSF",
+      data: #"urn:appian:record-type:v1:8460a530-e87d-441b-b904-41fbd8172f32",
+      value: ri!record[#"urn:appian:record-field:v1:5b535965-c91a-4088-a83b-d1632cc4a43b/51ad999f-29ec-4ce9-9113-c21084d4930d"],
+      saveInto: ri!record[#"urn:appian:record-field:v1:5b535965-c91a-4088-a83b-d1632cc4a43b/51ad999f-29ec-4ce9-9113-c21084d4930d"],
+      choiceLabels: #"urn:appian:record-field:v1:8460a530-e87d-441b-b904-41fbd8172f32/5b79cce4-e05b-491a-a8fb-623d576965d7",
+      choiceValues: #"urn:appian:record-field:v1:8460a530-e87d-441b-b904-41fbd8172f32/53285f69-f746-487b-9faa-433d051f6ba3",
+      required: true,
+      searchDisplay: "AUTO",
+      marginAbove: "LESS"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Crear",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateSimple"(
+    title: "Crear Interviniente",
+    secondaryText: "Introduzca los detalles del interviniente"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#FFFFFF",
+  showTitleBarDivider: true
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>5b535965-c91a-4088-a83b-d1632cc4a43b</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="5507182c-6c91-4a99-ab2c-b29851a90300"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1402626"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5503490"/>
+    </history>
+</contentHaul>

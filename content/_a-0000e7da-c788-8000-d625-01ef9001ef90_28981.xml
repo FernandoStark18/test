@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e7da-c788-8000-d625-01ef9001ef90_28993</versionUuid>
+    <interface>
+        <name>TM_cmpt_CardLayout</name>
+        <uuid>_a-0000e7da-c788-8000-d625-01ef9001ef90_28981</uuid>
+        <description>Reusable interface component for a cardLayout</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289268</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!isCollapsed: false,
+  {
+    #"SYSTEM_SYSRULES_sideBySideLayout"(
+      alignVertical: "MIDDLE",
+      items: {
+        #"SYSTEM_SYSRULES_sideBySideItem"(
+          item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+            label: "Title",
+            labelPosition: "COLLAPSED",
+            value: {
+              #"SYSTEM_SYSRULES_richTextIcon"(
+                icon: if(
+                  local!isCollapsed,
+                  "angle-right",
+                  "angle-down"
+                ),
+                link: #"SYSTEM_SYSRULES_dynamicLink"(
+                  value: not(local!isCollapsed),
+                  saveInto: local!isCollapsed
+                ),
+                linkStyle: "STANDALONE",
+                /*showWhen: a!defaultValue(ri!isCollapsible, false),*/
+                showWhen: false,
+                color: "ACCENT",
+                size: "MEDIUM_PLUS"
+              ),
+              #"SYSTEM_SYSRULES_richTextItem_v1"(
+                text: ri!title,
+                color: "ACCENT",
+                size: "MEDIUM_PLUS",
+                style: "STRONG"
+              )
+            }
+          )
+        )
+      },
+      showWhen: not(isnull(ri!title))
+    ),
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: ri!contents,
+      height: "AUTO",
+      showWhen: and(
+        ri!showWhen,
+        local!isCollapsed = false
+      ),
+      style: "NONE",
+      /* Parameter for later versions */
+      /*shape: "ROUNDED",*/
+      padding: "STANDARD",
+      marginBelow: "STANDARD",
+      showBorder: false,
+      showShadow: true
+    )
+  }
+)
+
+
+</definition>
+        <namedTypedValue>
+            <name>title</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>contents</name>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>showWhen</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_28993"/>
+    </history>
+</contentHaul>

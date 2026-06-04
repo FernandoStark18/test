@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383651</versionUuid>
+    <interface>
+        <name>PQR_CrearEtiquetaXFuncionario</name>
+        <uuid>e91552db-0025-4d1d-bf0d-c284585037a8</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo EtiquetaXFuncionario como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_dropdownField_v1"(
+          label: "Etiqueta",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione una etiqueta",
+          data: #"urn:appian:record-type:v1:f7d4a31b-036e-413a-b0bf-2215cb228832",
+          value: ri!etiquetaxfuncionario[#"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/67943370-9180-4597-91bd-65bcbb1eb3df"],
+          saveInto: ri!etiquetaxfuncionario[#"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/67943370-9180-4597-91bd-65bcbb1eb3df"],
+          choiceLabels: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c328359a-a4b1-488a-8324-7beafa21d9ae",
+          choiceValues: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/2bcca99a-defc-4dc8-9f9c-4d388bc30236",
+          required: true
+        ),
+        #"SYSTEM_SYSRULES_dropdownField_v1"(
+          label: "Funcionario",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione un funcionario",
+          data: #"urn:appian:record-type:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12",
+          value: ri!etiquetaxfuncionario[#"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/97bc2301-2dec-4f9e-9ba8-90aa62820b6a"],
+          saveInto: ri!etiquetaxfuncionario[#"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/97bc2301-2dec-4f9e-9ba8-90aa62820b6a"],
+          choiceLabels: #"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/69a11a70-44e5-4721-8d6d-b556fb9138d4",
+          choiceValues: #"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/c9efe6d1-37e9-46a3-a6cf-f7a74f56203e",
+          required: true
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Crear",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Asociar Etiqueta y Funcionario",
+    secondaryText: "Introduzca los detalles de la etiqueta y del funcionario"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>etiquetaxfuncionario</name>
+            <type>
+                <name>2492b21d-8e17-4f63-81ba-6d7d3440bd1d</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="0b89ee7c-b45a-4c0e-a883-22aa87697aad"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383651"/>
+    </history>
+</contentHaul>

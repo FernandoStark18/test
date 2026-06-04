@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867975</versionUuid>
+    <interface>
+        <name>PQR_INT_crearTipoEtiqueta</name>
+        <uuid>c59965a7-6d2f-4579-9a8c-3bd8d331071e</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo TipoEtiqueta como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!dependenciasLabels: #"SYSTEM_SYSRULES_queryRecordType_v4"(
+    recordType: #"urn:appian:record-type:v1:8f642b83-4da0-4cba-9543-5fe4685f073e",
+    fields: {
+      #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/94460adb-4d22-47e3-a1fe-3282fd3f505d"
+    },
+    filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+      operator: "AND",
+      filters: {
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/ff71f403-d065-4682-b2ef-a52d30caa783",
+          operator: "not null"
+        )
+      },
+      ignoreFiltersWithEmptyValues: true
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+      startIndex: 1,
+      batchSize: 500
+    )
+  ).data[#"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/94460adb-4d22-47e3-a1fe-3282fd3f505d"],
+  local!dependenciasValues: touniformstring(
+    #"SYSTEM_SYSRULES_queryRecordType_v4"(
+      recordType: #"urn:appian:record-type:v1:8f642b83-4da0-4cba-9543-5fe4685f073e",
+      fields: {
+        #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/ff71f403-d065-4682-b2ef-a52d30caa783"
+      },
+      filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+        operator: "AND",
+        filters: {
+          #"SYSTEM_SYSRULES_queryFilter"(
+            field: #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/ff71f403-d065-4682-b2ef-a52d30caa783",
+            operator: "not null"
+          )
+        },
+        ignoreFiltersWithEmptyValues: true
+      ),
+      pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 500)
+    ).data[#"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/ff71f403-d065-4682-b2ef-a52d30caa783"]
+  ),
+  #"SYSTEM_SYSRULES_formLayout_v2"(
+    contents: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_dropdownField_v1"(
+                    label: "Categoría",
+                    labelPosition: "ABOVE",
+                    placeholder: "Seleccione una categoria",
+                    data: #"urn:appian:record-type:v1:f3ec0006-548d-4ea9-9537-802665e19cd8",
+                    value: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/d92fdcb7-61bb-40f0-b26e-4e6965e5aee1"],
+                    saveInto: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/d92fdcb7-61bb-40f0-b26e-4e6965e5aee1"],
+                    choiceLabels: #"urn:appian:record-field:v1:f3ec0006-548d-4ea9-9537-802665e19cd8/6c94f83f-3c46-48f0-a689-f3fcb5143ac3",
+                    choiceValues: #"urn:appian:record-field:v1:f3ec0006-548d-4ea9-9537-802665e19cd8/a69c1350-1df3-4697-a268-6090ff54020f",
+                    required: true
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Nombre",
+                    labelPosition: "ABOVE",
+                    value: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c328359a-a4b1-488a-8324-7beafa21d9ae"],
+                    saveInto: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c328359a-a4b1-488a-8324-7beafa21d9ae"],
+                    required: true,
+                    characterLimit: 50,
+                    showCharacterCount: false
+                  ),
+                  #"SYSTEM_SYSRULES_paragraphField"(
+                    label: "Descripción",
+                    labelPosition: "ABOVE",
+                    value: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c514010c-49c0-47cc-b509-1a07e72b297a"],
+                    saveInto: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c514010c-49c0-47cc-b509-1a07e72b297a"],
+                    required: false,
+                    characterLimit: 500,
+                    showCharacterCount: true
+                  ),
+                  #"SYSTEM_SYSRULES_dropdownField_v1"(
+                    label: "Dependencia",
+                    labelPosition: "ABOVE",
+                    placeholder: "Seleccione una dependencia",
+                    value: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/9f62d70b-327f-4373-bbe7-2c373e3bfe22"],
+                    saveInto: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/9f62d70b-327f-4373-bbe7-2c373e3bfe22"],
+                    choiceLabels: local!dependenciasLabels,
+                    choiceValues: local!dependenciasValues,
+                    required: false
+                  ),
+                  #"SYSTEM_SYSRULES_textField"(
+                    label: "Ícono",
+                    labelPosition: "ABOVE",
+                    value: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/1ad57013-49c6-4479-8811-105184927d81"],
+                    saveInto: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/1ad57013-49c6-4479-8811-105184927d81"],
+                    required: true,
+                    characterLimit: 15,
+                    showCharacterCount: false
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  colorPicker(
+                    label: "Color",
+                    labelPosition: "ABOVE",
+                    required: true,
+                    validations: {},
+                    height: "AUTO",
+                    colorValue: null,
+                    colorSaveInto: ri!tipoetiqueta[#"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/8a5a5844-84da-4c47-a007-3d4c7cedaf35"]
+                  )
+                }
+              )
+            }
+          )
+        },
+        style: "NONE",
+        padding: "MORE",
+        shape: "SEMI_ROUNDED"
+      )
+    },
+    buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: {
+        #"SYSTEM_SYSRULES_buttonWidget_v1"(
+          label: "Crear",
+          validate: true,
+          submit: true,
+          style: "SOLID"
+        )
+      },
+      secondaryButtons: {
+        #"SYSTEM_SYSRULES_buttonWidget_v1"(
+          label: "Cancelar",
+          value: true,
+          saveInto: ri!cancel,
+          validate: false,
+          submit: true,
+          style: "OUTLINE"
+        )
+      }
+    ),
+    isTitleBarFixed: true,
+    titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+      title: "Crear etiqueta",
+      secondaryText: "Introduzca los detalles de la etiqueta"
+    ),
+    contentsWidth: "FULL",
+    backgroundColor: "#F6F7F9",
+    showTitleBarDivider: false
+  )
+)</definition>
+        <namedTypedValue>
+            <name>tipoetiqueta</name>
+            <type>
+                <name>f7d4a31b-036e-413a-b0bf-2215cb228832</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="3863f73b-8e86-42d6-8209-54f42415c028"/>
+        <historyInfo versionUuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1467871"/>
+        <historyInfo versionUuid="_a-0000ef00-59b8-8000-9bf0-011c48011c48_1509081"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383510"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5501155"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6812253"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867975"/>
+    </history>
+</contentHaul>
