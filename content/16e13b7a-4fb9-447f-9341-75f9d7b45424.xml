@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efc9-21d9-8000-9ce6-011c48011c48_7051694</versionUuid>
+    <rule>
+        <name>PQR_RGL_getMailDetails</name>
+        <uuid>16e13b7a-4fb9-447f-9341-75f9d7b45424</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>/*
+  REGLA: PQR_RGL_getMailDetails (MODIFICADA)
+
+  CAMBIO: se agrega el nuevo parámetro de entrada ri!clasificadoPorFilter
+  y su filtro correspondiente.
+
+  IMPORTANTE — agregar el RULE INPUT en la regla:
+    Nombre: clasificadoPorFilter
+    Tipo:   Text (String)
+
+  NOTA SOBRE LA LÓGICA:
+  - ri!approbalUserFilter ya filtraba por el campo "usuario" de la relación
+    appMailPollerevento SIN distinguir el tipo de evento. Se mantiene igual.
+  - ri!clasificadoPorFilter filtra el MISMO campo "usuario" de eventos.
+    Como ambos apuntan al campo usuario, si quieres que sean realmente
+    distintos (aprobador vs clasificador) debes combinar cada uno con su
+    tipo de evento. Más abajo dejo la versión combinada comentada.
+*/
+#"SYSTEM_SYSRULES_queryRecordType_v4"(
+  recordType: #"urn:appian:record-type:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4",
+  fields: {
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9aa2ba60-e02c-4792-aa94-797e7da3ca0c",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/6beb40ad-2319-4d5e-bff8-f854494ced72",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/415542e0-75b2-490b-ac5b-409392adb155",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/64787dc1-052b-41fb-b443-d6f2a6ce90d8",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/e3f6788e-3427-4637-83cd-ea0bb884ec26",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/81d7372d-c87b-4076-8c0e-3fee910cca88",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/098ce992-4c7d-48a6-8122-1e13a1ebc8f4",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/a5ffe5fa-7b2c-47d9-965d-a033f8c66349",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/a3c256a0-ded5-4f3d-9686-fefe4e4057b0",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/3b8ba427-6d74-46e9-b280-aa6ecfb5c5ab",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9bcce5f6-b4d1-47ee-8a26-4d49ad2540b3",
+    #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/683d1f87-94d9-4959-be82-82f0144b185b"
+  },
+  filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+    operator: "AND",
+    filters: {
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/a3c256a0-ded5-4f3d-9686-fefe4e4057b0",
+        operator: "includes",
+        value: ri!fromFilter,
+        applyWhen: a!isInText(ri!fromFilter, "@")
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/a5ffe5fa-7b2c-47d9-965d-a033f8c66349",
+        operator: "includes",
+        value: ri!fromFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/e3f6788e-3427-4637-83cd-ea0bb884ec26",
+        operator: "includes",
+        value: ri!toFilter,
+        applyWhen: a!isInText(ri!toFilter, "@")
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/64787dc1-052b-41fb-b443-d6f2a6ce90d8",
+        operator: "includes",
+        value: ri!toFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/6beb40ad-2319-4d5e-bff8-f854494ced72",
+        operator: "includes",
+        value: ri!subjectFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/098ce992-4c7d-48a6-8122-1e13a1ebc8f4",
+        operator: "includes",
+        value: ri!bodyFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/683d1f87-94d9-4959-be82-82f0144b185b",
+        operator: "in",
+        value: ri!estadoFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/415542e0-75b2-490b-ac5b-409392adb155",
+        operator: "&gt;=",
+        value: ri!fromDateFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/415542e0-75b2-490b-ac5b-409392adb155",
+        operator: "&lt;=",
+        value: ri!toDateFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9a87e8ad-c22d-4be9-9e7f-978503ebf910/b166a748-4a36-43a3-99a4-412a24157620",
+        operator: "in",
+        value: ri!tagFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/ec9444b7-7469-470e-b61a-1461c739c42e/f54d21c3-52dc-4b3b-8134-98da2e9c25a3",
+        operator: "=",
+        value: ri!tipoEventoFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9a87e8ad-c22d-4be9-9e7f-978503ebf910/a93e1325-1e25-4a65-ae1c-0e9a91e1ff6f",
+        operator: "&gt;=",
+        value: ri!fromConfidenceFilter
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9a87e8ad-c22d-4be9-9e7f-978503ebf910/a93e1325-1e25-4a65-ae1c-0e9a91e1ff6f",
+        operator: "&lt;=",
+        value: ri!toConfidenceFilter
+      ),
+      /* Filtro existente: usuario aprobador (usuario del evento) */
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/ec9444b7-7469-470e-b61a-1461c739c42e/d905bb4a-e56a-417c-9504-66fbe5da37ca",
+        operator: "=",
+        value: ri!approbalUserFilter
+      ),
+      /* NUEVO: filtro clasificado por (usuario del evento de clasificación) */
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/ec9444b7-7469-470e-b61a-1461c739c42e/d905bb4a-e56a-417c-9504-66fbe5da37ca",
+        operator: "=",
+        value: ri!clasificadoPorFilter
+      )
+    },
+    ignoreFiltersWithEmptyValues: true
+  ),
+  pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: ri!startIndex,
+    batchSize: ri!batchSize,
+    sort: {
+      #"SYSTEM_SYSRULES_sortInfo"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/415542e0-75b2-490b-ac5b-409392adb155",
+        ascending: false
+      ),
+      #"SYSTEM_SYSRULES_sortInfo"(
+        field: #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9aa2ba60-e02c-4792-aa94-797e7da3ca0c",
+        ascending: null
+      )
+    }
+  ),
+  fetchTotalCount: true()
+)</definition>
+        <namedTypedValue>
+            <name>filteredMailIds</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>fromFilter</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>toFilter</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>subjectFilter</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>bodyFilter</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>estadoFilter</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>fromDateFilter</name>
+            <type>
+                <name>dateTime</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>toDateFilter</name>
+            <type>
+                <name>dateTime</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>startIndex</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>batchSize</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>tagFilter</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>tipoEventoFilter</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>fromConfidenceFilter</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>toConfidenceFilter</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>approbalUserFilter</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>clasificadoPorFilter</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6712768"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6782549"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6921010"/>
+        <historyInfo versionUuid="_a-0000efc9-21d9-8000-9ce6-011c48011c48_7051694"/>
+    </history>
+</contentHaul>
