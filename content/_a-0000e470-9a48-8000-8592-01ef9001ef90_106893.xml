@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_13684</versionUuid>
+    <rule>
+        <name>TM_isAppAdmin</name>
+        <uuid>_a-0000e470-9a48-8000-8592-01ef9001ef90_106893</uuid>
+        <description>Checks whether the logged in user is an application administrator</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289262</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>or(
+  user(loggedInUser(), "userTypeName") = "Administrator",
+  #"urn:appian:function:v1:a:isusermemberofgroup?okey=a!isUserMemberOfGroup"(
+    username: loggedInUser(),
+    groups: #"_a-0000e41e-1753-8000-9ba9-011c48011c48_3289247"
+  )
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>Test completes without errors</a:name>
+                <a:description/>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                <a:isDefault>true</a:isDefault>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e470-9a48-8000-8592-01ef9001ef90_106911"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10865"/>
+        <historyInfo versionUuid="_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_13684"/>
+    </history>
+</contentHaul>
