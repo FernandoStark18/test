@@ -1,0 +1,1085 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867981</versionUuid>
+    <interface>
+        <name>PQR_INT_manualDeUsuario</name>
+        <uuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6032722</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!activeSection: 1,
+  local!activeSubsection: 1,
+
+  local!sections: {
+    a!map(
+      sectionName: "Inicio",
+      icon: "home",
+      subsections: {
+        a!map(name: "Dashboard y métricas operativas"),
+        a!map(name: "Interpretación de gráficas"),
+        a!map(name: "Top Remitentes")
+      }
+    ),
+    a!map(
+      sectionName: "Correos",
+      icon: "envelope",
+      subsections: {
+        a!map(name: "Bandeja de entrada y navegación"),
+        a!map(name: "Vista de detalle del correo"),
+        a!map(name: "Chatbot de IA contextualizado"),
+        a!map(name: "Historial de eventos"),
+        a!map(name: "Comentarios y menciones"),
+        a!map(name: "Gestión manual de etiquetas"),
+        a!map(name: "Filtros avanzados"),
+        a!map(name: "Flujo de clasificación")
+      }
+    ),
+    a!map(
+      sectionName: "Ciudadanos",
+      icon: "users",
+      subsections: {
+        a!map(name: "Directorio de remitentes externos"),
+        a!map(name: "Gestión de registros")
+      }
+    ),
+    a!map(
+      sectionName: "Organización",
+      icon: "sitemap",
+      subsections: {
+        a!map(name: "Entidades públicas"),
+        a!map(name: "Dependencias"),
+        a!map(name: "Funcionarios"),
+        a!map(name: "Reglas de correo")
+      }
+    ),
+    a!map(
+      sectionName: "Config. Correo",
+      icon: "cog",
+      subsections: {
+        a!map(name: "Consola de operación"),
+        a!map(name: "Bandeja (Vista Admin)"),
+        a!map(name: "Categorías de etiquetas"),
+        a!map(name: "Etiquetas"),
+        a!map(name: "Reglas de correo"),
+        a!map(name: "Estados del correo")
+      }
+    ),
+    a!map(
+      sectionName: "Config. PQRDSF",
+      icon: "sliders",
+      subsections: {
+        a!map(name: "Tipo PQRDSF"),
+        a!map(name: "Categorías PQRDSF"),
+        a!map(name: "Tipo interviniente")
+      }
+    ),
+    a!map(
+      sectionName: "Config. General",
+      icon: "wrench",
+      subsections: {
+        a!map(name: "Medios de recepción"),
+        a!map(name: "Vinculación de entidad"),
+        a!map(name: "Preguntas IA (Trace)")
+      }
+    ),
+    a!map(
+      sectionName: "Glosario",
+      icon: "book",
+      subsections: {
+        a!map(name: "Términos y definiciones")
+      }
+    )
+  },
+
+  #"SYSTEM_SYSRULES_headerContentLayout"(
+    header: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_imageField_v1"(
+                          label: "Logo",
+                          labelPosition: "COLLAPSED",
+                          images: { #"SYSTEM_SYSRULES_documentImage"(document: #"_a-0000ef03-0467-8000-9bf2-011c48011c48_1561798") },
+                          size: "SMALL_PLUS",
+                          isThumbnail: false
+                        ),
+                        width: "MINIMIZE"
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Manual de Usuario Operativo", size: "LARGE", color: "#FFFFFF", style: "STRONG"),
+                            char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gestión de Correos — Sede Virtual CGR  |  Supportical SPARK  |  v2.0", size: "SMALL", color: "#B0C4D8")
+                          }
+                        )
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Elaborado por: Diego Melo  |  Feb 2026", size: "SMALL", color: "#B0C4D8")
+                          },
+                          align: "RIGHT"
+                        ),
+                        width: "MINIMIZE"
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                }
+              )
+            }
+          )
+        },
+        marginBelow: "NONE",
+        style: "#1d2d44",
+        showBorder: false,
+        padding: "LESS"
+      )
+    },
+    contents: {
+      #"SYSTEM_SYSRULES_paneLayout"(
+        panes: {
+
+          /* ── PANEL IZQUIERDO: MENÚ ── */
+          #"SYSTEM_SYSRULES_pane"(
+            contents: {
+              #"SYSTEM_SYSRULES_documentsChatField"(
+                label: "Documents Chatbot",
+                labelPosition: "ABOVE",
+                documents: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6071623",
+                height: "AUTO"
+              ),
+              #"SYSTEM_SYSRULES_forEach"(
+                items: local!sections,
+                expression: {
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    value: {
+                      #"SYSTEM_SYSRULES_richTextIcon"(icon: fv!item.icon, size: "MEDIUM", color: "SECONDARY"),
+                      "  ",
+                      #"SYSTEM_SYSRULES_richTextItem_v1"(text: fn!upper(fv!item.sectionName), size: "SMALL", color: "SECONDARY", style: "STRONG")
+                    },
+                    marginBelow: "LESS"
+                  ),
+                  a!localVariables(
+                    local!parentSection: fv!index,
+                    #"SYSTEM_SYSRULES_forEach"(
+                      items: fv!item.subsections,
+                      expression: #"SYSTEM_SYSRULES_cardLayout"(
+                        contents: {
+                          #"SYSTEM_SYSRULES_sideBySideLayout"(
+                            items: {
+                              #"SYSTEM_SYSRULES_sideBySideItem"(
+                                item: #"SYSTEM_SYSRULES_richTextDisplayField"(value: " "),
+                                width: "MINIMIZE"
+                              ),
+                              #"SYSTEM_SYSRULES_sideBySideItem"(
+                                item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                  value: #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                    text: fv!item.name,
+                                    size: "MEDIUM",
+                                    color: if(fn!and(local!parentSection = local!activeSection, fv!index = local!activeSubsection), "ACCENT", "STANDARD"),
+                                    style: if(fn!and(local!parentSection = local!activeSection, fv!index = local!activeSubsection), "STRONG", "PLAIN")
+                                  )
+                                )
+                              ),
+                              #"SYSTEM_SYSRULES_sideBySideItem"(
+                                item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                  value: #"SYSTEM_SYSRULES_richTextIcon"(icon: "chevron-right", color: "ACCENT"),
+                                  align: "RIGHT"
+                                ),
+                                showWhen: fn!and(local!parentSection = local!activeSection, fv!index = local!activeSubsection),
+                                width: "MINIMIZE"
+                              )
+                            },
+                            alignVertical: "MIDDLE"
+                          )
+                        },
+                        link: #"SYSTEM_SYSRULES_dynamicLink"(
+                          saveInto: {
+                            a!save(local!activeSubsection, fv!index),
+                            a!save(local!activeSection, local!parentSection)
+                          }
+                        ),
+                        marginBelow: "NONE",
+                        showBorder: false,
+                        padding: "LESS"
+                      )
+                    )
+                  ),
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(value: " ", marginBelow: "STANDARD")
+                }
+              )
+            },
+            width: "MEDIUM",
+            backgroundColor: "#f7f9fa",
+            padding: "STANDARD"
+          ),
+
+          /* ── PANEL DERECHO: CONTENIDO ── */
+          #"SYSTEM_SYSRULES_pane"(
+            contents: {
+              /* Título de sección */
+              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                labelPosition: "COLLAPSED",
+                value: {
+                  #"SYSTEM_SYSRULES_richTextIcon"(
+                    icon: index(local!sections.icon, local!activeSection, "book"), size: "LARGE",
+                    color: "ACCENT"
+                  ),
+                  "  ",
+                  #"SYSTEM_SYSRULES_richTextItem_v1"(
+                    text: index(local!sections.sectionName, local!activeSection, ""),
+                    size: "LARGE", color: "ACCENT", style: "STRONG"
+                  )
+                },
+                marginBelow: "LESS"
+              ),
+              #"SYSTEM_SYSRULES_sectionLayout_v1"(
+                label: local!sections[local!activeSection].subsections[local!activeSubsection].name,
+                contents: {
+                  choose(
+                    local!activeSection,
+
+                    /* ══════════════════════════════
+                       SECCIÓN 1 — INICIO
+                    ══════════════════════════════ */
+                    choose(
+                      local!activeSubsection,
+
+                      /* 1.1 Dashboard y métricas */
+                      {
+                        #"SYSTEM_SYSRULES_imageField_v1"(
+                          label: "Image",
+                          labelPosition: "ABOVE",
+                          images: {
+                            #"SYSTEM_SYSRULES_documentImage"(
+                              document: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6117451"
+                            )
+                          },
+                          size: "FIT",
+                          style: "STANDARD"
+
+                        ),
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "¿Qué es el Control Operativo?", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "La pantalla de Inicio muestra el tablero denominado ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Control Operativo", style: "STRONG"),
+                            ", diseñado para ofrecer una visión panorámica e inmediata del estado de la operación de correos institucionales. Esta pantalla es de solo lectura y se actualiza automáticamente.",
+                            char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Contadores principales", size: "MEDIUM", style: "STRONG"), char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Total correos recolectados: ", style: "STRONG"),
+                            "Número acumulado de todos los mensajes descargados desde Outlook hacia el sistema desde el inicio de operaciones (ej.: 12.394). Incluye la fecha y hora de la última sincronización automática.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Correos clasificados: ", style: "STRONG"),
+                            "Total de correos procesados y etiquetados por un analista (ej.: 623). Se muestra también el número de mensajes aún pendientes de clasificar.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Correos radicados: ", style: "STRONG"),
+                            "Cantidad de correos formalmente radicados en el gestor documental institucional con número de expediente asignado.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Panel de Etiquetas activas", size: "MEDIUM", style: "STRONG"), char(10), char(10),
+                            "Lista todas las etiquetas configuradas con el conteo de correos que tienen esa etiqueta asignada. Permite identificar de un vistazo cuáles son las categorías con mayor volumen de mensajes. Ejemplos típicos:", char(10),
+                            "• RADICAR_AUTOMÁTICO: 1.216 correos", char(10),
+                            "• TIENE_ADJUNTOS: 747 correos", char(10),
+                            "• CGR_GENERAL: 381 correos"
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_cardLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              value: {
+                                #"SYSTEM_SYSRULES_richTextIcon"(icon: "info-circle", color: "ACCENT"), "  ",
+                                #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Consejo: ", style: "STRONG"),
+                                "Use los contadores para planificar la carga de trabajo diaria del equipo. Un volumen pendiente alto puede indicar la necesidad de ajustar las cuotas de analistas en la Consola de Operación."
+                              }
+                            )
+                          },
+                          style: "#e8f4fd", showBorder: false, padding: "STANDARD"
+                        )
+                      },
+
+                      /* 1.2 Interpretación de gráficas */
+                      {
+                        #"SYSTEM_SYSRULES_imageField_v1"(
+                          label: "Image",
+                          labelPosition: "ABOVE",
+                          images: {
+                            #"SYSTEM_SYSRULES_documentImage"(
+                              document: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6118457"
+                            )
+                          },
+                          size: "FIT",
+                          style: "STANDARD",
+                          isThumbnail: false
+                        ),
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gráficas de volumen operativo", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Correos por mes", style: "STRONG"), char(10),
+                            "Gráfica de barras o líneas con la evolución histórica mensual del total de mensajes recibidos. Es útil para:", char(10),
+                            "• Identificar tendencias de crecimiento o decrecimiento en el volumen.", char(10),
+                            "• Detectar picos estacionales asociados a fechas clave institucionales.", char(10),
+                            "• Justificar ajustes de capacidad operativa ante la dirección.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Correos del mes actual", style: "STRONG"), char(10),
+                            "Distribución diaria de correos en el mes en curso. Permite:", char(10),
+                            "• Controlar el ritmo operativo semana a semana.", char(10),
+                            "• Identificar días de mayor demanda para reforzar el equipo de analistas.", char(10),
+                            "• Comparar el comportamiento actual versus el histórico del mismo mes."
+                          }
+                        )
+                      },
+
+                      /* 1.3 Top Remitentes */
+                      {
+                        #"SYSTEM_SYSRULES_imageField_v1"(
+                          label: "Image",
+                          labelPosition: "ABOVE",
+                          images: {
+                            #"SYSTEM_SYSRULES_documentImage"(
+                              document: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6118496"
+                            )
+                          },
+                          size: "FIT",
+                          style: "STANDARD",
+                          isThumbnail: false
+                        ),
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Top Remitentes por volumen", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Ranking de los ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "10 remitentes", style: "STRONG"),
+                            " con mayor número de mensajes enviados a la CGR en el periodo. Su utilidad principal es:", char(10), char(10),
+                            "• Identificar entidades o personas con comunicación frecuente que podrían requerir reglas automáticas de clasificación para agilizar su tratamiento.", char(10),
+                            "• Detectar posibles remitentes de spam o correos masivos que ameriten una regla de filtrado.", char(10),
+                            "• Priorizar la configuración de etiquetas y dependencias de destino para los remitentes más activos.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Acción recomendada: ", style: "STRONG"),
+                            "Si un remitente aparece consistentemente en el top 3, evalúe con el administrador si debe crearse una regla RADICAR_AUTOMÁTICO para su dominio."
+                          }
+                        )
+                      }
+                    ),
+
+                    /* ══════════════════════════════
+                       SECCIÓN 2 — CORREOS
+                    ══════════════════════════════ */
+                    choose(
+                      local!activeSubsection,
+
+                      /* 2.1 Bandeja de entrada */
+                      {
+                        #"SYSTEM_SYSRULES_imageField_v1"(
+                          label: "Image",
+                          labelPosition: "ABOVE",
+                          images: {
+                            #"SYSTEM_SYSRULES_documentImage"(
+                              document: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6118439"
+                            )
+                          },
+                          size: "FIT",
+                          style: "STANDARD",
+                          isThumbnail: false
+                        ),
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Bandeja de Entrada — Módulo principal de trabajo", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Al ingresar al módulo ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "CORREOS", style: "STRONG"),
+                            " se despliega la bandeja de entrada con la lista completa de correos recibidos. Cada fila representa un mensaje e incluye los siguientes elementos:", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Avatar / Iniciales:", style: "STRONG"), " Círculo de color con las iniciales del remitente. El color puede indicar el tipo o estado.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Ícono de clip:", style: "STRONG"), " Indica la presencia de archivos adjuntos vinculados al gestor documental.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Asunto:", style: "STRONG"), " Título o tema principal del mensaje. Si el texto es largo aparece truncado.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Remitente:", style: "STRONG"), " Dirección de correo electrónico de origen.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Fecha:", style: "STRONG"), " Fecha de recepción del mensaje (ej.: Jan 15).", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Paginación:", style: "STRONG"), char(10),
+                            "La navegación entre páginas se controla mediante los botones ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "&lt;&lt; &lt; 1–50 DE 12394 &gt; &gt;&gt;", style: "STRONG"),
+                            " en la parte superior. Cada página carga ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "50 mensajes", style: "STRONG"), "."
+                          }
+                        )
+                      },
+
+                      /* 2.2 Vista de detalle */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Vista de Detalle del Correo", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Al hacer clic sobre cualquier correo de la bandeja se abre su vista de detalle. Esta pantalla está organizada en zonas funcionales:", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Panel central (izquierda):", style: "STRONG"), " Muestra el cuerpo completo del mensaje con formato de texto enriquecido.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Panel de adjuntos:", style: "STRONG"), " Accesible desde el ícono de clip. Los archivos están vinculados al gestor documental y se descargan desde allí.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Panel derecho superior:", style: "STRONG"), " Historial de eventos y opciones de suscripción al correo.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Panel derecho inferior:", style: "STRONG"), " Campo de comentarios y Chatbot de IA.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Botón rojo Clasificar:", style: "STRONG"), " Ubicado en la parte superior de la vista. Activa el flujo formal de clasificación del mensaje.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nota importante:", style: "STRONG"),
+                            " Ninguna acción realizada en la vista de detalle (leer, comentar, etiquetar) marca el correo como 'Clasificado'. Solo el botón rojo Clasificar completa el proceso formal."
+                          }
+                        )
+                      },
+
+                      /* 2.3 Chatbot IA */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Chatbot de IA Contextualizado", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Cada correo abierto dispone de un ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "asistente de inteligencia artificial integrado", style: "STRONG"),
+                            ", contextualizado automáticamente con el contenido del mensaje activo.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "¿Qué puede hacer con el chatbot?", style: "STRONG"), char(10),
+                            "• Obtener un resumen ejecutivo del correo sin necesidad de leerlo completo.", char(10),
+                            "• Consultar si el mensaje corresponde a una tipología conocida (PQRDSF, notificación judicial, comunicación administrativa, etc.).", char(10),
+                            "• Recibir recomendaciones de etiqueta y dependencia destino basadas en el contenido.", char(10),
+                            "• Realizar preguntas en lenguaje natural (ej.: '¿Quién firma este documento?', '¿Cuál es el número de radicado mencionado?').", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Cómo usar el chatbot:", style: "STRONG"), char(10),
+                            "1. Abra el correo deseado desde la bandeja de entrada.", char(10),
+                            "2. Localice el campo de texto del asistente en el panel derecho inferior.", char(10),
+                            "3. Escriba su pregunta o solicitud en lenguaje natural.", char(10),
+                            "4. Presione Enter o el botón de envío. La respuesta aparecerá en el hilo de conversación.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Importante:", color: "#C00000", style: "STRONG"),
+                            " Todas las preguntas realizadas al chatbot quedan registradas automáticamente en el módulo ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Preguntas IA", style: "STRONG"),
+                            " (sección 10.3) para auditoría y trazabilidad.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "💡 Consejo:", style: "STRONG"),
+                            " Use el chatbot para agilizar la clasificación de correos con contenido extenso o técnico. Sus sugerencias son orientativas; la decisión final siempre recae en el analista."
+                          }
+                        )
+                      },
+
+                      /* 2.4 Historial de eventos */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Historial de Eventos — Trazabilidad completa", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "El historial de eventos es el ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "registro de auditoría", style: "STRONG"),
+                            " de cada correo. Se encuentra en el panel superior derecho de la vista de detalle y puede desplegarse o contraerse mediante el ícono de flecha (∨).", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Cada entrada del historial registra:", style: "STRONG"), char(10),
+                            "• Nombre y apellido del funcionario que realizó la acción.", char(10),
+                            "• Tipo de acción: etiqueta añadida, etiqueta eliminada, estado cambiado, comentario registrado, correo clasificado, correo radicado.", char(10),
+                            "• Fecha y hora exacta de la acción (ej.: Feb 26, 2026 3:50 PM).", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Controles de visualización:", style: "STRONG"), char(10),
+                            "• El control ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "New To Old", style: "STRONG"), " ordena de más reciente a más antiguo o viceversa.", char(10),
+                            "• El botón ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Filters", style: "STRONG"), " acota la visualización por tipo de evento.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Ejemplos típicos de entradas en el historial:", style: "STRONG"), char(10),
+                            "• 'Diego Melo — Etiqueta Arauca añadida'", char(10),
+                            "• 'Sergio Bermeo — Etiqueta Valle del Cauca eliminada'", char(10),
+                            "• 'Sistema — Correo radicado automáticamente con número 2025EE0002742'"
+                          }
+                        )
+                      },
+
+                      /* 2.5 Comentarios y menciones */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Panel de Comentarios y Menciones", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "El panel de comentarios permite a los funcionarios dejar ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "anotaciones internas", style: "STRONG"),
+                            " sobre el correo sin alterar el contenido original del mensaje. Es especialmente útil para coordinar acciones entre áreas.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Funcionalidades disponibles:", style: "STRONG"), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Agregar comentario:", style: "STRONG"), " Escriba su anotación en el campo 'Add a comment with @ to mention someone' y presione Enter.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Menciones (@):", style: "STRONG"), " Escriba @ seguido del nombre del funcionario para notificarlo directamente. El sistema enviará una alerta al usuario mencionado.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Hilo de respuestas:", style: "STRONG"), " Cada comentario puede recibir respuestas de otros funcionarios, creando un hilo de conversación vinculado al correo.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Visualización:", style: "STRONG"), " Los comentarios se muestran con el avatar, nombre del autor, fecha y hora.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Nota:", color: "#C00000", style: "STRONG"),
+                            " Los comentarios son visibles para todos los usuarios con acceso al correo. No use este espacio para información sensible o confidencial que no deba quedar en auditoría."
+                          }
+                        )
+                      },
+
+                      /* 2.6 Gestión manual de etiquetas */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gestión Manual de Etiquetas", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Además del etiquetado automático por reglas, el sistema permite gestionar etiquetas manualmente desde la vista de detalle del correo.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Para AGREGAR una etiqueta manualmente:", style: "STRONG"), char(10),
+                            "1. Abra el correo desde la bandeja.", char(10),
+                            "2. Localice el panel o sección de etiquetas en la vista de detalle.", char(10),
+                            "3. Haga clic en el campo de selección de etiqueta.", char(10),
+                            "4. Busque o seleccione la etiqueta deseada del listado desplegable.", char(10),
+                            "5. La etiqueta quedará aplicada de inmediato y la acción quedará registrada en el historial de eventos.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Para RETIRAR una etiqueta:", style: "STRONG"), char(10),
+                            "1. Ubique la etiqueta aplicada en el panel de etiquetas del correo.", char(10),
+                            "2. Haga clic en el ícono de eliminar (X) junto al nombre de la etiqueta.", char(10),
+                            "3. La acción quedará registrada en el historial indicando quién retiró la etiqueta y cuándo.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nota:", style: "STRONG"),
+                            " La adición o eliminación manual de etiquetas no cancela ni sobreescribe las reglas automáticas. Ambas formas de etiquetado coexisten y quedan registradas por separado en el historial."
+                          }
+                        )
+                      },
+
+                      /* 2.7 Filtros avanzados */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Filtros Avanzados de la Bandeja", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "El panel de filtros lateral derecho de la bandeja de entrada permite combinar múltiples criterios para localizar mensajes específicos:", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Etiquetas:", style: "STRONG"), " Filtra correos que tengan asignada una o varias etiquetas específicas (ej.: TIENE_ADJUNTOS, CGR_GENERAL).", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• De:", style: "STRONG"), " Busca por dirección de correo del remitente o dominio.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Para:", style: "STRONG"), " Busca por dirección de correo del destinatario.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Asunto:", style: "STRONG"), " Búsqueda de texto libre en el campo asunto del mensaje.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Cuerpo:", style: "STRONG"), " Búsqueda de texto libre dentro del contenido completo del correo.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Clasificado (*):", style: "STRONG"), " Filtra entre mensajes ya clasificados (Sí) o pendientes de clasificar (No). Campo obligatorio.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "💡 Consejo de productividad:", style: "STRONG"),
+                            " Combine el filtro 'Clasificado = No' con una etiqueta específica para construir una cola de trabajo personalizada y priorizar la gestión diaria."
+                          }
+                        )
+                      },
+
+                      /* 2.8 Flujo de clasificación */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Flujo de Clasificación — Cierre formal del ciclo de vida", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "La clasificación es la acción formal que cierra el ciclo de vida de un correo dentro del flujo operativo.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Paso a paso para clasificar un correo:", style: "STRONG"), char(10),
+                            "1. Abra el correo desde la bandeja de entrada.", char(10),
+                            "2. Revise el contenido, adjuntos, historial de eventos y sugerencias del chatbot.", char(10),
+                            "3. Haga clic en el botón rojo ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Clasificar", style: "STRONG"), " en la parte superior de la vista de detalle.", char(10),
+                            "4. Complete el formulario: etiqueta principal, dependencia destino, tipo de comunicación y observaciones.", char(10),
+                            "5. Confirme la acción. El sistema actualizará el estado, enrutará el mensaje y registrará la acción en el historial.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Comportamientos automáticos durante la clasificación:", style: "STRONG"), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• PQRDSF:", style: "STRONG"), " Si el correo es identificado como Petición, Queja, Reclamo, Denuncia, Solicitud o Felicitación, el sistema activa el flujo especializado de Configuración PQRD con los términos legales de respuesta.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• RADICAR_AUTOMÁTICO:", style: "STRONG"), " Correos de remitentes preconfigurados con esta etiqueta se radican en el gestor documental sin intervención manual.", char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "• Duplicados:", style: "STRONG"), " El sistema detecta mensajes con igual remitente, asunto y contenido, aplicando la regla configurada (ignorar, consolidar o marcar).", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Importante:", color: "#C00000", style: "STRONG"),
+                            " Una vez clasificado, el correo queda con el indicador ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Clasificado = Sí", style: "STRONG"),
+                            " y no podrá ser reprocesado por otro analista. Si requiere corrección, contacte al administrador."
+                          }
+                        )
+                      }
+                    ),
+
+                    /* ══════════════════════════════
+                       SECCIÓN 3 — CIUDADANOS
+                    ══════════════════════════════ */
+                    choose(
+                      local!activeSubsection,
+
+                      /* 3.1 Directorio */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Directorio de Remitentes Externos", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "El módulo Ciudadanos actúa como directorio de remitentes externos de la CGR. Se alimenta automáticamente cada vez que el sistema procesa correos de personas naturales no registradas como entidades o funcionarios internos.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "La vista principal presenta una tabla con dos columnas:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Correo Electrónico:", style: "STRONG"), " Dirección de email del remitente externo.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nombre:", style: "STRONG"), " Nombre completo registrado o extraído automáticamente del mensaje.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nota:", style: "STRONG"),
+                            " Si no hay registros de remitentes externos en el sistema, la tabla mostrará el mensaje 'No items available'. Esto es normal en entornos nuevos o recién configurados."
+                          }
+                        )
+                      },
+
+                      /* 3.2 Gestión */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gestión de Registros de Ciudadanos", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Desde la vista principal del módulo Ciudadanos el administrador puede:", char(10), char(10),
+                            "• Consultar el historial de comunicaciones de un ciudadano específico haciendo clic sobre su nombre.", char(10),
+                            "• Crear un nuevo registro de ciudadano de forma manual mediante el botón ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "+ Nuevo", style: "STRONG"), " (cuando se disponga de esta opción).", char(10),
+                            "• Editar la información de un ciudadano haciendo clic sobre su nombre en la lista.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Relación con el flujo de correos:", style: "STRONG"), char(10),
+                            "Cuando un ciudadano externo envía un correo a la CGR, el sistema lo registra automáticamente en este directorio al momento de la clasificación. Esto permite llevar un historial consolidado de todas las comunicaciones con cada ciudadano."
+                          }
+                        )
+                      }
+                    ),
+
+                    /* ══════════════════════════════
+                       SECCIÓN 4 — ORGANIZACIÓN
+                    ══════════════════════════════ */
+                    choose(
+                      local!activeSubsection,
+
+                      /* 4.1 Entidades */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Entidades Públicas", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "El módulo Organización agrupa los maestros de información que definen la estructura institucional de la CGR. Solo usuarios con perfil de Administrador o Responsable de Configuración pueden crear o editar registros.", char(10), char(10),
+                            "La pantalla ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Entidades públicas", style: "STRONG"),
+                            " lista las organizaciones registradas en el sistema. Cada entidad incluye:", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nombre:", style: "STRONG"), " Denominación oficial (ej.: CGR-NIVEL CENTRAL (CGR)).", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Misión / Visión:", style: "STRONG"), " Descripción del propósito institucional.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Perspectiva estratégica:", style: "STRONG"), " Enlace al plan estratégico publicado en el portal oficial.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gestión de entidades:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Crear:", style: "STRONG"), " Haga clic en + Nuevo (esquina superior derecha), complete los campos requeridos y guarde.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Editar:", style: "STRONG"), " Haga clic sobre el nombre de la entidad para abrir su ficha de detalle y modificar sus datos.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Opciones adicionales:", style: "STRONG"), " El menú de tres puntos (⋮) al final de cada fila permite acceder a acciones rápidas como editar o desactivar."
+                          }
+                        )
+                      },
+
+                      /* 4.2 Dependencias */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Dependencias", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Las dependencias representan la estructura orgánica interna de la CGR (despachos, unidades, secretarías, oficinas, etc.). Cada dependencia incluye los campos: Nombre, Código, Estado (Activo/Inactivo) y Padre (dependencia jerárquicamente superior).", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Una dependencia correctamente configurada es indispensable para que el enrutamiento de correos funcione de manera precisa.", style: "STRONG"), char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Operaciones disponibles:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Buscar:", style: "STRONG"), " Ingrese el nombre en el campo de búsqueda y presione el botón SEARCH.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Filtrar:", style: "STRONG"), " Use el ícono de filtro (▼) para aplicar criterios adicionales como estado o entidad padre.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Crear:", style: "STRONG"), " Haga clic en + Nuevo, complete los campos requeridos (nombre, código, entidad padre) y guarde.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Editar:", style: "STRONG"), " Haga clic sobre el nombre de la dependencia para abrir su ficha y modificar sus datos.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Desactivar:", style: "STRONG"), " Cambie el estado a Inactivo para que deje de aparecer como opción de enrutamiento.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Importante:", color: "#C00000", style: "STRONG"),
+                            " Las dependencias inactivas no aparecerán como opciones de destino durante el proceso de clasificación. Verifique el estado antes de reportar problemas de enrutamiento."
+                          }
+                        )
+                      },
+
+                      /* 4.3 Funcionarios */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Funcionarios", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "El módulo Funcionarios contiene el directorio del personal de la CGR vinculado al sistema. Este directorio es la base para la asignación de cargas de trabajo y la configuración de reglas de correo.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Campos de cada registro:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "NUIP:", style: "STRONG"), " Número único de identificación personal.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nombre completo:", style: "STRONG"), " Nombre y apellidos. Enlace activo que abre la ficha de detalle.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Código:", style: "STRONG"), " Código interno del cargo o posición en la estructura orgánica.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Supervisor:", style: "STRONG"), " Funcionario responsable o jefe directo asignado.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Ingreso:", style: "STRONG"), " Fecha de vinculación formal a la entidad.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Teléfono:", style: "STRONG"), " Número de contacto registrado en el sistema.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Dirección Residencia:", style: "STRONG"), " Domicilio registrado (campo administrativo).", char(10), char(10),
+                            "Los filtros superiores permiten buscar por Estado (activo/inactivo), Entidad Pública y Supervisor.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gestión de funcionarios:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Crear:", style: "STRONG"), " Botón + Nuevo para registrar un nuevo funcionario con todos sus datos.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Editar:", style: "STRONG"), " Clic sobre el nombre para acceder a la ficha completa y actualizar cualquier campo.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Desactivar:", style: "STRONG"), " Cambie el estado a Inactivo para retirarle el acceso sin eliminar su historial."
+                          }
+                        )
+                      },
+
+                      /* 4.4 Reglas de correo */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Reglas de Correo (Etiquetas y Usuarios)", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Las reglas de correo definen la asociación entre etiquetas del sistema y los funcionarios responsables de gestionar los correos que reciban esa etiqueta. Este mecanismo permite distribuir automáticamente la carga de trabajo entre analistas según la tipología del correo.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "La tabla principal muestra:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Etiqueta:", style: "STRONG"), " Nombre de la categoría o tipo de correo (ej.: RADICAR_AUTOMÁTICO, CGR_GENERAL).", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Funcionario:", style: "STRONG"), " Nombre completo del analista asignado para atender esa etiqueta.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Para crear una nueva asociación:", style: "STRONG"), char(10),
+                            "1. Haga clic en + Asociar Etiqueta y Funcionario.", char(10),
+                            "2. Seleccione la etiqueta del listado desplegable.", char(10),
+                            "3. Seleccione el funcionario asignado.", char(10),
+                            "4. Guarde los cambios. La asociación quedará activa de inmediato.", char(10), char(10),
+                            "Para editar o eliminar una asociación existente, use el menú de tres puntos (⋮) al final de la fila correspondiente.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nota:", style: "STRONG"),
+                            " Un mismo funcionario puede tener múltiples etiquetas asignadas. Una misma etiqueta puede estar vinculada a varios funcionarios para distribuir equitativamente la carga."
+                          }
+                        )
+                      }
+                    ),
+
+                    /* ══════════════════════════════
+                       SECCIÓN 5 — CONFIG. CORREO
+                    ══════════════════════════════ */
+                    choose(
+                      local!activeSubsection,
+
+                      /* 5.1 Consola */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Consola de Operación", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Contexto: El módulo Configuración correo administra el proceso técnico de sincronización (", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "pull", style: "STRONG"),
+                            ") de mensajes desde las cuentas de Outlook institucionales hacia el sistema. Es de uso exclusivo para Administradores.", char(10), char(10),
+                            "La Consola es el panel de monitoreo del motor de sincronización. Permite verificar en tiempo real el estado de los trabajos (", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "jobs", style: "STRONG"), ") de descarga.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Indicadores superiores:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Fallos:", style: "STRONG"), " Número de transacciones que terminaron con error. Valor esperado en operación normal: 0.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Capacidad usada:", style: "STRONG"), " Porcentaje de la capacidad máxima utilizada (ej.: 100% indica máxima carga).", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "En ejecución:", style: "STRONG"), " Número de trabajos activamente en proceso.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Encolados:", style: "STRONG"), " Trabajos en espera. El botón 'Calcular total' fuerza la actualización de este contador.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Métricas de rendimiento:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Rendimiento de la transacción:", style: "STRONG"), " Número de transacciones completadas en el periodo seleccionado.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Tiempo medio de ejecución:", style: "STRONG"), " Promedio desde solicitud hasta finalización de una tarea.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Estado del tipo de trabajo:", style: "STRONG"), char(10),
+                            "Tabla que lista los tipos de trabajo con su Capacidad máxima, tareas Ejecutando, Fallidas y Canceladas. Use + AÑADIR TIPO DE TRABAJO para crear nuevas configuraciones.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Preferencias del gestor:", style: "STRONG"), char(10),
+                            "Muestra si el Gestor de transacciones está activo (En ejecución) o detenido. Use el botón DESACTIVAR GESTOR DE TRANSACCIONES solo en mantenimiento programado.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Alerta:", color: "#C00000", style: "STRONG"),
+                            " Si 'Capacidad usada' permanece en 100% de forma prolongada o 'Fallos' muestra valores distintos de 0, contacte al equipo técnico de inmediato.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "💡 Recomendación:", style: "STRONG"),
+                            " Para gestionar ~3.000 correos diarios, asigne cuotas diarias por tipo de trabajo a cada analista, garantizando una distribución equilibrada de la carga operativa."
+                          }
+                        )
+                      },
+
+                      /* 5.2 Bandeja Admin */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Bandeja de Correos — Vista Administrador", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "La vista de administrador replica la bandeja de entrada del módulo Correos, pero con columnas adicionales y capacidades de gestión ampliadas. Útil para auditoría, supervisión de clasificaciones y soporte a analistas.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Columnas adicionales disponibles:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "DE:", style: "STRONG"), " Dirección completa del remitente con indicador visual (punto azul = nuevo, punto gris = conocido).", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "PARA:", style: "STRONG"), " Lista completa de destinatarios, incluyendo múltiples direcciones CGR.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Asunto:", style: "STRONG"), " Texto completo sin truncar.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Fecha:", style: "STRONG"), " Fecha y hora exactas de recepción.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Contador de adjuntos:", style: "STRONG"), " Columna numérica en el extremo derecho.", char(10), char(10),
+                            "Adicionalmente, el administrador puede filtrar por Etiquetas y por estado ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Sincronizado (Sí/No)", style: "STRONG"),
+                            " para identificar mensajes que aún no han sido procesados por el motor de sincronización."
+                          }
+                        )
+                      },
+
+                      /* 5.3 Categorías etiquetas */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Categorías de Etiquetas", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Las categorías son agrupaciones de alto nivel que organizan jerárquicamente el sistema de etiquetado. Funcionan como 'carpetas' que contienen etiquetas específicas del mismo tipo o naturaleza.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Las 8 categorías configuradas en el sistema:", style: "STRONG"), char(10),
+                            "• Código 1 — Estado de radicación / decisión", char(10),
+                            "• Código 1 — Departamentos", char(10),
+                            "• Código 2 — Naturaleza del contenido (no radicables)", char(10),
+                            "• Código 3 — Tipo de gestión / flujo interno", char(10),
+                            "• Código 4 — Proceso / materia", char(10),
+                            "• Código 5 — Ruteo institucional", char(10),
+                            "• Código 6 — Identificadores y control", char(10),
+                            "• Código 7 — Región", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gestión de categorías:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Crear:", style: "STRONG"), " + Nuevo, asigne nombre descriptivo y código único, guarde.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Editar / Eliminar:", style: "STRONG"), " Use el menú (⋮) al final de cada fila.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Importante:", color: "#C00000", style: "STRONG"),
+                            " Antes de crear una nueva categoría, verifique que no exista una similar. Las etiquetas existentes no pueden cambiar de categoría sin intervención técnica."
+                          }
+                        )
+                      },
+
+                      /* 5.4 Etiquetas */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Etiquetas — Elementos centrales de clasificación", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Las etiquetas son los elementos centrales del sistema de clasificación. Cada etiqueta pertenece a una categoría y puede asociarse a reglas automáticas, dependencias de destino y funcionarios responsables. El sistema cuenta con ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "70 etiquetas registradas", style: "STRONG"), ".", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Columnas de la tabla de etiquetas:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Categoría:", style: "STRONG"), " Agrupación a la que pertenece.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nombre:", style: "STRONG"), " Identificador único en MAYÚSCULAS con guiones bajos (ej.: RADICAR_AUTOMÁTICO).", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Descripción:", style: "STRONG"), " Texto explicativo del uso de la etiqueta.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Dependencia:", style: "STRONG"), " Dependencia CGR a la que se enrutan automáticamente los correos con esta etiqueta.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Ícono / Color:", style: "STRONG"), " Identificación visual en la interfaz.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Estado (check verde):", style: "STRONG"), " Indica si la etiqueta está activa.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Etiquetas clave del sistema (primeras 10 de 70):", style: "STRONG"), char(10),
+                            "• RADICAR_AUTOMÁTICO — Activa radicación automática en gestor documental.", char(10),
+                            "• NO_RADICAR — Correo que no debe radicarse.", char(10),
+                            "• OMITIR_POR_DUPLICIDAD — Correo duplicado detectado.", char(10),
+                            "• RADICACIÓN_MANUAL — Requiere radicación manual por analista.", char(10),
+                            "• RESPUESTA_AUTOMÁTICA — Generado automáticamente por sistemas externos.", char(10),
+                            "• ACUSE_DE_RECIBO — Confirmación de entrega o lectura.", char(10),
+                            "• CÓDIGO_DE_VERIFICACIÓN — Autenticación o verificación de cuentas.", char(10),
+                            "• OFERTAS_COMERCIALES / PUBLICIDAD_SPAM — No requieren trámite.", char(10),
+                            "• INVITACIONES_GENERALES — Invitaciones a eventos externos.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Para crear una nueva etiqueta:", style: "STRONG"), char(10),
+                            "1. Configuración correo &gt; Etiquetas &gt; + Nuevo.", char(10),
+                            "2. Asigne nombre único en MAYÚSCULAS (sin espacios, use guion bajo).", char(10),
+                            "3. Seleccione la Categoría padre.", char(10),
+                            "4. Defina la Dependencia de destino si aplica enrutamiento.", char(10),
+                            "5. Configure ícono y color para identificación visual.", char(10),
+                            "6. Guarde. La etiqueta estará disponible de inmediato."
+                          }
+                        )
+                      },
+
+                      /* 5.5 Reglas */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Reglas de Correo — Parámetros de automatización", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Las reglas definen condiciones específicas que, al cumplirse en un mensaje entrante, desencadenan acciones automáticas (generalmente asignación de etiqueta o enrutamiento).", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Columnas de la tabla de reglas:", style: "STRONG"), char(10),
+                            "• Nombre / Condición / Acción / Etiqueta asignada / Descripción / Estado (check verde).", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Reglas configuradas actualmente (12 en total):", style: "STRONG"), char(10),
+                            "• Responsabilidad Fiscal → Para: responsabilidadfiscalcgr@contraloria.gov.co → RESPONSABILIDAD_FISCAL", char(10),
+                            "• Almacenamiento OneDrive → Cuerpo: 'compartió una carpeta contigo' → ANEXOS_EN_NUBE", char(10),
+                            "• Almacenamiento Google Drive → Cuerpo: 'ha compartido una carpeta' → ANEXOS_EN_NUBE", char(10),
+                            "• Resumen diario → Asunto: 'Resumen diario de Contraloría General' → RESUMEN", char(10),
+                            "• Resumen semanal → Asunto: 'Resumen semanal de Contraloría General' → RESUMEN", char(10),
+                            "• Tiene adjuntos → Mensaje: Tiene datos adjuntos → TIENE_ADJUNTOS", char(10),
+                            "• Bandeja principal → Para: cgr@contraloria.gov.co → CGR_GENERAL", char(10),
+                            "• 472 Certificado → De: correocertificadonotificaciones@4-72.com.co → Certificado472", char(10),
+                            "• WeTransfer → De: noreply@wetransfer.com → ANEXOS_EN_NUBE", char(10),
+                            "• Google Drive notif. → De: drive-shares-dm-noreply@google.com → ANEXOS_EN_NUBE", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Para crear una nueva regla:", style: "STRONG"), char(10),
+                            "1. Configuración correo &gt; Reglas &gt; + Nuevo.", char(10),
+                            "2. Asigne nombre descriptivo.", char(10),
+                            "3. Seleccione el tipo de condición: Contactos (De/Para), Palabras clave en asunto/cuerpo, Presencia de adjuntos.", char(10),
+                            "4. Ingrese el valor específico (dominio, dirección o palabra clave exacta).", char(10),
+                            "5. Seleccione la etiqueta a asignar.", char(10),
+                            "6. Agregue descripción clara del propósito.", char(10),
+                            "7. Guarde y verifique que el check quede en verde (activa).", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Importante:", color: "#C00000", style: "STRONG"),
+                            " Las reglas se evalúan en orden de prioridad. Si un correo cumple múltiples condiciones, se aplicarán todas las reglas activas en paralelo."
+                          }
+                        )
+                      },
+
+                      /* 5.6 Estados */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Estados del Correo Electrónico", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Los estados representan las etapas del ciclo de vida de un correo, desde su recepción hasta su procesamiento final. Cada estado tiene nombre, código técnico, ícono y color de identificación.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Los 10 estados configurados en el sistema:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Nuevo (NUEVO):", style: "STRONG"), " #4CAF50 🟢 — Correo recién descargado, aún no procesado.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Pendiente (PENDING):", style: "STRONG"), " #FFC107 🟡 — En espera de procesamiento.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Fallido (FAILED):", style: "STRONG"), " #F44336 🔴 — Error durante descarga. Requiere revisión del administrador.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "En Cola (QUEUED):", style: "STRONG"), " #2196F3 🔵 — En cola de procesamiento.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Rebotado (BOUNCED):", style: "STRONG"), " #FF9800 🟠 — No pudo entregarse al destinatario.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Entregado (DELIVERED):", style: "STRONG"), " #8BC34A 🟩 — Disponible correctamente en la bandeja.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Leído (READ):", style: "STRONG"), " #00BCD4 🩵 — Abierto por al menos un funcionario.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Cancelado (CANCELED):", style: "STRONG"), " #9E9E9E ⬜ — Proceso cancelado manualmente.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Programado (SCHEDULED):", style: "STRONG"), " #673AB7 🟣 — Descarga programada para fecha futura.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Reenviado (RESENT):", style: "STRONG"), " #3F51B5 🫐 — Correo reenviado desde el sistema.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gestión de estados:", style: "STRONG"), char(10),
+                            "• Crear: + Nuevo para definir nuevo estado con nombre, código, ícono y color.", char(10),
+                            "• Editar: clic sobre el nombre para abrir ficha de detalle y modificar atributos.", char(10),
+                            "• Los estados se usan como filtros en la Consola y en reportes de auditoría."
+                          }
+                        )
+                      }
+                    ),
+
+                    /* ══════════════════════════════
+                       SECCIÓN 6 — CONFIG. PQRDSF
+                    ══════════════════════════════ */
+                    choose(
+                      local!activeSubsection,
+
+                      /* 6.1 Tipo PQRDSF */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Tipos PQRDSF", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "El módulo Configuración PQRDSF centraliza los parámetros que rigen el flujo especializado de atención al ciudadano. Los correos identificados como PQRDSF son derivados automáticamente a este flujo.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Los 7 tipos de comunicación ciudadana reconocidos legalmente:", style: "STRONG"), char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "1. Petición (#1976D2 🔵 — ícono: file)", style: "STRONG"), char(10),
+                            "Requerimiento que pretende la atención o protección de intereses o derechos de carácter general.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "2. Queja (#F57C00 🟠 — ícono: comment-slash)", style: "STRONG"), char(10),
+                            "Manifestación de protesta, censura, descontento o inconformidad en relación con una conducta irregular de servidores públicos o contratistas.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "3. Reclamo (#E64A19 🔶 — ícono: exclamation-triangle)", style: "STRONG"), char(10),
+                            "Manifestación de inconformidad por la prestación indebida de un servicio o falta de atención a una solicitud.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "4. Denuncia (#D32F2F 🔴 — ícono: bullhorn)", style: "STRONG"), char(10),
+                            "Relato que un ciudadano realiza para enterar a las autoridades de la existencia de hechos irregulares.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "5. Denuncia electoral (#512DA8 🟣 — ícono: balance-scale)", style: "STRONG"), char(10),
+                            "Reporte de presuntas irregularidades relacionadas con procesos electorales ordinarios o atípicos.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "6. Sugerencia (#FBC02D 🟡 — ícono: lightbulb)", style: "STRONG"), char(10),
+                            "Presentación de una idea o propuesta para mejorar el servicio o la gestión de la Procuraduría General de la Nación.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "7. Felicitaciones (#388E3C 🟢 — ícono: smile)", style: "STRONG"), char(10),
+                            "Expresión de satisfacción, reconocimiento, gratitud o elogio por la prestación de un servicio.", char(10), char(10),
+                            "Para crear, editar o eliminar tipos, use el botón + NUEVO o el menú (⋮) por fila."
+                          }
+                        )
+                      },
+
+                      /* 6.2 Categorías PQRDSF */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Categorías PQRDSF — 15 subcategorías configuradas", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Las categorías PQRDSF son subclases o enfoques contextuales que se derivan de los tipos principales, permitiendo una clasificación más granular de la comunicación ciudadana.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Categorías vinculadas a Petición:", style: "STRONG"), char(10),
+                            "1. Solicitud interés general — Solicitud que guarda relación con los intereses y derechos personales del peticionario.", char(10),
+                            "2. Solicitud interés particular — Petición para obtener acceso a información, registros o datos en custodia.", char(10),
+                            "3. Solicitud de documentos e información — Solicitud de concepto u orientación sobre materias de competencia.", char(10),
+                            "4. Solicitudes de consulta — Solicitud donde el asunto puede generar riesgo a la integridad del solicitante.", char(10),
+                            "5. Solicitud de información con identificación reservada — Petición para verificar cumplimiento de mandatos constitucionales.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Categoría vinculada a Queja:", style: "STRONG"), char(10),
+                            "6. Radicar formulario — Manifestación formal de inconformidad ante conducta de servidor público o contratista.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Categoría vinculada a Reclamo:", style: "STRONG"), char(10),
+                            "7. Radicar formulario — Manifestación de inconformidad por prestación indebida de servicio.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Categorías vinculadas a Denuncia:", style: "STRONG"), char(10),
+                            "8. Denuncia de la corrupción y protección al denunciante.", char(10),
+                            "9. Denuncia sobre la implementación del acuerdo de Paz.", char(10),
+                            "10. Denuncia proceso Electoral.", char(10), char(10),
+                            "Para crear una nueva categoría: + NUEVO, seleccione el tipo PQRDSF padre, asigne nombre, código y descripción, y guarde. Paginación: 10 por página (15 ítems totales actualmente)."
+                          }
+                        )
+                      },
+
+                      /* 6.3 Tipo interviniente */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Tipo Interviniente", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "El módulo Tipo interviniente define los roles de los actores que participan en el proceso de una PQRDSF. Permite identificar la naturaleza del solicitante o la parte involucrada en cada comunicación.", char(10), char(10),
+                            "Los 7 intervinientes configurados representan el rol del ciudadano dentro del trámite:", char(10), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Petición:", style: "STRONG"), " Ciudadano que eleva un requerimiento de atención o protección de intereses. #1976D2 | ícono: file", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Queja:", style: "STRONG"), " Ciudadano que manifiesta inconformidad con la conducta de servidores públicos. #F57C00 | ícono: comment-slash", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Reclamo:", style: "STRONG"), " Ciudadano que reporta prestación indebida de un servicio. #E64A19 | ícono: exclamation-triangle", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Denuncia:", style: "STRONG"), " Ciudadano que reporta hechos irregulares a las autoridades. #D32F2F | ícono: bullhorn", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Denuncia electoral:", style: "STRONG"), " Ciudadano que reporta irregularidades en procesos electorales. #512DA8 | ícono: balance-scale", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Sugerencia:", style: "STRONG"), " Ciudadano que propone mejoras al servicio. #FBC02D | ícono: lightbulb", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Felicitaciones:", style: "STRONG"), " Ciudadano que expresa satisfacción con el servicio recibido. #388E3C | ícono: smile", char(10), char(10),
+                            "La gestión (crear, editar, eliminar) se realiza desde esta pantalla mediante + Nuevo y el menú de opciones por fila."
+                          }
+                        )
+                      }
+                    ),
+
+                    /* ══════════════════════════════
+                       SECCIÓN 7 — CONFIG. GENERAL
+                    ══════════════════════════════ */
+                    choose(
+                      local!activeSubsection,
+
+                      /* 7.1 Medios de recepción */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Medios de Recepción", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "Los medios de recepción definen los ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "canales físicos y digitales", style: "STRONG"),
+                            " por los cuales pueden ingresar peticiones, comunicaciones y PQRDSF al sistema. Esta configuración es fundamental para el registro correcto del origen de cada comunicación ciudadana.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Los 7 medios de recepción configurados:", style: "STRONG"), char(10),
+                            "• Código 1 — Correo electrónico", char(10),
+                            "• Código 2 — Llamada telefónica", char(10),
+                            "• Código 3 — URIEL (plataforma web institucional)", char(10),
+                            "• Código 4 — Redes sociales", char(10),
+                            "• Código 4 — Presencial", char(10),
+                            "• Código 6 — Defensorías", char(10),
+                            "• Código 7 — Personerías", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Para crear un nuevo medio de recepción:", style: "STRONG"), char(10),
+                            "1. Haga clic en + Nuevo (esquina superior derecha).", char(10),
+                            "2. Asigne un Nombre descriptivo al canal.", char(10),
+                            "3. Defina el Código de identificación.", char(10),
+                            "4. Guarde los cambios.", char(10), char(10),
+                            "Para editar o eliminar un medio existente, use el menú (⋮) al final de cada fila.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Nota:", color: "#C00000", style: "STRONG"),
+                            " Los códigos quedan registrados en cada expediente de trámite. Se recomienda no eliminar medios que ya tengan comunicaciones asociadas; use la opción de desactivar en su lugar."
+                          }
+                        )
+                      },
+
+                      /* 7.2 Vinculación entidad */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Vinculación de Entidad", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "La sección Vinculación entidad permite establecer las relaciones institucionales entre la CGR y otras entidades externas del Estado o privadas que interactúan frecuentemente con la plataforma.", char(10), char(10),
+                            "Esta vinculación facilita el enrutamiento automático y la identificación de remitentes institucionales clave en el flujo de clasificación.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Desde esta pantalla el administrador puede:", style: "STRONG"), char(10),
+                            "• Consultar las entidades ya vinculadas con sus parámetros de integración.", char(10),
+                            "• Crear nuevas vinculaciones mediante el botón + Nuevo.", char(10),
+                            "• Editar o eliminar vinculaciones existentes a través del menú de opciones por registro."
+                          }
+                        )
+                      },
+
+                      /* 7.3 Preguntas IA */
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Preguntas IA — Registro de Auditoría (Trace Log)", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            "La sección Preguntas IA es el registro de auditoría (", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "trace log", style: "STRONG"),
+                            ") de ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "todas", style: "STRONG"),
+                            " las consultas realizadas por los funcionarios al asistente de inteligencia artificial integrado en la vista de detalle de correos.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Cada entrada del registro contiene:", style: "STRONG"), char(10),
+                            "• Fecha y hora de la consulta.", char(10),
+                            "• Nombre del funcionario que realizó la pregunta.", char(10),
+                            "• Correo de contexto sobre el cual se hizo la consulta.", char(10),
+                            "• Texto exacto de la pregunta formulada al LLM.", char(10),
+                            "• Respuesta generada por el modelo de inteligencia artificial.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Casos de uso de este registro:", style: "STRONG"), char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Auditoría de uso:", style: "STRONG"), " Permite revisar cómo y con qué frecuencia los funcionarios usan el asistente de IA.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Control de calidad:", style: "STRONG"), " Identifica patrones de preguntas frecuentes que podrían atenderse con reglas determinísticas en lugar de IA.", char(10),
+                            "• ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Trazabilidad legal:", style: "STRONG"), " En caso de controversia sobre una clasificación, permite verificar si el funcionario consultó al asistente y qué respuesta recibió.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "⚠ Importante:", color: "#C00000", style: "STRONG"),
+                            " El registro de Preguntas IA es de ", #"SYSTEM_SYSRULES_richTextItem_v1"(text: "solo lectura", style: "STRONG"),
+                            ". Los datos no pueden ser editados ni eliminados por ningún usuario, garantizando la integridad del log de auditoría."
+                          }
+                        )
+                      }
+                    ),
+
+                    /* ══════════════════════════════
+                       SECCIÓN 8 — GLOSARIO
+                    ══════════════════════════════ */
+                    choose(
+                      local!activeSubsection,
+                      {
+                        #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Glosario de Términos", size: "MEDIUM_PLUS", style: "STRONG"), char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Appian:", style: "STRONG"), " Plataforma de automatización de procesos sobre la que se construye el módulo Sede Virtual CGR.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "CGR:", style: "STRONG"), " Contraloría General de la República de Colombia.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Chatbot de IA:", style: "STRONG"), " Asistente de inteligencia artificial integrado en la vista de correo, contextualizado con el contenido del mensaje activo.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Clasificar:", style: "STRONG"), " Acción formal de asignar etiqueta, dependencia y tipo a un correo para completar su procesamiento en el sistema.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Dependencia:", style: "STRONG"), " Unidad orgánica de la CGR responsable de tramitar un tipo específico de comunicación.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Etiqueta:", style: "STRONG"), " Categoría aplicada a un correo para identificar su tipo, origen o prioridad de trámite.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Gestor documental:", style: "STRONG"), " Sistema institucional de gestión de expedientes donde se radican formalmente los documentos con número de radicado.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Job / Trabajo:", style: "STRONG"), " Tarea programada de sincronización que descarga correos desde Outlook hacia el sistema.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "LLM:", style: "STRONG"), " Large Language Model. Modelo de lenguaje de gran escala que alimenta el chatbot de IA del sistema.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "PQRDSF:", style: "STRONG"), " Petición, Queja, Reclamo, Denuncia, Solicitud y Felicitación. Comunicación ciudadana con tratamiento legal especial y términos de respuesta definidos por ley.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Pull:", style: "STRONG"), " Proceso de sincronización mediante el cual el sistema descarga activamente los correos desde Outlook a intervalos configurados.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "RADICAR_AUTOMÁTICO:", style: "STRONG"), " Etiqueta que activa la radicación automática del correo en el gestor documental sin intervención manual del analista.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Radicación:", style: "STRONG"), " Registro formal de un documento en el sistema institucional con número único asignado.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Regla:", style: "STRONG"), " Parámetro de automatización que define una condición y una acción a ejecutar cuando dicha condición se cumple en un correo entrante.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Supportical SPARK:", style: "STRONG"), " Producto instalado sobre Appian que implementa el módulo de gestión de correos de la CGR.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Trace / Log de auditoría:", style: "STRONG"), " Registro cronológico e inmutable de todas las acciones realizadas sobre un correo o de todas las consultas al LLM.", char(10), char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "URIEL:", style: "STRONG"), " Plataforma web institucional de la CGR para la recepción de peticiones ciudadanas en línea."
+                          }
+                        )
+                      }
+                    )
+                  )
+                },
+                labelSize: "MEDIUM"
+              )
+            },
+            width: "AUTO",
+            padding: "STANDARD"
+          )
+        }
+      )
+    },
+    backgroundColor: "WHITE",
+    contentsPadding: "STANDARD"
+  )
+)
+</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6119128"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867981"/>
+    </history>
+</contentHaul>

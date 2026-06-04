@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6762965</versionUuid>
+    <constant>
+        <name>TRV_ESB_APP_SIGEDOC_CODE</name>
+        <uuid>_a-0000ecf1-9ec6-8000-9baa-011c48011c48_274325</uuid>
+        <description></description>
+        <parentUuid>280e7180-ac27-4115-8b52-5b3fe859eda1</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value>o4CdGZiguaYQCzPtAx20/UNV6ow+VpRzrwCrJJlviIc=</value>
+        </typedValue>
+        <isEnvironmentSpecific>false</isEnvironmentSpecific>
+    </constant>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ecf1-9ec6-8000-9baa-011c48011c48_364533"/>
+        <historyInfo versionUuid="_a-0000ed7d-bc88-8000-9bb9-011c48011c48_1285206"/>
+        <historyInfo versionUuid="_a-0000eea5-4822-8000-9cd8-011c48011c48_5028646"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6660355"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6762965"/>
+    </history>
+</contentHaul>
