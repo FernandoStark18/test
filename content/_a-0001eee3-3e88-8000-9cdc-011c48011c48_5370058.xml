@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5492876</versionUuid>
+    <outboundIntegration>
+        <name>PQR_Sigedoc_CreateReceivedCommunication_ESB_SB</name>
+        <uuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5370058</uuid>
+        <description>Create received communication</description>
+        <parentUuid>280e7180-ac27-4115-8b52-5b3fe859eda1</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition></definition>
+        <namedTypedValue>
+            <name>autor</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>tipoDocumento</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>asunto</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>identificacion</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>numero</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>nombre</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>apellido</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>correo</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>dependenciaDestino</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>usuarioDestino</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>claveSigedoc</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>adjuntos</name>
+            <type>
+                <name>CollaborationDocument?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>onSuccess</name>
+            <description>A list of saves or an HTTP response to execute after the smart service executes successfully. Created with a!save() or a!httpResponse(). The result of the request is available in the function variable fv!result.</description>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>onError</name>
+            <description>A list of saves or an HTTP response to execute after the smart service does not execute successfully. Created with a!save() or a!httpResponse(). The result of the request is available in the function variable fv!result. Information about the error is available in the function variable fv!error. If using a Connected System that uses OAuth, whenever there is an error due to missing user authorization, the Connected System will be available in the function variable fv!connectedSystem. The Connected System can be used with the a!authorizationLink function to generate a link end users can click to perform the authorization.</description>
+            <type>
+                <name>Variant</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <metadataExpr>{
+deferredRuleInputs: {
+    onSuccess: {
+      "fv!result": 'type!{http://www.appian.com/ae/types/2009}Dictionary'
+    },
+    onError: {
+      "fv!result": 'type!{http://www.appian.com/ae/types/2009}Dictionary',
+      "fv!error": 'type!{http://www.appian.com/ae/types/2009}Dictionary',
+      "fv!connectedSystem": 'type!{http://www.appian.com/ae/types/2009}ConnectedSystem'
+    }
+  }
+}</metadataExpr>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <sharedConfigParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <url xsi:type="xsd:string"/>
+                <isInheritedUrlOptionSelected xsi:type="xsd:boolean">true</isInheritedUrlOptionSelected>
+                <relativePath xsi:type="xsd:string">/sigedoc/documento/comunicacion/recibida</relativePath>
+                <authType xsi:type="xsd:string">None</authType>
+                <authDetails xsi:type="xsd:string"/>
+            </a:Dictionary>
+        </sharedConfigParameters>
+        <configParameters>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <contentType xsi:type="xsd:string">application/json</contentType>
+                <automaticallyConvert xsi:type="xsd:boolean">true</automaticallyConvert>
+                <shouldReceiveDocuments xsi:type="xsd:boolean">true</shouldReceiveDocuments>
+                <jsonSchema xsi:type="a:NestedChoice?list">
+                    <item>
+                        <a:label>fv!result.body</a:label>
+                        <a:selectionLabel>fv!result.body</a:selectionLabel>
+                        <a:id xsi:type="xsd:string">fv!result.body</a:id>
+                        <a:nestedChoices>
+                            <a:label>documentoComunicacion</a:label>
+                            <a:selectionLabel>fv!result.body.documentoComunicacion</a:selectionLabel>
+                            <a:id xsi:type="xsd:string">fv!result.body.documentoComunicacion</a:id>
+                            <a:nestedChoices>
+<a:label>idDocumento</a:label>
+<a:selectionLabel>fv!result.body.documentoComunicacion.idDocumento</a:selectionLabel>
+<a:id xsi:type="xsd:string">fv!result.body.documentoComunicacion.idDocumento</a:id>
+<a:nestedChoices>
+    <a:label>id</a:label>
+    <a:selectionLabel>fv!result.body.documentoComunicacion.idDocumento.id</a:selectionLabel>
+    <a:id xsi:type="xsd:string">fv!result.body.documentoComunicacion.idDocumento.id</a:id>
+    <a:selectable>true</a:selectable>
+</a:nestedChoices>
+<a:nestedChoices>
+    <a:label>idtype</a:label>
+    <a:selectionLabel>fv!result.body.documentoComunicacion.idDocumento.idtype</a:selectionLabel>
+    <a:id xsi:type="xsd:string">fv!result.body.documentoComunicacion.idDocumento.idtype</a:id>
+    <a:selectable>true</a:selectable>
+</a:nestedChoices>
+<a:selectable>true</a:selectable>
+                            </a:nestedChoices>
+                            <a:nestedChoices>
+<a:label>fechaCreacion</a:label>
+<a:selectionLabel>fv!result.body.documentoComunicacion.fechaCreacion</a:selectionLabel>
+<a:id xsi:type="xsd:string">fv!result.body.documentoComunicacion.fechaCreacion</a:id>
+<a:selectable>true</a:selectable>
+                            </a:nestedChoices>
+                            <a:nestedChoices>
+<a:label>mensaje</a:label>
+<a:selectionLabel>fv!result.body.documentoComunicacion.mensaje</a:selectionLabel>
+<a:id xsi:type="xsd:string">fv!result.body.documentoComunicacion.mensaje</a:id>
+<a:selectable>true</a:selectable>
+                            </a:nestedChoices>
+                            <a:nestedChoices>
+<a:label>archivo</a:label>
+<a:selectionLabel>fv!result.body.documentoComunicacion.archivo</a:selectionLabel>
+<a:id xsi:type="xsd:string">fv!result.body.documentoComunicacion.archivo</a:id>
+<a:nestedChoices>
+    <a:label>binarioCodificado</a:label>
+    <a:selectionLabel>fv!result.body.documentoComunicacion.archivo.binarioCodificado</a:selectionLabel>
+    <a:id xsi:type="xsd:string">fv!result.body.documentoComunicacion.archivo.binarioCodificado</a:id>
+    <a:selectable>true</a:selectable>
+</a:nestedChoices>
+<a:selectable>true</a:selectable>
+                            </a:nestedChoices>
+                            <a:selectable>true</a:selectable>
+                        </a:nestedChoices>
+                        <a:selectable>true</a:selectable>
+                    </item>
+                </jsonSchema>
+                <receiveFolderConfig xsi:type="a:Dictionary">
+                    <asExpr xsi:type="xsd:boolean">false</asExpr>
+                    <saveDocOption xsi:type="xsd:int">0</saveDocOption>
+                    <value a:id="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5492800" xsi:type="a:CollaborationFolder"/>
+                </receiveFolderConfig>
+                <bodyParseType xsi:type="xsd:string">application/json+19.3</bodyParseType>
+                <parameters xsi:type="a:NameValue?list"/>
+                <removeNullOrEmptyJsonFields xsi:type="xsd:boolean">false</removeNullOrEmptyJsonFields>
+                <method xsi:type="xsd:string">POST</method>
+                <headers xsi:type="a:NameValue?list">
+                    <item>
+                        <a:name>entidad</a:name>
+                        <a:value xsi:type="xsd:string">1</a:value>
+                    </item>
+                    <item>
+                        <a:name>sistema</a:name>
+                        <a:value xsi:type="xsd:string">Bizagi</a:value>
+                    </item>
+                    <item>
+                        <a:name>identificadorRequest</a:name>
+                        <a:value xsi:type="a:Expression">datetext(now(),"yyyy-MM-dd'T'HH:mm:ss")</a:value>
+                    </item>
+                    <item>
+                        <a:name>usuario</a:name>
+                        <a:value xsi:type="xsd:string">1</a:value>
+                    </item>
+                </headers>
+                <excludeNullHeaders xsi:type="xsd:boolean">true</excludeNullHeaders>
+                <documentConfig xsi:type="a:Dictionary?list">
+                    <item>
+                        <location xsi:type="xsd:string">fv!result.body.documentoComunicacion.archivo.binarioCodificado</location>
+                        <name xsi:type="a:Expression">concat(
+  "BinarioCodificado_",
+  datetext(now(), "yyyy-MM-dd'T'HH:mm:ss")
+)</name>
+                    </item>
+                </documentConfig>
+                <excludeNullParams xsi:type="xsd:boolean">true</excludeNullParams>
+                <featureVersion xsi:type="xsd:int">1</featureVersion>
+                <timeout xsi:type="xsd:int">25</timeout>
+                <body xsi:type="a:Expression">{
+  "aplicacion": { "clave": ri!claveSigedoc },
+  "documentoComunicacion": {
+    "autor": { "identificacion": { "numero": ri!autor } },
+    "tipoDocumento": { "id": ri!tipoDocumento },
+    "asunto": ri!asunto,
+    "terceroOrigen": {
+      "identificacion": {
+        "tipo": { "codigoNegocio": ri!identificacion },
+        "numero": ri!numero
+      },
+      "nombre": ri!nombre,
+      "apellido": ri!apellido,
+      "correo": ri!correo,
+      
+    },
+    "dependenciaDestino": { "codigoNegocio": ri!dependenciaDestino },
+    "usuarioDestino": {
+      "identificacion": { "numero": ri!usuarioDestino }
+    },
+    
+  },
+  "listaAnexos": {
+    #"SYSTEM_SYSRULES_forEach"(
+      items: ri!adjuntos,
+      expression: {
+        "soporte": { "codigoNegocio": "2244" },
+        "nombre": document(fv!item, "name"),
+        "extension": document(fv!item, "extension"),
+        "cantidadFoliosFisicos": null,
+        "binarioCodificado": fv!item
+      }
+    )
+  }
+}</body>
+                <flattenedJsonSchema xsi:type="a:Text?list">
+                    <item>fv!result.body</item>
+                    <item>fv!result.body.documentoComunicacion</item>
+                    <item>fv!result.body.documentoComunicacion.idDocumento</item>
+                    <item>fv!result.body.documentoComunicacion.fechaCreacion</item>
+                    <item>fv!result.body.documentoComunicacion.mensaje</item>
+                    <item>fv!result.body.documentoComunicacion.archivo</item>
+                    <item>fv!result.body.documentoComunicacion.archivo.binarioCodificado</item>
+                    <item>fv!result.body.documentoComunicacion.idDocumento.id</item>
+                    <item>fv!result.body.documentoComunicacion.idDocumento.idtype</item>
+                </flattenedJsonSchema>
+            </a:Dictionary>
+        </configParameters>
+        <isWrite>true</isWrite>
+        <integrationType>system.http</integrationType>
+        <connectedSystemUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5381760</connectedSystemUuid>
+        <isConnectedSystemConnectionOptionSelected>true</isConnectedSystemConnectionOptionSelected>
+        <integrationOutputs>
+            <a:Dictionary xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <outputs xsi:type="a:IntegrationOutput?list"/>
+            </a:Dictionary>
+        </integrationOutputs>
+        <isRequestResponseLoggingEnabled>true</isRequestResponseLoggingEnabled>
+    </outboundIntegration>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"1024540607"</a:value>
+                    <a:nameRef>autor</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"174"</a:value>
+                    <a:nameRef>tipoDocumento</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"Asunto del documento"</a:value>
+                    <a:nameRef>asunto</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"CC"</a:value>
+                    <a:nameRef>identificacion</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"1023456789"</a:value>
+                    <a:nameRef>numero</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"Pedro"</a:value>
+                    <a:nameRef>nombre</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"Perez"</a:value>
+                    <a:nameRef>apellido</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"pperez@gmail.com"</a:value>
+                    <a:nameRef>correo</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"88112"</a:value>
+                    <a:nameRef>dependenciaDestino</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"1024540607"</a:value>
+                    <a:nameRef>usuarioDestino</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">"dVZ93RbH5wa1Z4H/JPCNQT/0E793dbW/MQ3k35MybKA="</a:value>
+                    <a:nameRef>claveSigedoc</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{todocument(174486), todocument(174485)}</a:value>
+                    <a:nameRef>adjuntos</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>onSuccess</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>onError</a:nameRef>
+                    <a:id/>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5379372"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5381772"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383284"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5461918"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5492876"/>
+    </history>
+</contentHaul>

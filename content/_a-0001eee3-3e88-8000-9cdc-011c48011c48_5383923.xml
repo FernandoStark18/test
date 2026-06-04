@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6778577</versionUuid>
+    <rule>
+        <name>PQR_ObtenerTagsEmail</name>
+        <uuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383923</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!wordsIncludedActions: #"SYSTEM_SYSRULES_queryRecordType_v4"(
+    recordType: #"urn:appian:record-type:v1:d81be1e7-776a-47cf-976a-1460af8a706c",
+    fields: {
+      #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e",
+      #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"
+    },
+    filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+      operator: "AND",
+      filters: {
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e",
+          operator: "in",
+          value: { 4, 5, 6 }
+        )
+      },
+      ignoreFiltersWithEmptyValues: true
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 100)
+  ).data,
+  local!fromDomain: if(
+    and(
+      a!isNotNullOrEmpty(ri!FROM_EMAIL),
+      a!isInText(index(ri!FROM_EMAIL, 1, null), "@")
+    ),
+    lower(right(
+      index(ri!FROM_EMAIL, 1, null),
+      len(index(ri!FROM_EMAIL, 1, null)) - find("@", index(ri!FROM_EMAIL, 1, null))
+    )),
+    null
+  ),
+  #"SYSTEM_SYSRULES_queryRecordType_v4"(
+    recordType: #"urn:appian:record-type:v1:d81be1e7-776a-47cf-976a-1460af8a706c",
+    fields: {
+      #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/b0ec07a4-545b-4772-b588-cf1bc199c032",
+      #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+      #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e"
+    },
+    filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+      operator: "OR",
+      filters: {
+        /*   Condición 1: (Verifico las reglas del DE) — email completo O dominio   */
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+          operator: "in",
+          value: append(
+            if(a!isNotNullOrEmpty(ri!FROM_EMAIL), { lower(index(ri!FROM_EMAIL, 1, null)) }, {}),
+            if(a!isNotNullOrEmpty(local!fromDomain), { local!fromDomain }, {})
+          ),
+          applyWhen: a!isNotNullOrEmpty(ri!FROM_EMAIL)
+        ),
+        /* Condición 2: (Verifico las reglas del PARA) */
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+          operator: "in",
+          value: ri!TO_EMAILS,
+          applyWhen: a!isNotNullOrEmpty(ri!TO_EMAILS)
+        ),
+        /* Condición 3: (Verifico las reglas del CC) */
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+          operator: "in",
+          value: ri!CC_EMAILS,
+          applyWhen: a!isNotNullOrEmpty(ri!CC_EMAILS)
+        ),
+        /* Condición 4: (Verifico las reglas del SUBJECT) */
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+          operator: "in",
+          value: #"SYSTEM_SYSRULES_forEach"(
+            items: local!wordsIncludedActions[wherecontains(
+              4, local!wordsIncludedActions[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e"]
+            )],
+            expression: if(
+              a!isInText(
+                lower(ri!SUBJECT),
+                lower(
+                  fv!item[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"]
+                )
+              ),
+              lower(
+                fv!item[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"]
+              ),
+              null
+            )
+          ),
+          applyWhen: a!isNotNullOrEmpty(ri!SUBJECT)
+        ),
+        /* Condición 5: (Verifico las reglas del BODY) */
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+          operator: "in",
+          value: #"SYSTEM_SYSRULES_forEach"(
+            items: local!wordsIncludedActions[wherecontains(
+              5, local!wordsIncludedActions[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e"]
+            )],
+            expression: if(
+              a!isInText(
+                lower(ri!BODY),
+                lower(
+                  fv!item[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"]
+                )
+              ),
+              lower(
+                fv!item[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"]
+              ),
+              null
+            )
+          ),
+          applyWhen: and(a!isNotNullOrEmpty(ri!BODY), )
+        ),
+        /* Condición 7: (Verifico las reglas del IMPORTANCE) */
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+          operator: "=",
+          value: ri!IMPORTANCE,
+          applyWhen: a!isNotNullOrEmpty(ri!IMPORTANCE)
+        ),
+        /* Condición 8: (Verifico las reglas del ATTACHEMENTS ) */
+        #"SYSTEM_SYSRULES_queryFilter"(
+          field: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+          operator: "=",
+          value: ri!ATTACHEMENTS,
+          applyWhen: a!isNotNullOrEmpty(ri!ATTACHEMENTS)
+        )
+      },
+      ignoreFiltersWithEmptyValues: true
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 100)
+  ).data
+)</definition>
+        <namedTypedValue>
+            <name>FROM_EMAIL</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>TO_EMAILS</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>CC_EMAILS</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>SUBJECT</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>BODY</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>IMPORTANCE</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ATTACHEMENTS</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5384357"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5442147"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6778577"/>
+    </history>
+</contentHaul>

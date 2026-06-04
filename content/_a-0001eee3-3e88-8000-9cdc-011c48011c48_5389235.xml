@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5419578</versionUuid>
+    <rule>
+        <name>PQR_Documento_IconoColorLogica</name>
+        <uuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5389235</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!match(
+  value: lower(ri!documentExtension),
+  equals: "doc",
+  equals: "docx",
+  then: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-word-o",
+    color: "#2322F0",
+    size: ri!size
+  ),
+  equals: "txt",
+  then: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-text-o",
+    color: "#2322F0",
+    size: ri!size
+  ),
+  equals: "png",
+  equals: "jpg",
+  equals: "img",
+  then: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-image-o",
+    color: "#9F0019",
+    size: ri!size
+  ),
+  equals: "mov",
+  equals: "mp4",
+  then: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-movie-o",
+    color: "#de0037",
+    size: ri!size
+  ),
+  equals: "xls",
+  equals: "xlsx",
+  equals: "xlsm",
+  then: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-excel-o",
+    color: "#117C00",
+    size: ri!size
+  ),
+  equals: "pptx",
+  then: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-powerpoint-o",
+    color: "orange3"
+  ),
+  equals: "pdf",
+  then: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-pdf-o",
+    color: "#9F0019",
+    size: ri!size
+  ),
+  equals: "zip",
+  then: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-archive-o",
+    color: "#6C6C75",
+    size: ri!size
+  ),
+  default: #"SYSTEM_SYSRULES_richTextIcon"(
+    icon: "file-o",
+    color: "#6C6C75",
+    size: ri!size
+  ),
+  
+)</definition>
+        <namedTypedValue>
+            <name>documentExtension</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>size</name>
+            <type>
+                <name>string</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+            <value/>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5389246"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5419578"/>
+    </history>
+</contentHaul>

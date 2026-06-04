@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5462581</versionUuid>
+    <rule>
+        <name>TRV_ConsultarParametrosSigedoc_recordDataSource</name>
+        <uuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5462577</uuid>
+        <description>La fuente de datos de registro para el tipo de registro PQR DependenciaSIGEDOC</description>
+        <parentUuid>280e7180-ac27-4115-8b52-5b3fe859eda1</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+
+  /* Recurra a la integración y almacene la respuesta en una variable local */
+  local!integrationResponse: #"_a-0000eea5-4822-8000-9cd8-011c48011c48_4956554"(),
+
+  if(
+    /* Esto devolverá True si la integración tiene éxito */
+    local!integrationResponse.success,
+
+    /* Si así lo requiere, modifique la siguiente expresión para devolver una lista de mapas, diccionarios, o CDT que se asignen a sus datos de registro */
+    local!integrationResponse.result.body,
+
+    /* Si la integración no es correcta, adminístrela como corresponde */
+
+    if(
+      /* Nota: la administración de excepciones fuera del límite varía según el servicio web */
+      tointeger(index(local!integrationResponse.result, "statusCode", 0)) = 416,
+
+      /* Si este es un error fuera del límite, devuelva una lista vacía para finalizar la sincronización */
+      {},
+
+      /* Si este es un error diferente, devuelve el error de integración. */
+      /* Si necesita lógica adicional para determinar el error, utilice a!integrationError() en la integración para formatear el error mostrado en el monitor de sincronización */
+      local!integrationResponse.error
+    )
+  )
+)</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5462581"/>
+    </history>
+</contentHaul>

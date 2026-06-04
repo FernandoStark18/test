@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efc9-21d9-8000-9ce6-011c48011c48_6975978</versionUuid>
+    <interface>
+        <name>PQR_ArbolEtiquetas</name>
+        <uuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5444482</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!pathValue,
+  local!busquedaEtiqueta: "",
+  local!etiquetas: #"SYSTEM_SYSRULES_queryRecordType_v4"(
+    recordType: #"urn:appian:record-type:v1:f7d4a31b-036e-413a-b0bf-2215cb228832",
+    fields: #"SYSTEM_SYSRULES_aggregationFields"(
+      groupings: {
+        #"SYSTEM_SYSRULES_grouping"(
+          field: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/d92fdcb7-61bb-40f0-b26e-4e6965e5aee1",
+          alias: "idParent"
+        ),
+        #"SYSTEM_SYSRULES_grouping"(
+          field: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/15f27d3c-ae87-4cfa-96cd-6d9c863da30a/6c94f83f-3c46-48f0-a689-f3fcb5143ac3",
+          alias: "idParentName"
+        ),
+        #"SYSTEM_SYSRULES_grouping"(
+          field: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/2bcca99a-defc-4dc8-9f9c-4d388bc30236",
+          alias: "id"
+        ),
+        #"SYSTEM_SYSRULES_grouping"(
+          field: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c328359a-a4b1-488a-8324-7beafa21d9ae",
+          alias: "Nombre"
+        )
+      }
+    ),
+    pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 100)
+  ).data,
+  local!categoriasIds: union(
+    local!etiquetas.idParent,
+    local!etiquetas.idParent
+  ),
+  /* Filtrar por inicio del nombre usando left() */
+  local!indicesFiltrados: if(
+    a!isNullOrEmpty(local!busquedaEtiqueta),
+    enumerate(length(local!etiquetas.Nombre)) + 1,
+    wherecontains(
+      true,
+      #"SYSTEM_SYSRULES_forEach"(
+        items: local!etiquetas.Nombre,
+        expression: lower(
+          left(fv!item, len(local!busquedaEtiqueta))
+        ) = lower(local!busquedaEtiqueta)
+      )
+    )
+  ),
+  local!etiquetasFiltradas: a!map(
+    idParent: index(local!etiquetas.idParent, local!indicesFiltrados, {}),
+    idParentName: index(local!etiquetas.idParentName, local!indicesFiltrados, {}),
+    id: index(local!etiquetas.id, local!indicesFiltrados, {}),
+    Nombre: index(local!etiquetas.Nombre, local!indicesFiltrados, {})
+  ),
+  local!hayBusqueda: a!isNotNullOrEmpty(local!busquedaEtiqueta),
+  local!hayResultados: length(local!etiquetasFiltradas.id) &gt; 0,
+  local!primeraColumna: if(
+    local!hayBusqueda,
+    local!etiquetasFiltradas.id,
+    local!categoriasIds
+  ),
+  local!EtiquetaNueva,
+  {
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Buscar etiqueta",
+      labelPosition: "ABOVE",
+      placeholder: "Escriba para filtrar etiquetas...",
+      value: local!busquedaEtiqueta,
+      saveInto: {
+        a!save(local!busquedaEtiqueta, save!value),
+        a!save(local!pathValue, null),
+        a!save(local!EtiquetaNueva, null)
+      },
+      refreshAfter: "KEYPRESS",
+      showWhen: and(
+        a!isNotNullOrEmpty(ri!showTree),
+        ri!showTree
+      )
+    ),
+    /* Mensaje cuando no hay resultados */
+    #"SYSTEM_SYSRULES_richTextDisplayField"(
+      labelPosition: "COLLAPSED",
+      value: {
+        #"SYSTEM_SYSRULES_richTextIcon"(
+          icon: "search",
+          color: "#B0BEC5",
+          size: "MEDIUM"
+        ),
+        " ",
+        #"SYSTEM_SYSRULES_richTextItem_v1"(
+          text: "No se encontraron etiquetas que inicien con "" &amp; local!busquedaEtiqueta &amp; """,
+          color: "#78909C",
+          style: "EMPHASIS"
+        )
+      },
+      align: "CENTER",
+      showWhen: and(
+        local!hayBusqueda,
+        not(local!hayResultados),
+        a!isNotNullOrEmpty(ri!showTree),
+        ri!showTree
+      )
+    ),
+    #"SYSTEM_SYSRULES_hierarchyBrowserFieldColumns"(
+      label: "Seleccione la etiqueta...",
+      labelPosition: "ABOVE",
+      selectionValue: local!EtiquetaNueva,
+      selectionSaveInto: local!EtiquetaNueva,
+      pathValue: local!pathValue,
+      pathSaveInto: local!pathValue,
+      firstColumnValues: local!primeraColumna,
+      nodeConfigs: #"SYSTEM_SYSRULES_hierarchyBrowserFieldColumnsNode"(
+        label: if(
+          local!hayBusqueda,
+          index(
+            local!etiquetasFiltradas.Nombre,
+            wherecontains(fv!nodeValue, local!etiquetasFiltradas.id),
+            "Etiqueta " &amp; fv!nodeValue
+          ),
+          if(
+            contains(local!categoriasIds, fv!nodeValue),
+            index(
+              local!etiquetas.idParentName,
+              wherecontains(fv!nodeValue, local!etiquetas.idParent),
+              "Categoría " &amp; fv!nodeValue
+            ),
+            index(
+              local!etiquetas.Nombre,
+              wherecontains(fv!nodeValue, local!etiquetas.id),
+              "Etiqueta " &amp; fv!nodeValue
+            )
+          )
+        ),
+        id: fv!nodeValue,
+        image: #"SYSTEM_SYSRULES_documentImage"(
+          document: #"SYSTEM_SYSRULES_iconIndicator"(
+            if(
+              local!hayBusqueda,
+              "HARVEY_0",
+              if(
+                contains(local!categoriasIds, fv!nodeValue),
+                "FOLDER",
+                "HARVEY_0"
+              )
+            )
+          )
+        ),
+        isSelectable: if(
+          local!hayBusqueda,
+          true,
+          if(
+            contains(local!categoriasIds, fv!nodeValue),
+            false,
+            true
+          )
+        ),
+        isDrillable: if(
+          local!hayBusqueda,
+          false,
+          if(
+            contains(local!categoriasIds, fv!nodeValue),
+            true,
+            false
+          )
+        )
+      ),
+      nextColumnValues: if(
+        local!hayBusqueda,
+        {},
+        if(
+          contains(local!categoriasIds, fv!nodeValue),
+          index(
+            local!etiquetas.id,
+            wherecontains(fv!nodeValue, local!etiquetas.idParent)
+          ),
+          {}
+        )
+      ),
+      height: "SHORT",
+      showWhen: and(
+        local!hayResultados,
+        a!isNotNullOrEmpty(ri!showTree),
+        ri!showTree
+      )
+    ),
+    #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+      align: "END",
+      buttons: {
+        #"SYSTEM_SYSRULES_buttonWidget_v1"(
+          label: "Confirmar",
+          size: "SMALL",
+          disabled: a!isNullOrEmpty(local!EtiquetaNueva),
+          saveInto: {
+            a!save(ri!showTree, false()),
+            #"SYSTEM_SYSRULES_startProcess3"(
+              processModel: #"_a-0001eee3-3e88-8000-9cdc-011c48011c48_5461451",
+              processParameters: {
+                etiquetaxcorreo: #"urn:appian:record-type:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd"(
+                  #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/b166a748-4a36-43a3-99a4-412a24157620": local!EtiquetaNueva,
+                  #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/6459fe0c-816e-4666-a512-6d5bcfbaa191": ri!selectedEmailId,
+                  #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/a93e1325-1e25-4a65-ae1c-0e9a91e1ff6f": 1
+                )
+              }
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_buttonWidget_v1"(
+          label: "Cancelar",
+          size: "SMALL",
+          color: "NEGATIVE",
+          saveInto: {
+            a!save(ri!showTree, false())
+          }
+        )
+      },
+      showWhen: and(
+        a!isNotNullOrEmpty(ri!showTree),
+        ri!showTree
+      )
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>showTree</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedEmailId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5462840"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5469927"/>
+        <historyInfo versionUuid="_a-0000efc9-21d9-8000-9ce6-011c48011c48_6975978"/>
+    </history>
+</contentHaul>

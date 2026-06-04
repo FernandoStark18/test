@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efc9-21d9-8000-9ce6-011c48011c48_6949394</versionUuid>
+    <interface>
+        <name>PQR_INT_PQRDSFSeccionPaginacion</name>
+        <uuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5459378</uuid>
+        <description>Seccion que contiene los botones para la paginación</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_ButtonArrayLayout"(
+  buttons: {
+    #"SYSTEM_SYSRULES_buttonWidget_v1"(
+      style: "LINK",
+      size: "SMALL",
+      label: "&lt;&lt;",
+      disabled: ri!startIndex = 1,
+      saveInto: {
+        a!save(ri!startIndex, 1),
+        a!save(ri!selectedIds, null)
+      }
+    ),
+    #"SYSTEM_SYSRULES_buttonWidget_v1"(
+      style: "LINK",
+      size: "SMALL",
+      label: "&lt;",
+      disabled: ri!startIndex = 1,
+      saveInto: {
+        a!save(
+          ri!startIndex,
+          (ri!startIndex - ri!batchSize)
+        ),
+        a!save(ri!selectedIds, null)
+      }
+    ),
+    #"SYSTEM_SYSRULES_buttonWidget_v1"(
+      style: "LINK",
+      size: "SMALL",
+      label: concat(
+        ri!startIndex,
+        " - ",
+        (ri!startIndex + ri!batchSize - 1),
+        " De ",
+        ri!totalCount
+      ),
+      disabled: true()
+    ),
+    #"SYSTEM_SYSRULES_buttonWidget_v1"(
+      style: "LINK",
+      size: "SMALL",
+      label: "&gt;",
+      disabled: or(
+        ri!currentPage = ri!totalPages,
+        ri!totalCount = 0
+      ),
+      saveInto: {
+        a!save(
+          ri!startIndex,
+          (ri!startIndex + ri!batchSize)
+        ),
+        a!save(ri!selectedIds, null)
+      }
+    ),
+    #"SYSTEM_SYSRULES_buttonWidget_v1"(
+      style: "LINK",
+      size: "SMALL",
+      label: "&gt;&gt;",
+      disabled: or(
+        ri!currentPage = ri!totalPages,
+        ri!totalCount = 0
+      ),
+      saveInto: {
+        a!save(
+          ri!startIndex,
+          (
+            (
+              ri!batchSize * tointeger(
+                ceiling(ri!totalCount / ri!batchSize)
+              )
+            ) - ri!batchSize + 1
+          )
+        ),
+        a!save(ri!selectedIds, null)
+      }
+    )
+  },
+  align: "CENTER",
+  showWhen: ri!totalCount &gt; 0
+)</definition>
+        <namedTypedValue>
+            <name>startIndex</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>batchSize</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>currentPage</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>totalPages</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>totalCount</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>selectedIds</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5459610"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5471546"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867974"/>
+        <historyInfo versionUuid="_a-0000efc9-21d9-8000-9ce6-011c48011c48_6949394"/>
+    </history>
+</contentHaul>
