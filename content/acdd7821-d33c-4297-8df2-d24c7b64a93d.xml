@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867966</versionUuid>
+    <interface>
+        <name>PQR_INT_crearTipoVinculacionEntidad</name>
+        <uuid>acdd7821-d33c-4297-8df2-d24c7b64a93d</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo TipoVinculacionEntidad como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Nombre",
+          labelPosition: "ABOVE",
+          value: ri!tipovinculacionentidad[#"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/73f753fb-cec5-433c-ad8d-284267bd2913"],
+          saveInto: ri!tipovinculacionentidad[#"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/73f753fb-cec5-433c-ad8d-284267bd2913"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Código",
+          labelPosition: "ABOVE",
+          value: ri!tipovinculacionentidad[#"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/74b00dc1-2e3b-478b-bc7d-50ad4334551a"],
+          saveInto: ri!tipovinculacionentidad[#"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/74b00dc1-2e3b-478b-bc7d-50ad4334551a"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Crear",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Crear vinculación entidad",
+    secondaryText: "Introduzca los detalles de la vinculación entidad"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>tipovinculacionentidad</name>
+            <type>
+                <name>8150e182-a133-4bb8-a849-3286f903cb29</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="9a7d0e6c-7f26-42ee-920d-e159cca94ef2"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1580617"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867966"/>
+    </history>
+</contentHaul>

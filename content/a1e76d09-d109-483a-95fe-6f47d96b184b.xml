@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef03-0467-8000-9bf2-011c48011c48_1558810</versionUuid>
+    <interface>
+        <name>PQR_ActualizarTipoDependenciaPublica</name>
+        <uuid>a1e76d09-d109-483a-95fe-6f47d96b184b</uuid>
+        <description>Interfaz de formulario para actualizar una dependencia pública como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_columnsLayout"(
+          columns: {
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Nombre",
+                  labelPosition: "ABOVE",
+                  value: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/377ee6c2-0c14-4cf3-9927-c58a23c0b71b"],
+                  saveInto: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/377ee6c2-0c14-4cf3-9927-c58a23c0b71b"],
+                  required: false,
+                  characterLimit: 200,
+                  showCharacterCount: false,
+                  disabled: false,
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_pickerFieldRecords_v2"(
+                  label: "Municipio",
+                  labelPosition: "ABOVE",
+                  placeholder: "Seleccione un municipio",
+                  recordType: #"urn:appian:record-type:v1:1e82d74f-4403-44c7-ad6d-93fbc724080a",
+                  value: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/670cc726-fc7b-4824-866b-ead13fd3af47"],
+                  saveInto: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/670cc726-fc7b-4824-866b-ead13fd3af47"],
+                  required: false,
+                  maxSelections: 1
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Teléfono",
+                  labelPosition: "ABOVE",
+                  value: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/01cd8629-ab7a-4707-86d3-1dd100b5456f"],
+                  saveInto: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/01cd8629-ab7a-4707-86d3-1dd100b5456f"],
+                  required: false,
+                  characterLimit: 50,
+                  showCharacterCount: false
+                )
+              }
+            ),
+            #"SYSTEM_SYSRULES_columnLayout"(
+              contents: {
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Código",
+                  labelPosition: "ABOVE",
+                  value: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/88fed9c5-54f6-4195-b75b-7867b0efd181"],
+                  saveInto: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/88fed9c5-54f6-4195-b75b-7867b0efd181"],
+                  required: true,
+                  characterLimit: 50,
+                  showCharacterCount: false,
+                  readOnly: true
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Dirección",
+                  labelPosition: "ABOVE",
+                  value: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/b11a086f-2d9b-474d-b860-fd6b1459874e"],
+                  saveInto: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/b11a086f-2d9b-474d-b860-fd6b1459874e"],
+                  required: false,
+                  characterLimit: 200,
+                  showCharacterCount: false
+                ),
+                #"SYSTEM_SYSRULES_textField"(
+                  label: "Sede",
+                  labelPosition: "ABOVE",
+                  value: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/ae7d46ac-a17e-4862-ab3f-8b3c1c434de5"],
+                  saveInto: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/ae7d46ac-a17e-4862-ab3f-8b3c1c434de5"],
+                  required: false,
+                  characterLimit: 100,
+                  showCharacterCount: false
+                )
+              }
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_dropdownField_v1"(
+          label: "Padre",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione una dependencia pública padre",
+          data: #"SYSTEM_SYSRULES_recordData"(
+            recordType: #"urn:appian:record-type:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad",
+            filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+              operator: "AND",
+              filters: {
+                #"SYSTEM_SYSRULES_queryFilter"(
+                  field: #"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/61acffc6-7347-48b4-94f0-2cc25ad6d51d",
+                  operator: "=",
+                  value: true
+                )
+              },
+              ignoreFiltersWithEmptyValues: true
+            )
+          ),
+          value: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/7882e269-6810-4909-a601-191219f8b828"],
+          saveInto: ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/7882e269-6810-4909-a601-191219f8b828"],
+          choiceLabels: #"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/377ee6c2-0c14-4cf3-9927-c58a23c0b71b",
+          choiceValues: #"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/89f9ec90-5602-4d2b-a1ba-0b290c4f29c6",
+          required: false
+        ),
+        #"SYSTEM_SYSRULES_checkboxField_v1"(
+          labelPosition: "COLLAPSED",
+          value: if(
+            ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/61acffc6-7347-48b4-94f0-2cc25ad6d51d"],
+            true,
+            null
+          ),
+          saveInto: a!save(
+            ri!Tipodependenciapublica[#"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/61acffc6-7347-48b4-94f0-2cc25ad6d51d"],
+            if(isnull(save!value), false, true)
+          ),
+          choiceLabels: { "Activo" },
+          choiceValues: { true },
+          marginAbove: "STANDARD",
+          spacing: "MORE"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Guardar",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Actualizar dependencia pública",
+    secondaryText: "Actualizar los detalles de unaldependencia pública"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>Tipodependenciapublica</name>
+            <type>
+                <name>70a97000-e321-486a-a3a5-d23bd2eda0ad</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="f958ad60-cd21-4700-8f48-d886f73ef3e6"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1558810"/>
+    </history>
+</contentHaul>
