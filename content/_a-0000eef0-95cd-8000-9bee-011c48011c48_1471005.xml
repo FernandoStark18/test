@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867982</versionUuid>
+    <interface>
+        <name>PQR_INT_reglaCorreoLista</name>
+        <uuid>_a-0000eef0-95cd-8000-9bee-011c48011c48_1471005</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  #"SYSTEM_SYSRULES_headerContentLayout"(
+    header: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_stampField"(
+                          labelPosition: "COLLAPSED",
+                          icon: "mail-bulk",
+                          contentColor: "STANDARD"
+                        ),
+                        width: "MINIMIZE"
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(
+                              text: "Reglas de correo",
+                              size: "LARGE",
+                              color: "#FFFFFF",
+                              style: "STRONG"
+                            )
+                          }
+                        )
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                },
+                width: "WIDE"
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_recordActionField_v1"(
+                    actions: {
+                      #"SYSTEM_SYSRULES_recordActionItem"(
+                        action: #"urn:appian:record-action:v1:d81be1e7-776a-47cf-976a-1460af8a706c/d454a561-bce3-4b58-888a-e920b7798ac5"
+                      )
+                    },
+                    align: "END",
+                    style: "LINKS",
+                    display: "LABEL_AND_ICON"
+                  )
+                
+                },
+                width: "AUTO"
+              )
+            },
+            alignVertical: "MIDDLE",
+            spacing: "STANDARD"
+          )
+        },
+        marginBelow: "STANDARD",
+        style: "#1d2d44",
+        showBorder: false,
+        padding: "LESS"
+      )
+    },
+    contents: {
+      #"SYSTEM_SYSRULES_gridField_v5"(
+        label: "Tabla de solo lectura",
+        labelPosition: "COLLAPSED",
+        data: #"SYSTEM_SYSRULES_recordData"(
+          recordType: #"urn:appian:record-type:v1:d81be1e7-776a-47cf-976a-1460af8a706c",
+          fields: {}
+        ),
+        showExportButton: true,
+        showRefreshButton: false,
+        showSearchBox: true,
+        similarityScoreThreshold: null,
+        columns: {
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "",
+            value: if(
+              isnull(
+                fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/48eaa0bc-a50c-4e35-81c9-991c8771aa8d"]
+              ),
+              "–",
+              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                value: if(
+                  fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/48eaa0bc-a50c-4e35-81c9-991c8771aa8d"],
+                  #"SYSTEM_SYSRULES_richTextIcon"(
+                    icon: "check",
+                    altText: "Yes",
+                    color: "#138901"
+                  ),
+                  #"SYSTEM_SYSRULES_richTextIcon"(
+                    icon: "times",
+                    altText: "No",
+                    color: "SECONDARY"
+                  )
+                )
+              )
+            ),
+            sortField: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/48eaa0bc-a50c-4e35-81c9-991c8771aa8d",
+            align: "CENTER",
+            width: "ICON"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Nombre",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/0b9657e0-34fd-48d4-aea9-a872c8907912"],
+                  link: #"SYSTEM_SYSRULES_recordLink"(
+                    recordType: #"urn:appian:record-type:v1:d81be1e7-776a-47cf-976a-1460af8a706c",
+                    identifier: fv!identifier
+                  ),
+                  linkStyle: "STANDALONE"
+                )
+              }
+            ),
+            sortField: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/0b9657e0-34fd-48d4-aea9-a872c8907912",
+            width: "MEDIUM"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Condición",
+            value: a!defaultValue(
+        fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ed78a2db-58c2-4cec-9781-f941360efb8b/33db71da-7584-4da0-9530-07103c7a65dc"] &amp; ": " &amp; fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ed78a2db-58c2-4cec-9781-f941360efb8b/93f1e086-3918-44ff-a9bb-98052db6dc59"],
+        "–"
+      ),
+            sortField: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ed78a2db-58c2-4cec-9781-f941360efb8b/33db71da-7584-4da0-9530-07103c7a65dc",
+            width: "MEDIUM"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Acción",
+            value: a!defaultValue(
+        fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"],
+        "–"
+      ),
+            sortField: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477",
+            width: "MEDIUM"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Etiqueta",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: {
+                    #"SYSTEM_SYSRULES_richTextIcon"(
+                      icon: fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ebd40929-6c96-4838-9334-0c99f9ca0c26/1ad57013-49c6-4479-8811-105184927d81"],
+                      caption: fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ebd40929-6c96-4838-9334-0c99f9ca0c26/c328359a-a4b1-488a-8324-7beafa21d9ae"],
+                      color: fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ebd40929-6c96-4838-9334-0c99f9ca0c26/8a5a5844-84da-4c47-a007-3d4c7cedaf35"]
+                    ),
+                    " " &amp; fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ebd40929-6c96-4838-9334-0c99f9ca0c26/c328359a-a4b1-488a-8324-7beafa21d9ae"]
+                  }
+                )
+              }
+            ),
+            sortField: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ebd40929-6c96-4838-9334-0c99f9ca0c26/c328359a-a4b1-488a-8324-7beafa21d9ae",
+            align: "CENTER",
+            width: "NARROW_PLUS"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Descripcion",
+            value: a!defaultValue(
+        fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/cde68e44-9c58-4929-884c-e395a6f7b97c"],
+        "–"
+      ),
+            sortField: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/cde68e44-9c58-4929-884c-e395a6f7b97c"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "",
+            value: #"SYSTEM_SYSRULES_recordActionField_v1"(
+              actions: {
+                #"SYSTEM_SYSRULES_recordActionItem"(
+                  action: #"urn:appian:record-action:v1:d81be1e7-776a-47cf-976a-1460af8a706c/26b91b54-2a68-4c4a-8390-0b0df075a748",
+                  identifier: fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/d8a3de98-82c0-4ad4-b2bc-c543429db34f"]
+                ),
+                #"SYSTEM_SYSRULES_recordActionItem"(
+                  action: #"urn:appian:record-action:v1:d81be1e7-776a-47cf-976a-1460af8a706c/ff153f3e-6650-4db6-92c6-aa22398b6e1b",
+                  identifier: fv!row[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/d8a3de98-82c0-4ad4-b2bc-c543429db34f"]
+                )
+              },
+              align: "CENTER",
+              style: "MENU_ICON",
+              display: "LABEL_AND_ICON"
+            ),
+            sortField: #"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/d8a3de98-82c0-4ad4-b2bc-c543429db34f",
+            align: "CENTER",
+            width: "ICON"
+          )
+        },
+        refreshAfter: "RECORD_ACTION",
+        validations: {},
+        borderStyle: "STANDARD",
+        shadeAlternateRows: true
+      )
+    },
+    backgroundColor: "WHITE"
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1471444"/>
+        <historyInfo versionUuid="_a-0000ef00-59b8-8000-9bf0-011c48011c48_1509479"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1580552"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1584953"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383309"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383683"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6118979"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867982"/>
+    </history>
+</contentHaul>

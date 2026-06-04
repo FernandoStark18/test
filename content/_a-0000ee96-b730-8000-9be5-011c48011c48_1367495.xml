@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5505200</versionUuid>
+    <interface>
+        <name>PQR_EntidadPublicaLista</name>
+        <uuid>_a-0000ee96-b730-8000-9be5-011c48011c48_1367495</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  #"SYSTEM_SYSRULES_headerContentLayout"(
+    header: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_stampField"(
+                          labelPosition: "COLLAPSED",
+                          icon: "landmark",
+                          contentColor: "STANDARD"
+                        ),
+                        width: "MINIMIZE"
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(
+                              text: "Entidades públicas",
+                              size: "LARGE",
+                              color: "#FFFFFF",
+                              style: "STRONG"
+                            )
+                          }
+                        )
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                },
+                width: "WIDE"
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_recordActionField_v1"(
+                    actions: {
+                      #"SYSTEM_SYSRULES_recordActionItem"(
+                        action: #"urn:appian:record-action:v1:fc71d9d0-6606-44d2-925f-c1307280df11/a6b1bffc-14c8-48d3-8ad7-09d2853b7bd6"
+                      )
+                    },
+                    align: "END",
+                    style: "LINKS",
+                    display: "LABEL_AND_ICON"
+                  )
+                },
+                width: "AUTO"
+              )
+            },
+            alignVertical: "MIDDLE",
+            spacing: "STANDARD"
+          )
+        },
+        marginBelow: "STANDARD",
+        style: "#1d2d44",
+        showBorder: false,
+        padding: "LESS"
+      )
+    },
+    contents: 
+    {
+      #"SYSTEM_SYSRULES_gridField_v5"(
+        label: "Tabla de solo lectura",
+        labelPosition: "COLLAPSED",
+        data: #"urn:appian:record-type:v1:fc71d9d0-6606-44d2-925f-c1307280df11",
+        showRefreshButton: false,
+        showSearchBox: false,
+        similarityScoreThreshold: null,
+        recordActions: {},
+        columns: {
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Nombre",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: fv!row[#"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/a42f1b63-7bf1-49a1-a653-bbc56962b67b"] &amp; " (" &amp; fv!row[#"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/31441be1-b629-44d8-97c0-c9aa0a37e1c5"] &amp; ")",
+                  link: #"SYSTEM_SYSRULES_recordLink"(
+                    recordType: #"urn:appian:record-type:v1:fc71d9d0-6606-44d2-925f-c1307280df11",
+                    identifier: fv!row[#"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/c3f00363-8d89-4ef9-ace9-9470577498ee"]
+                  ),
+                  linkStyle: "STANDALONE"
+                )
+              }
+            ),
+            sortField: #"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/a42f1b63-7bf1-49a1-a653-bbc56962b67b",
+            width: "MEDIUM_PLUS"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Misión/Visión",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: {fv!row[#"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/28bc9a3a-cd36-421a-b5c3-c76ebf2e254b"]}
+                )
+              },
+              preventWrapping: true
+            ),
+            sortField: #"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/28bc9a3a-cd36-421a-b5c3-c76ebf2e254b",
+            width: "AUTO"
+
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Perspectiva estratégica",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: {fv!row[#"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/3d705e4a-2581-4d54-b62f-98991b769dfc"]}
+                )
+              },
+              preventWrapping: true
+            ),
+            sortField: #"urn:appian:record-field:v1:fc71d9d0-6606-44d2-925f-c1307280df11/3d705e4a-2581-4d54-b62f-98991b769dfc",
+            width: "AUTO"
+          )
+        },
+        refreshAfter: "RECORD_ACTION",
+        validations: {},
+        shadeAlternateRows: true
+      )
+    },
+    backgroundColor: "WHITE"
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ee96-b730-8000-9be5-011c48011c48_1368699"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1394399"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1395238"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1409704"/>
+        <historyInfo versionUuid="_a-0000eee6-5360-8000-9ba6-011c48011c48_9145"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1558436"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383323"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5505200"/>
+    </history>
+</contentHaul>

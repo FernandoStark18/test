@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec7f-d3cb-8000-9bcd-011c48011c48_15882</versionUuid>
+    <constant>
+        <name>TM_BATCH_SLEEP_SEC_MAX</name>
+        <uuid>_a-0000ec54-b070-8000-9bc1-011c48011c48_10873</uuid>
+        <description>The maximum amount of time to sleep between batches.
+An exponential backoff algorithm is used to reduce queries during periods of extended inactivity (no transactions to start).</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3274097</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </typedValue>
+        <isEnvironmentSpecific>true</isEnvironmentSpecific>
+    </constant>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10884"/>
+        <historyInfo versionUuid="_a-0000ec5e-d78c-8000-9bc5-011c48011c48_11748"/>
+        <historyInfo versionUuid="_a-0000ec7f-d3cb-8000-9bcd-011c48011c48_15882"/>
+    </history>
+</contentHaul>

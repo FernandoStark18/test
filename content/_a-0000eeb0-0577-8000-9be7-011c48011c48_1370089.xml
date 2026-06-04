@@ -1,0 +1,1793 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efc9-21d9-8000-9ce6-011c48011c48_7052508</versionUuid>
+    <interface>
+        <name>PQR_INT_PQRDSFBandeja</name>
+        <uuid>_a-0000eeb0-0577-8000-9be7-011c48011c48_1370089</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!refresh: 1,
+  local!showTree,
+  local!batchSize: 15,
+  local!startIndex: 1,
+  local!tagFilter,
+  local!fromFilter,
+  local!toFilter,
+  local!subjectFilter,
+  local!bodyFilter,
+  local!estadoFilter: - 1,
+  local!fromDateFilter,
+  local!toDateFilter,
+  local!fromConfidenceFilter,
+  local!toConfidenceFilter,
+  local!tipoEventoFilter: - 1,
+  local!approbalUserFilter,
+  local!clasificadoPorFilter,
+  local!previewDoc: false,
+  local!selectedDoc,
+  local!selectedIds: {},
+  local!action,
+  local!mostrarListaCorreos: true,
+  local!mostrarFiltros: false,
+  local!seleccionarTodo: false,
+  local!mostrarDropdownDependecias: false,
+  local!dependenciaSeleccionada,
+  local!dependencias: #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867997"(),
+  local!totalCount: a!refreshVariable(
+    value: index(
+      #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6697329"(
+        fromFilter: local!fromFilter,
+        toFilter: local!toFilter,
+        subjectFilter: local!subjectFilter,
+        bodyFilter: local!bodyFilter,
+        startIndex: local!startIndex,
+        batchSize: local!batchSize,
+        estadoFilter: if(
+          local!estadoFilter = - 1,
+          {},
+          if(local!estadoFilter, 2, { 0, 1 })
+        ),
+        fromDateFilter: local!fromDateFilter,
+        toDateFilter: local!toDateFilter,
+        tagFilter: local!tagFilter,
+        tipoEventoFilter: if(
+          local!tipoEventoFilter = - 1,
+          null,
+          local!tipoEventoFilter
+        ),
+        fromConfidenceFilter: local!fromConfidenceFilter,
+        toConfidenceFilter: local!toConfidenceFilter,
+        approbalUserFilter: if(
+          a!isNotNullOrEmpty(local!approbalUserFilter),
+          index(local!approbalUserFilter, 1, local!approbalUserFilter),
+          null
+        ),
+        clasificadoPorFilter: if(
+          a!isNotNullOrEmpty(local!clasificadoPorFilter),
+          index(local!clasificadoPorFilter, 1, local!clasificadoPorFilter),
+          null
+        )
+      ),
+      "totalCount",
+      null
+    ),
+    refreshOnVarChange: local!refresh,
+    refreshAfter: "RECORD_ACTION"
+  ),
+  local!totalPages: ceiling(local!totalCount / local!batchSize),
+  local!currentPage: ceiling((local!startIndex - 1) / local!batchSize) + 1,
+  local!hayFiltrosActivos: or(
+    a!isNotNullOrEmpty(local!tagFilter),
+    a!isNotNullOrEmpty(local!fromFilter),
+    a!isNotNullOrEmpty(local!toFilter),
+    a!isNotNullOrEmpty(local!subjectFilter),
+    a!isNotNullOrEmpty(local!bodyFilter),
+    a!isNotNullOrEmpty(local!fromConfidenceFilter),
+    a!isNotNullOrEmpty(local!toConfidenceFilter),
+    a!isNotNullOrEmpty(local!fromDateFilter),
+    a!isNotNullOrEmpty(local!toDateFilter),
+    a!isNotNullOrEmpty(local!approbalUserFilter),
+    /* CAMBIO 2: clasificadoPorFilter ahora cuenta como filtro activo */
+    a!isNotNullOrEmpty(local!clasificadoPorFilter),
+    local!estadoFilter &lt;&gt; - 1,
+    local!tipoEventoFilter &lt;&gt; - 1
+  ),
+  local!messages: a!refreshVariable(
+    value: a!localVariables(
+      local!mails: if(
+        local!totalCount = 0,
+        null,
+        index(
+          #"16e13b7a-4fb9-447f-9341-75f9d7b45424"(
+            fromFilter: local!fromFilter,
+            toFilter: local!toFilter,
+            subjectFilter: local!subjectFilter,
+            bodyFilter: local!bodyFilter,
+            startIndex: local!startIndex,
+            batchSize: local!batchSize,
+            estadoFilter: if(
+              local!estadoFilter = - 1,
+              {},
+              if(local!estadoFilter, 2, { 0, 1 })
+            ),
+            fromDateFilter: local!fromDateFilter,
+            toDateFilter: local!toDateFilter,
+            tagFilter: local!tagFilter,
+            tipoEventoFilter: if(
+              local!tipoEventoFilter = - 1,
+              null,
+              local!tipoEventoFilter
+            ),
+            fromConfidenceFilter: local!fromConfidenceFilter,
+            toConfidenceFilter: local!toConfidenceFilter,
+            approbalUserFilter: if(
+              a!isNotNullOrEmpty(local!approbalUserFilter),
+              index(local!approbalUserFilter, 1, local!approbalUserFilter),
+              null
+            ),
+            clasificadoPorFilter: if(
+              a!isNotNullOrEmpty(local!clasificadoPorFilter),
+              index(local!clasificadoPorFilter, 1, local!clasificadoPorFilter),
+              null
+            )
+          ),
+          "data",
+          null
+        )
+      ),
+      #"SYSTEM_SYSRULES_forEach"(
+        items: local!mails,
+        expression: a!map(
+          id: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9aa2ba60-e02c-4792-aa94-797e7da3ca0c",
+            null
+          ),
+          Asunto: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/6beb40ad-2319-4d5e-bff8-f854494ced72",
+            ""
+          ),
+          FechaRecepcion: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/415542e0-75b2-490b-ac5b-409392adb155",
+            null
+          ),
+          para: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/64787dc1-052b-41fb-b443-d6f2a6ce90d8",
+            ""
+          ),
+          para_correos: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/e3f6788e-3427-4637-83cd-ea0bb884ec26",
+            ""
+          ),
+          Procesado: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/81d7372d-c87b-4076-8c0e-3fee910cca88",
+            false
+          ),
+          Cuerpo: index(
+            #"SYSTEM_SYSRULES_queryEntity_v2"(
+              entity: #"_a-0000ef02-3502-8000-9bf1-011c48011c48_1557667",
+              query: #"SYSTEM_SYSRULES_query"(
+                logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+                  operator: "AND",
+                  filters: {
+                    #"SYSTEM_SYSRULES_queryFilter"(
+                      field: "APP_MAIL_POLLER_ID",
+                      operator: "=",
+                      value: index(
+                        fv!item,
+                        #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9aa2ba60-e02c-4792-aa94-797e7da3ca0c",
+                        null
+                      )
+                    )
+                  },
+                  ignoreFiltersWithEmptyValues: true
+                ),
+                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: - 1)
+              ),
+              fetchTotalCount: false
+            ).data,
+            "BODY_HTML",
+            null
+          ),
+          de_nombre: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/a5ffe5fa-7b2c-47d9-965d-a033f8c66349",
+            ""
+          ),
+          de: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/a3c256a0-ded5-4f3d-9686-fefe4e4057b0",
+            ""
+          ),
+          docanexo: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9bcce5f6-b4d1-47ee-8a26-4d49ad2540b3",
+            null
+          ),
+          estado: index(
+            fv!item,
+            #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/683d1f87-94d9-4959-be82-82f0144b185b",
+            null
+          ),
+          Adjuntos: index(
+            #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868009"(
+              APP_MAIL_POLLER_ID: index(
+                fv!item,
+                #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/9aa2ba60-e02c-4792-aa94-797e7da3ca0c",
+                null
+              )
+            ),
+            "ELT",
+            {}
+          )
+        )
+      )
+    ),
+    refreshOnVarChange: local!refresh,
+    refreshAfter: "RECORD_ACTION"
+  ),
+  local!sideNavPages: if(
+    local!totalCount &gt; 0,
+    {
+      a!map(
+        icon: "envelope",
+        name: "Mensajes" &amp; " (" &amp; length(
+          where(
+            not(index(local!messages, "Procesado", null))
+          )
+        ) &amp; ")"
+      ),
+      a!map(icon: "user-tag", name: "Mis casos"),
+      a!map(
+        icon: "exclamation-triangle",
+        name: "Casos vencidos"
+      ),
+      a!map(icon: "tasks", name: "Todos los casos"),
+      a!map(
+        icon: "files-solid",
+        name: "Base de conocimientos"
+      ),
+      a!map(icon: "search", name: "Búsqueda avanzada")
+    },
+    {}
+  ),
+  local!selectedPage: 1,
+  local!selectedMessageIndex: 1,
+  local!showMessage: true,
+  local!selectedMessage: index(
+    local!messages,
+    local!selectedMessageIndex,
+    {}
+  ),
+  local!clasificando: a!refreshVariable(
+    value: a!defaultValue(
+      index(
+        #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868033"(
+          APP_MAIL_POLLER_ID: index(local!selectedMessage, "id", null)
+        ),
+        #"urn:appian:record-field:v1:a7d6704d-9993-4c22-8a68-56da794e8cb4/f1d91693-672d-459b-b86e-9cf5b51ba4ea",
+        1,
+        null
+      ),
+      false()
+    ),
+    refreshAlways: true,
+    refreshInterval: 0.5,
+    refreshAfter: "RECORD_ACTION"
+  ),
+  local!etiquetas: #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868021"(
+    APP_MAIL_POLLER_ID: index(local!selectedMessage, "id", null)
+  ),
+  #"SYSTEM_SYSRULES_headerContentLayout"(
+    header: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            alignVertical: "MIDDLE",
+            showDividers: true,
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"_a-0001eee3-3e88-8000-9cdc-011c48011c48_5459378"(
+                    startIndex: local!startIndex,
+                    batchSize: local!batchSize,
+                    currentPage: local!currentPage,
+                    totalPages: local!totalPages,
+                    totalCount: local!totalCount,
+                    selectedIds: local!selectedIds
+                  )
+                },
+                width: "MEDIUM_PLUS",
+                showWhen: local!mostrarListaCorreos
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                          buttons: {
+                            #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                              tooltip: if(
+                                local!mostrarListaCorreos,
+                                "Ocultar buzón",
+                                "Mostrar buzón"
+                              ),
+                              saveInto: a!save(
+                                local!mostrarListaCorreos,
+                                not(local!mostrarListaCorreos)
+                              ),
+                              size: "LARGE",
+                              icon: "inbox",
+                              style: "LINK"
+                            ),
+                            #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                              tooltip: "Seleccionar página",
+                              saveInto: {
+                                a!save(
+                                  local!seleccionarTodo,
+                                  not(local!seleccionarTodo)
+                                ),
+                                if(
+                                  local!seleccionarTodo,
+                                  a!save(
+                                    local!selectedIds,
+                                    index(local!messages, "id", null)
+                                  ),
+                                  a!save(local!selectedIds, {})
+                                )
+                              },
+                              showWhen: local!mostrarListaCorreos,
+                              size: "LARGE",
+                              icon: if(
+                                local!seleccionarTodo,
+                                "check-square",
+                                "check-square-o-alt"
+                              ),
+                              style: "LINK"
+                            )
+                          },
+                          align: "START",
+                          marginBelow: "NONE"
+                        )
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Clasificando", style: "STRONG"),
+                            char(10),
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(text: "Por favor espere...")
+                          },
+                          marginAbove: "NONE",
+                          marginBelow: "NONE",
+                          align: "LEFT"
+                        ),
+                        width: "MINIMIZE",
+                        showWhen: local!clasificando
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_imageField_v1"(
+                          images: #"SYSTEM_SYSRULES_documentImage"(document: #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6863383"),
+                          align: "START",
+                          size: "FIT"
+                        ),
+                        width: "MINIMIZE",
+                        showWhen: local!clasificando
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                          buttons: {
+                            /* Botón Clasificar: solo cuando no está clasificado */
+                            #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                              saveInto: {
+                                #"SYSTEM_SYSRULES_startProcess3"(
+                                  processModel: #"_a-0001eee3-3e88-8000-9cdc-011c48011c48_5424111",
+                                  processParameters: {
+                                    emailsToClasify: if(
+                                      a!isNotNullOrEmpty(local!selectedIds),
+                                      #"SYSTEM_SYSRULES_forEach"(
+                                        items: local!selectedIds,
+                                        expression: {
+                                          APP_MAIL_POLLER_ID: fv!item,
+                                          DOC_ID_NO_ATT: index(
+                                            #"SYSTEM_SYSRULES_queryEntity_v2"(
+                                              entity: #"_a-0000ef02-3502-8000-9bf1-011c48011c48_1557667",
+                                              query: #"SYSTEM_SYSRULES_query"(
+                                                selection: #"SYSTEM_SYSRULES_querySelection"(
+                                                  columns: { #"SYSTEM_SYSRULES_queryColumn"(field: "DOC_ID_NO_ATT") }
+                                                ),
+                                                logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+                                                  operator: "AND",
+                                                  filters: {
+                                                    #"SYSTEM_SYSRULES_queryFilter"(
+                                                      field: "APP_MAIL_POLLER_ID",
+                                                      operator: "=",
+                                                      value: fv!item
+                                                    )
+                                                  },
+                                                  ignoreFiltersWithEmptyValues: true
+                                                ),
+                                                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 1)
+                                              ),
+                                              fetchTotalCount: false
+                                            ),
+                                            "data",
+                                            "DOC_ID_NO_ATT",
+                                            null
+                                          )
+                                        }
+                                      ),
+                                      {
+                                        APP_MAIL_POLLER_ID: index(local!selectedMessage, "id", null),
+                                        DOC_ID_NO_ATT: index(local!selectedMessage, "docanexo", null)
+                                      }
+                                    )
+                                  }
+                                )
+                              },
+                              showWhen: and(
+                                or(
+                                  a!defaultValue(
+                                    index(local!selectedMessage, "estado", null),
+                                    0
+                                  ) = 1,
+                                  a!isNullOrEmpty(
+                                    index(local!selectedMessage, "estado", null)
+                                  )
+                                ),
+                                not(local!clasificando)
+                              ),
+                              size: "LARGE",
+                              icon: "robot",
+                              style: "LINK",
+                              tooltip: "Clasificar"
+                            ),
+                            /* Botón Reclasificar */
+                            #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                              confirmHeader: "Confirmar reclasificación",
+                              confirmMessage: if(
+                                a!isNotNullOrEmpty(local!selectedIds),
+                                concat(
+                                  "Se reclasificaran ",
+                                  length(local!selectedIds),
+                                  " correos. ¿Desea continuar?"
+                                ),
+                                "Se Reclasificará el correo seleccionado. ¿Desea continuar?"
+                              ),
+                              confirmButtonLabel: "Reclasificar",
+                              cancelButtonLabel: "Cancelar",
+                              saveInto: {
+                                a!save(local!action, #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6718315"[2]),
+                                #"SYSTEM_SYSRULES_startProcess3"(
+                                  processModel: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6719118",
+                                  processParameters: {
+                                    accion: local!action,
+                                    APP_MAIL_POLLER_ID: if(
+                                      a!isNotNullOrEmpty(local!selectedIds),
+                                      local!selectedIds,
+                                      index(local!selectedMessage, "id", null)
+                                    )
+                                  }
+                                ),
+                                if(
+                                  a!isNotNullOrEmpty(local!selectedIds),
+                                  a!save(local!selectedIds, {}),
+                                  null
+                                )
+                              },
+                              tooltip: if(
+                                a!isNotNullOrEmpty(local!selectedIds),
+                                concat(
+                                  "Reclasificar seleccionados (",
+                                  length(local!selectedIds),
+                                  ")"
+                                ),
+                                "Reclasificar"
+                              ),
+                              showWhen: and(
+                                index(local!selectedMessage, "estado", 1) = 2,
+                                not(
+                                  contains(
+                                    {
+                                      #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6824771"[3],
+                                      #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6824771"[4]
+                                    },
+                                    index(local!selectedMessage, "estado", null)
+                                  )
+                                )
+                              ),
+                              size: "LARGE",
+                              icon: "repeat",
+                              style: "LINK"
+                            ),
+                            /* Botón Aprobar */
+                            #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                              confirmHeader: "Confirmar aprobación",
+                              confirmMessage: if(
+                                a!isNotNullOrEmpty(local!selectedIds),
+                                concat(
+                                  "Se aprobarán ",
+                                  length(local!selectedIds),
+                                  " correos. Esta acción no se puede deshacer. ¿Desea continuar?"
+                                ),
+                                "Se aprobará la clasificación del correo seleccionado. Esta acción no se puede deshacer. ¿Desea continuar?"
+                              ),
+                              confirmButtonLabel: "Aprobar",
+                              cancelButtonLabel: "Cancelar",
+                              saveInto: {
+                                a!save(local!action, #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6718315"[1]),
+                                #"SYSTEM_SYSRULES_startProcess3"(
+                                  processModel: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6719118",
+                                  processParameters: {
+                                    accion: local!action,
+                                    APP_MAIL_POLLER_ID: if(
+                                      a!isNotNullOrEmpty(local!selectedIds),
+                                      local!selectedIds,
+                                      index(local!selectedMessage, "id", null)
+                                    )
+                                  }
+                                ),
+                                if(
+                                  a!isNotNullOrEmpty(local!selectedIds),
+                                  a!save(local!selectedIds, {}),
+                                  null
+                                )
+                              },
+                              tooltip: if(
+                                a!isNotNullOrEmpty(local!selectedIds),
+                                concat(
+                                  "Aprobar seleccionados (",
+                                  length(local!selectedIds),
+                                  ")"
+                                ),
+                                "Aprobar"
+                              ),
+                              showWhen: and(
+                                index(local!selectedMessage, "estado", 1) = 2,
+                                not(
+                                  contains(
+                                    {
+                                      #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6824771"[3],
+                                      #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6824771"[4]
+                                    },
+                                    index(local!selectedMessage, "estado", null)
+                                  )
+                                )
+                              ),
+                              size: "LARGE",
+                              icon: "check",
+                              style: "LINK"
+                            ),
+                            /* CAMBIO 3: Botón Revertir aprobación — solo visible para correos aprobados (estado = mailPollerEstados[3]) */
+                            #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                              confirmHeader: "Confirmar reversión de aprobación",
+                              confirmMessage: if(
+                                a!isNotNullOrEmpty(local!selectedIds),
+                                concat(
+                                  "Se revertirá la aprobación de ",
+                                  length(local!selectedIds),
+                                  " correos. ¿Desea continuar?"
+                                ),
+                                "Se revertirá la aprobación del correo seleccionado. ¿Desea continuar?"
+                              ),
+                              confirmButtonLabel: "Revertir",
+                              cancelButtonLabel: "Cancelar",
+                              saveInto: {
+                                /* Placeholder: aquí conectarás el proceso de back cuando esté listo */
+                                a!save(local!refresh, local!refresh + 1)
+                              },
+                              tooltip: if(
+                                a!isNotNullOrEmpty(local!selectedIds),
+                                concat(
+                                  "Revertir aprobación (",
+                                  length(local!selectedIds),
+                                  ")"
+                                ),
+                                "Revertir aprobación"
+                              ),
+                              showWhen: or(
+                                /* Correo individual aprobado (estado = 4) */
+                                and(
+                                  a!isNullOrEmpty(local!selectedIds),
+                                  index(local!selectedMessage, "estado", 0) = 4
+                                ),
+                                /* Selección múltiple: al menos un aprobado */
+                                and(
+                                  a!isNotNullOrEmpty(local!selectedIds),
+                                  contains(
+                                    index(local!messages, "estado", {}),
+                                    4
+                                  )
+                                )
+                              ),
+                              size: "LARGE",
+                              icon: "undo",
+                              style: "LINK"
+                            )
+                          },
+                          marginBelow: "NONE",
+                          align: "END"
+                        )
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                }
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                          buttons: {
+                            #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                              saveInto: {
+                                a!save(local!tagFilter, null),
+                                a!save(local!fromFilter, null),
+                                a!save(local!toFilter, null),
+                                a!save(local!subjectFilter, null),
+                                a!save(local!bodyFilter, null),
+                                a!save(local!fromConfidenceFilter, null),
+                                a!save(local!toConfidenceFilter, null),
+                                a!save(local!fromDateFilter, null),
+                                a!save(local!toDateFilter, null),
+                                a!save(local!approbalUserFilter, null),
+                                a!save(local!clasificadoPorFilter, null),
+                                a!save(local!estadoFilter, - 1),
+                                a!save(local!tipoEventoFilter, - 1),
+                                a!save(local!startIndex, 1),
+                                a!save(local!refresh, local!refresh + 1)
+                              },
+                              size: "LARGE",
+                              icon: "eraser",
+                              style: "LINK",
+                              tooltip: "Limpiar filtros"
+                            )
+                          },
+                          marginBelow: "NONE",
+                          align: "END"
+                        ),
+                        width: "MINIMIZE",
+                        showWhen: local!mostrarFiltros
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                          buttons: {
+                            #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                              tooltip: if(
+                                local!mostrarFiltros,
+                                "Ocultar filtros",
+                                "Mostrar filtros"
+                              ),
+                              saveInto: a!save(
+                                local!mostrarFiltros,
+                                not(local!mostrarFiltros)
+                              ),
+                              size: "LARGE",
+                              icon: "filter",
+                              style: "LINK"
+                            )
+                          },
+                          align: if(local!mostrarFiltros, "END", "CENTER"),
+                          marginBelow: "NONE"
+                        )
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                },
+                width: if(
+                  local!mostrarFiltros,
+                  "NARROW",
+                  "EXTRA_NARROW"
+                )
+              )
+            }
+          )
+        },
+        style: "TRANSPARENT",
+        showBorder: true(),
+        padding: "NONE",
+        shape: "SEMI_ROUNDED"
+      )
+    },
+    contents: {
+      #"SYSTEM_SYSRULES_paneLayout"(
+        panes: {
+          /* Message list pane */
+          #"SYSTEM_SYSRULES_pane"(
+            contents: {
+              #"SYSTEM_SYSRULES_cardLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    labelPosition: "COLLAPSED",
+                    value: {
+                      #"SYSTEM_SYSRULES_richTextIcon"(
+                        icon: "filter",
+                        size: "LARGE",
+                        color: "#B0BEC5"
+                      )
+                    },
+                    marginAbove: "MORE",
+                    align: "CENTER"
+                  ),
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    labelPosition: "COLLAPSED",
+                    value: #"SYSTEM_SYSRULES_richTextItem_v1"(
+                      text: if(
+                        local!hayFiltrosActivos,
+                        "Sin resultados para los filtros aplicados",
+                        "No hay correos disponibles"
+                      ),
+                      size: "LARGE",
+                      color: "#455A64",
+                      style: "STRONG"
+                    ),
+                    marginAbove: "LESS",
+                    align: "CENTER"
+                  ),
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    labelPosition: "COLLAPSED",
+                    value: #"SYSTEM_SYSRULES_richTextItem_v1"(
+                      text: if(
+                        local!hayFiltrosActivos,
+                        if(
+                          a!isNotNullOrEmpty(local!clasificadoPorFilter),
+                          "No se encontraron correos clasificados por el usuario seleccionado en el rango de fechas indicado.",
+                          "Intente ajustar o limpiar los filtros de búsqueda para encontrar correos."
+                        ),
+                        "Cuando lleguen correos nuevos aparecerán aquí automáticamente."
+                      ),
+                      size: "MEDIUM",
+                      color: "#78909C"
+                    ),
+                    marginAbove: "LESS",
+                    marginBelow: "LESS",
+                    align: "CENTER"
+                  ),
+                  #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                    buttons: {
+                      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                        label: "Limpiar filtros",
+                        saveInto: {
+                          a!save(local!tagFilter, null),
+                          a!save(local!fromFilter, null),
+                          a!save(local!toFilter, null),
+                          a!save(local!subjectFilter, null),
+                          a!save(local!bodyFilter, null),
+                          a!save(local!fromConfidenceFilter, null),
+                          a!save(local!toConfidenceFilter, null),
+                          a!save(local!fromDateFilter, null),
+                          a!save(local!toDateFilter, null),
+                          a!save(local!approbalUserFilter, null),
+                          a!save(local!clasificadoPorFilter, null),
+                          a!save(local!estadoFilter, - 1),
+                          a!save(local!tipoEventoFilter, - 1),
+                          a!save(local!startIndex, 1),
+                          a!save(local!refresh, local!refresh + 1)
+                        },
+                        size: "STANDARD",
+                        color: "ACCENT",
+                        icon: "times-circle",
+                        style: "SOLID"
+                      )
+                    },
+                    showWhen: local!hayFiltrosActivos,
+                    marginBelow: "MORE",
+                    align: "CENTER"
+                  )
+                },
+                showWhen: local!totalCount = 0,
+                marginAbove: "MORE",
+                showShadow: false,
+                showBorder: true,
+                padding: "STANDARD",
+                shape: "ROUNDED",
+                decorativeBarPosition: "TOP",
+                decorativeBarColor: "#B0BEC5"
+              ),
+              /* Page name on phone */
+              #"SYSTEM_SYSRULES_cardLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_richTextDisplayField"(
+                    labelPosition: "COLLAPSED",
+                    value: #"SYSTEM_SYSRULES_richTextItem_v1"(
+                      text: index(
+                        local!sideNavPages.name,
+                        local!selectedPage,
+                        {}
+                      ),
+                      size: "MEDIUM",
+                      style: "STRONG"
+                    )
+                  )
+                },
+                showWhen: #"SYSTEM_SYSRULES_isPageWidth"("PHONE"),
+                showBorder: false
+              ),
+              /* Message cards */
+              #"SYSTEM_SYSRULES_forEach"(
+                items: local!messages,
+                expression: #"SYSTEM_SYSRULES_cardLayout"(
+                  contents: {
+                    #"SYSTEM_SYSRULES_sideBySideLayout"(
+                      items: {
+                        #"SYSTEM_SYSRULES_sideBySideItem"(
+                          item: #"SYSTEM_SYSRULES_checkboxField_v1"(
+                            labelPosition: "COLLAPSED",
+                            value: if(
+                              contains(
+                                tointeger(local!selectedIds),
+                                tointeger(index(fv!item, "id", null))
+                              ),
+                              { index(fv!item, "id", null) },
+                              {}
+                            ),
+                            saveInto: {
+                              a!save(
+                                local!selectedIds,
+                                if(
+                                  contains(
+                                    tointeger(local!selectedIds),
+                                    tointeger(index(fv!item, "id", null))
+                                  ),
+                                  difference(
+                                    tointeger(local!selectedIds),
+                                    { tointeger(index(fv!item, "id", null)) }
+                                  ),
+                                  append(
+                                    tointeger(local!selectedIds),
+                                    tointeger(index(fv!item, "id", null))
+                                  )
+                                )
+                              )
+                            },
+                            choiceLabels: { "" },
+                            choiceValues: { tointeger(index(fv!item, "id", null)) },
+                            validations: {}
+                          ),
+                          width: "MINIMIZE"
+                        ),
+                        #"SYSTEM_SYSRULES_sideBySideItem"(
+                          item: #"SYSTEM_SYSRULES_stampField"(
+                            labelPosition: "COLLAPSED",
+                            text: initials(index(fv!item, "de_nombre", null)),
+                            size: "TINY",
+                            backgroundColor: fv!item.stampColor,
+                            contentColor: "STANDARD"
+                          ),
+                          width: "MINIMIZE"
+                        ),
+                        #"SYSTEM_SYSRULES_sideBySideItem"(
+                          item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                            labelPosition: "COLLAPSED",
+                            value: {
+                              if(
+                                index(fv!item, "Adjuntos", null) = "",
+                                "",
+                                #"SYSTEM_SYSRULES_richTextIcon"(icon: "paperclip", color: "SECONDARY")
+                              ),
+                              " ",
+                              #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                text: fv!item["Asunto"],
+                                color: "STANDARD",
+                                style: if(fv!item["Procesado"], "PLAIN", "STRONG")
+                              ),
+                              char(10),
+                              #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                text: index(fv!item, "de", null),
+                                size: "SMALL",
+                                color: "SECONDARY"
+                              )
+                            }
+                          )
+                        ),
+                        #"SYSTEM_SYSRULES_sideBySideItem"(
+                          item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                            labelPosition: "COLLAPSED",
+                            value: {
+                              #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                text: datetext(
+                                  index(fv!item, "FechaRecepcion", null),
+                                  "dd/MM/yyyy hh:mm"
+                                ),
+                                color: if(
+                                  fv!item["Procesado"],
+                                  "SECONDARY",
+                                  "STANDARD"
+                                ),
+                                style: if(fv!item["Procesado"], "PLAIN", "STRONG")
+                              )
+                            }
+                          ),
+                          width: "MINIMIZE"
+                        ),
+                        #"SYSTEM_SYSRULES_sideBySideItem"(
+                          item: #"SYSTEM_SYSRULES_imageField_v1"(
+                            images: #"SYSTEM_SYSRULES_documentImage"(document: #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6863383"),
+                            align: "START",
+                            size: "FIT"
+                          ),
+                          width: "MINIMIZE",
+                          showWhen: local!clasificando
+                        )
+                      },
+                      alignVertical: "MIDDLE"
+                    )
+                  },
+                  link: #"SYSTEM_SYSRULES_dynamicLink"(
+                    saveInto: {
+                      if(
+                        #"SYSTEM_SYSRULES_isPageWidth"("PHONE"),
+                        a!save(local!showMessage, true),
+                        {}
+                      ),
+                      a!save(local!selectedMessageIndex, fv!index),
+                      a!save(local!showTree, false()),
+                      a!save(local!previewDoc, false),
+                      a!save(local!selectedDoc, null)
+                    }
+                  ),
+                  style: if(
+                    and(
+                      not(#"SYSTEM_SYSRULES_isPageWidth"("PHONE")),
+                      local!selectedMessageIndex = fv!index
+                    ),
+                    "#E3F0FF",
+                    "#FAFAFA"
+                  ),
+                  showBorder: false,
+                  padding: if(
+                    not(#"SYSTEM_SYSRULES_isPageWidth"("TABLET_LANDSCAPE")),
+                    "STANDARD",
+                    "LESS"
+                  ),
+                  decorativeBarPosition: "START",
+                  decorativeBarColor: if(
+                    and(
+                      not(#"SYSTEM_SYSRULES_isPageWidth"("PHONE")),
+                      local!selectedMessageIndex = fv!index
+                    ),
+                    "#1976D2",
+                    null
+                  )
+                )
+              )
+            },
+            width: if(
+              #"SYSTEM_SYSRULES_isPageWidth"(
+                {
+                  "DESKTOP_NARROW",
+                  "TABLET_LANDSCAPE",
+                  "TABLET_PORTRAIT"
+                }
+              ),
+              "NARROW_PLUS",
+              "MEDIUM_PLUS"
+            ),
+            backgroundColor: "#f0f0f0",
+            padding: "EVEN_LESS",
+            showWhen: local!mostrarListaCorreos
+          ),
+          /* Selected message pane */
+          #"SYSTEM_SYSRULES_pane"(
+            contents: {
+              if(
+                local!totalCount &gt; 0,
+                {
+                  a!localVariables(
+                    local!selectedMessage: index(
+                      local!messages,
+                      local!selectedMessageIndex,
+                      {}
+                    ),
+                    local!numOfAttachments: length(
+                      index(local!selectedMessage, "Adjuntos", {})
+                    ),
+                    local!numOfCols: 2,
+                    local!codigoDependencia: #"SYSTEM_SYSRULES_forEach"(
+                      items: index(local!etiquetas, "data", null),
+                      expression: a!localVariables(
+                        local!codigo: index(fv!item, "Codigo", null),
+                        if(
+                          a!isNotNullOrEmpty(local!codigo),
+                          local!codigo,
+                          {}
+                        )
+                      )
+                    ),
+                    local!dependencia: if(
+                      a!isNullOrEmpty(index(local!codigoDependencia, 1, null)),
+                      {},
+                      #"SYSTEM_SYSRULES_forEach"(
+                        items: local!codigoDependencia,
+                        expression: index(
+                          #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868045"(
+                            codigoDependencia: local!codigoDependencia
+                          ),
+                          #"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/377ee6c2-0c14-4cf3-9927-c58a23c0b71b",
+                          null
+                        )
+                      )
+                    ),
+                    {
+                      #"SYSTEM_SYSRULES_boxLayout"(
+                        label: index(local!selectedMessage, "Asunto", null),
+                        contents: {
+                          #"SYSTEM_SYSRULES_sectionLayout_v1"(
+                            contents: {
+                              #"SYSTEM_SYSRULES_columnsLayout"(
+                                columns: {
+                                  #"SYSTEM_SYSRULES_columnLayout"(
+                                    contents: {
+                                      #"SYSTEM_SYSRULES_textField"(
+                                        label: "Fecha:",
+                                        labelPosition: "JUSTIFIED",
+                                        value: index(
+                                          local!selectedMessage,
+                                          "FechaRecepcion",
+                                          null
+                                        ),
+                                        saveInto: {},
+                                        refreshAfter: "UNFOCUS",
+                                        validations: {},
+                                        readOnly: true,
+                                        align: "LEFT"
+                                      ),
+                                      #"SYSTEM_SYSRULES_textField"(
+                                        label: "De:",
+                                        labelPosition: "JUSTIFIED",
+                                        value: index(local!selectedMessage, "de_nombre", null) &amp; " &lt;" &amp; index(local!selectedMessage, "de", null) &amp; "&gt;",
+                                        saveInto: {},
+                                        refreshAfter: "UNFOCUS",
+                                        validations: {},
+                                        readOnly: true,
+                                        align: "LEFT"
+                                      ),
+                                      #"SYSTEM_SYSRULES_textField"(
+                                        label: "Para:",
+                                        labelPosition: "JUSTIFIED",
+                                        value: index(local!selectedMessage, "para", null) &amp; " &lt;" &amp; index(
+                                          local!selectedMessage,
+                                          "para_correos",
+                                          null
+                                        ) &amp; "&gt;",
+                                        saveInto: {},
+                                        refreshAfter: "UNFOCUS",
+                                        validations: {},
+                                        readOnly: true,
+                                        align: "LEFT"
+                                      )
+                                    }
+                                  ),
+                                  #"SYSTEM_SYSRULES_columnLayout"(
+                                    contents: {
+                                      #"SYSTEM_SYSRULES_linkField"(
+                                        labelPosition: "COLLAPSED",
+                                        links: {
+                                          #"SYSTEM_SYSRULES_documentDownloadLink"(
+                                            label: "Descargar (" &amp; a!localVariables(
+                                              local!bytes: document(
+                                                index(local!selectedMessage, "docanexo", null),
+                                                "size"
+                                              ),
+                                              local!sizeLegible: if(
+                                                isnull(local!bytes),
+                                                "-",
+                                                if(
+                                                  local!bytes &lt; 1024,
+                                                  tostring(local!bytes) &amp; " B",
+                                                  if(
+                                                    local!bytes &lt; power(1024, 2),
+                                                    fixed(local!bytes / 1024, 1) &amp; " KB",
+                                                    if(
+                                                      local!bytes &lt; power(1024, 3),
+                                                      fixed(local!bytes / power(1024, 2), 1) &amp; " MB",
+                                                      fixed(local!bytes / power(1024, 3), 1) &amp; " GB"
+                                                    )
+                                                  )
+                                                )
+                                              ),
+                                              local!sizeLegible
+                                            ) &amp; ")",
+                                            document: index(local!selectedMessage, "docanexo", null)
+                                          )
+                                        },
+                                        align: "RIGHT"
+                                      ),
+                                      #"SYSTEM_SYSRULES_headingField"(
+                                        text: "Adjunto no encontrado",
+                                        align: "END",
+                                        size: "EXTRA_SMALL",
+                                        color: "#ff0000",
+                                        showWhen: getcontentobjectdetailsbyid(
+                                          index(local!selectedMessage, "docanexo", null)
+                                        ) = "No object with this ID has been found"
+                                      )
+                                    },
+                                    width: "NARROW"
+                                  )
+                                },
+                                stackWhen: "NEVER",
+                                alignVertical: "MIDDLE"
+                              ),
+                              #"SYSTEM_SYSRULES_sideBySideLayout"(
+                                items: {
+                                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                                    item: if(
+                                      local!etiquetas.totalCount &lt;&gt; 0,
+                                      #"SYSTEM_SYSRULES_tagField"(
+                                        label: "Categoría:",
+                                        labelPosition: "COLLAPSED",
+                                        tags: {
+                                          #"SYSTEM_SYSRULES_forEach"(
+                                            items: index(local!etiquetas, "data", null),
+                                            expression: #"SYSTEM_SYSRULES_tagItem_v1"(
+                                              text: concat(
+                                                index(fv!item, "Etiqueta", null),
+                                                " ",
+                                                index(fv!item, "Confianza", null),
+                                                "%"
+                                              ),
+                                              link: #"SYSTEM_SYSRULES_submitLink"(
+                                                label: "Eliminar etiqueta",
+                                                confirmHeader: "Advertencia!",
+                                                confirmMessage: "Esta etiqueta se quitará de este mensaje. ¿está usted seguro?",
+                                                confirmButtonLabel: "Eliminar etiqueta",
+                                                cancelButtonLabel: "Cancelar",
+                                                saveInto: {
+                                                  #"SYSTEM_SYSRULES_startProcess3"(
+                                                    processModel: #"_a-0001eee3-3e88-8000-9cdc-011c48011c48_5470228",
+                                                    processParameters: {
+                                                      etiquetaxcorreo: #"urn:appian:record-type:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd"(
+                                                        #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/92253a1e-b309-4041-bfae-d5aa13d74756": index(fv!item, "idEtiquetaXCorreo", null),
+                                                        #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/6459fe0c-816e-4666-a512-6d5bcfbaa191": index(local!selectedMessage, "id", null),
+                                                        #"urn:appian:record-field:v1:76845980-0d36-4ec8-b5d3-b0700159ddfd/b166a748-4a36-43a3-99a4-412a24157620": index(fv!item, "idTipoEtiqueta", null)
+                                                      )
+                                                    }
+                                                  )
+                                                },
+                                                confirmButtonStyle: "DESTRUCTIVE"
+                                              ),
+                                              backgroundColor: "ACCENT"
+                                            )
+                                          )
+                                        },
+                                        size: "STANDARD"
+                                      ),
+                                      ""
+                                    ),
+                                    width: "MINIMIZE"
+                                  ),
+                                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                                    item: #"SYSTEM_SYSRULES_tagField"(
+                                      labelPosition: "COLLAPSED",
+                                      tags: {
+                                        #"SYSTEM_SYSRULES_tagItem_v1"(
+                                          text: "Nueva etiqueta...",
+                                          link: #"SYSTEM_SYSRULES_submitLink"(saveInto: a!save(local!showTree, true())),
+                                          backgroundColor: "SECONDARY"
+                                        )
+                                      },
+                                      size: "STANDARD"
+                                    )
+                                  ),
+                                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                                    item: #"SYSTEM_SYSRULES_tagField"(
+                                      labelPosition: "COLLAPSED",
+                                      tags: {
+                                        #"SYSTEM_SYSRULES_forEach"(
+                                          items: local!dependencia,
+                                          expression: #"SYSTEM_SYSRULES_tagItem_v1"(
+                                            text: if(
+                                              len(fv!item) &gt; 30,
+                                              concat(left(fv!item, 30), "..."),
+                                              fv!item
+                                            ),
+                                            tooltip: fv!item,
+                                            link: if(
+                                              index(local!selectedMessage, "estado", - 1) = #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6824771"[3],
+                                              #"SYSTEM_SYSRULES_submitLink"(
+                                                saveInto: a!save(
+                                                  local!mostrarDropdownDependecias,
+                                                  true()
+                                                )
+                                              ),
+                                              null
+                                            ),
+                                            backgroundColor: "NEGATIVE"
+                                          )
+                                        )
+                                      },
+                                      align: "END",
+                                      size: "STANDARD"
+                                    ),
+                                    showWhen: not(local!mostrarDropdownDependecias)
+                                  ),
+                                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                                    item: #"SYSTEM_SYSRULES_dropdownField_v1"(
+                                      label: "Dependencias",
+                                      placeholder: "Seleccione una dependencia",
+                                      value: local!dependenciaSeleccionada,
+                                      saveInto: {
+                                        local!dependenciaSeleccionada,
+                                        a!save(local!mostrarDropdownDependecias, false)
+                                      },
+                                      choiceLabels: index(
+                                        local!dependencias,
+                                        #"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/377ee6c2-0c14-4cf3-9927-c58a23c0b71b",
+                                        null
+                                      ),
+                                      choiceValues: index(
+                                        local!dependencias,
+                                        #"urn:appian:record-field:v1:70a97000-e321-486a-a3a5-d23bd2eda0ad/377ee6c2-0c14-4cf3-9927-c58a23c0b71b",
+                                        null
+                                      )
+                                    ),
+                                    showWhen: local!mostrarDropdownDependecias
+                                  )
+                                }
+                              ),
+                              #"_a-0001eee3-3e88-8000-9cdc-011c48011c48_5444482"(
+                                showTree: local!showTree,
+                                selectedEmailId: index(local!selectedMessage, "id", null)
+                              )
+                            },
+                            divider: "BELOW"
+                          ),
+                          #"SYSTEM_SYSRULES_styledTextEditorField"(
+                            label: "Editor de texto con estilo",
+                            labelPosition: "COLLAPSED",
+                            value: index(local!selectedMessage, "Cuerpo", null),
+                            saveInto: {},
+                            validations: {},
+                            sizeLimit: 100000,
+                            readOnly: true,
+                            height: "MEDIUM"
+                          )
+                        },
+                        isCollapsible: true,
+                        isInitiallyCollapsed: false,
+                        marginBelow: "STANDARD",
+                        labelSize: "LARGE",
+                        style: "STANDARD",
+                        showShadow: false,
+                        showBorder: false,
+                        shape: "SEMI_ROUNDED"
+                      ),
+                      #"SYSTEM_SYSRULES_boxLayout"(
+                        label: if(
+                          local!previewDoc,
+                          concat(
+                            document(local!selectedDoc, "name"),
+                            ".",
+                            document(local!selectedDoc, "extension")
+                          ),
+                          local!numOfAttachments &amp; " " &amp; if(
+                            local!numOfAttachments &gt; 1,
+                            "Archivos adjuntos",
+                            "Archivo adjunto"
+                          ) &amp; if(
+                            getcontentobjectdetailsbyid(local!selectedMessage.adjuntos) = "No object with this ID has been found",
+                            " (En gestor documental)",
+                            null
+                          )
+                        ),
+                        contents: {
+                          #"SYSTEM_SYSRULES_columnsLayout"(
+                            columns: #"SYSTEM_SYSRULES_forEach"(
+                              items: enumerate(local!numOfCols) + 1,
+                              expression: a!localVariables(
+                                local!colIndex: fv!index,
+                                #"SYSTEM_SYSRULES_columnLayout"(
+                                  contents: {
+                                    #"SYSTEM_SYSRULES_forEach"(
+                                      items: index(local!selectedMessage, "Adjuntos", null),
+                                      expression: #"SYSTEM_SYSRULES_cardLayout"(
+                                        contents: {
+                                          #"SYSTEM_SYSRULES_sideBySideLayout"(
+                                            items: {
+                                              #"SYSTEM_SYSRULES_sideBySideItem"(
+                                                item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                                  labelPosition: "COLLAPSED",
+                                                  value: {
+                                                    #"SYSTEM_SYSRULES_richTextIcon"(
+                                                      icon: "file-pdf-o",
+                                                      showWhen: getcontentobjectdetailsbyid(fv!item) &lt;&gt; "No object with this ID has been found",
+                                                      altText: document(fv!item, "extension"),
+                                                      size: "LARGE",
+                                                      color: "ACCENT"
+                                                    )
+                                                  }
+                                                ),
+                                                width: "MINIMIZE"
+                                              ),
+                                              #"SYSTEM_SYSRULES_sideBySideItem"(
+                                                item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                                                  labelPosition: "COLLAPSED",
+                                                  value: {
+                                                    #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                                      text: document(fv!item, "name") &amp; "." &amp; document(fv!item, "extension"),
+                                                      style: "STRONG"
+                                                    )
+                                                  }
+                                                ),
+                                                showWhen: getcontentobjectdetailsbyid(fv!item) &lt;&gt; "No object with this ID has been found"
+                                              )
+                                            },
+                                            alignVertical: "MIDDLE"
+                                          )
+                                        },
+                                        showWhen: or(
+                                          mod(fv!index, local!numOfCols) = local!colIndex,
+                                          and(
+                                            mod(fv!index, local!numOfCols) = 0,
+                                            local!colIndex = local!numOfCols
+                                          )
+                                        ),
+                                        link: #"SYSTEM_SYSRULES_submitLink"(
+                                          saveInto: {
+                                            a!save(local!previewDoc, true),
+                                            a!save(local!selectedDoc, fv!item)
+                                          }
+                                        ),
+                                        marginBelow: "LESS"
+                                      )
+                                    )
+                                  },
+                                  width: "MEDIUM"
+                                )
+                              )
+                            ),
+                            showWhen: and(
+                              local!numOfAttachments &lt;&gt; 0,
+                              not(local!previewDoc),
+                              getcontentobjectdetailsbyid(local!selectedMessage.adjuntos) &lt;&gt; "No object with this ID has been found"
+                            ),
+                            stackWhen: {
+                              "TABLET_LANDSCAPE",
+                              "TABLET_PORTRAIT",
+                              "PHONE"
+                            },
+                            marginAbove: "NONE",
+                            marginBelow: "NONE",
+                            spacing: "DENSE"
+                          ),
+                          #"SYSTEM_SYSRULES_documentViewerField"(
+                            document: local!selectedDoc,
+                            showWhen: local!previewDoc,
+                            height: "TALL"
+                          ),
+                          #"SYSTEM_SYSRULES_columnsLayout"(
+                            columns: {
+                              #"SYSTEM_SYSRULES_columnLayout"(
+                                contents: {
+                                  #"SYSTEM_SYSRULES_documentsChatField"(
+                                    label: "Chatbot del documento",
+                                    documents: { todocument(local!selectedDoc) },
+                                    showWhen: and(
+                                      local!previewDoc,
+                                      contains(
+                                        {
+                                          "html",
+                                          "doc",
+                                          "docx",
+                                          "md",
+                                          "csv",
+                                          "txt",
+                                          "pdf"
+                                        },
+                                        document(local!selectedDoc, "extension")
+                                      )
+                                    ),
+                                    systemPrompt: "Eres un asistente virtual de la Contraloría General de la República de Colombia. Tu función es ayudar a los funcionarios a analizar documentos institucionales del sistema SPARK. REGLAS OBLIGATORIAS: 1. Responde SIEMPRE en español, sin excepción. 2. Nunca respondas en inglés ni en otro idioma. 3. Si el documento está en inglés u otro idioma, igual responde en español. 4. Sé formal y usa terminología institucional colombiana."
+                                  )
+                                }
+                              ),
+                              #"SYSTEM_SYSRULES_columnLayout"(
+                                contents: {
+                                  #"SYSTEM_SYSRULES_columnsLayout"(
+                                    columns: {
+                                      #"SYSTEM_SYSRULES_columnLayout"(
+                                        contents: {
+                                          #"SYSTEM_SYSRULES_linkField"(
+                                            label: "Descargar",
+                                            links: #"SYSTEM_SYSRULES_documentDownloadLink"(
+                                              label: concat(
+                                                document(local!selectedDoc, "name"),
+                                                ".",
+                                                document(local!selectedDoc, "extension")
+                                              ),
+                                              document: local!selectedDoc
+                                            ),
+                                            showWhen: and(
+                                              a!isNotNullOrEmpty(local!selectedDoc),
+                                              document(local!selectedDoc, "extension") &lt;&gt; "pdf"
+                                            )
+                                          )
+                                        }
+                                      ),
+                                      #"SYSTEM_SYSRULES_columnLayout"(
+                                        contents: {
+                                          #"SYSTEM_SYSRULES_ButtonArrayLayout"(
+                                            buttons: {
+                                              #"SYSTEM_SYSRULES_buttonWidget_v1"(
+                                                label: "Cerrar",
+                                                saveInto: {
+                                                  a!save(local!previewDoc, false),
+                                                  a!save(local!selectedDoc, null)
+                                                },
+                                                showWhen: local!previewDoc
+                                              )
+                                            }
+                                          )
+                                        }
+                                      )
+                                    },
+                                    stackWhen: { "NEVER" },
+                                    marginAbove: "STANDARD",
+                                    marginBelow: "STANDARD",
+                                    spacing: "NONE",
+                                    showDividers: false
+                                  )
+                                }
+                              )
+                            }
+                          )
+                        },
+                        showWhen: local!numOfAttachments &lt;&gt; 0,
+                        isCollapsible: true,
+                        isInitiallyCollapsed: true,
+                        marginBelow: "STANDARD",
+                        labelSize: "SMALL",
+                        style: "STANDARD",
+                        showShadow: false,
+                        showBorder: false,
+                        padding: "STANDARD",
+                        shape: "SEMI_ROUNDED"
+                      ),
+                      #"SYSTEM_SYSRULES_boxLayout"(
+                        label: "Historial de eventos",
+                        contents: {
+                          #"SYSTEM_SYSRULES_eventHistoryListField"(
+                            label: "Historial de eventos",
+                            labelPosition: "COLLAPSED",
+                            eventData: {
+                              #"SYSTEM_SYSRULES_eventData"(
+                                recordType: #"urn:appian:record-type:v1:2cdee35a-ab08-4dda-ab21-91870f840348",
+                                filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+                                  operator: "AND",
+                                  filters: {
+                                    #"SYSTEM_SYSRULES_queryFilter"(
+                                      field: #"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/5bea5efd-f7cf-48b1-bc8c-fc7a98628e14",
+                                      operator: "=",
+                                      value: index(local!selectedMessage, "id", null)
+                                    )
+                                  },
+                                  ignoreFiltersWithEmptyValues: true
+                                ),
+                                allowUsersToComment: true,
+                                allowUsersToReply: true,
+                                baseRecordIdForComment: index(local!selectedMessage, "id", null),
+                                timestamp: #"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/836a36c6-1b40-4fcd-995f-ede51b5378ec",
+                                user: #"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/d905bb4a-e56a-417c-9504-66fbe5da37ca",
+                                comment: #"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/830e1515-cac6-4516-a2fd-a5eda622e4c6",
+                                eventTypeName: fv!data[#"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/9e35f4b2-f546-4c4b-83b5-9ac3f7845226/82d8c07c-a3fe-4392-a500-a7ae762b3287"],
+                                details: fv!data[#"urn:appian:record-field:v1:2cdee35a-ab08-4dda-ab21-91870f840348/9f148e9e-d9e4-4d0f-b4b2-1ab8e82c83f3"]
+                              )
+                            },
+                            mentionableUsers: #"_a-0001eee3-3e88-8000-9cdc-011c48011c48_5428074",
+                            showSearchBox: true,
+                            showReverseSortButton: true,
+                            pageSize: 3,
+                            refreshAfter: "RECORD_ACTION",
+                            refreshInterval: 0.5,
+                            refreshAlways: true(),
+                            eventStyle: "LIST_WITH_COMMENTS",
+                            formatTimestamp: "DATE_TIME",
+                            displayUser: "IMAGE"
+                          )
+                        },
+                        isCollapsible: false,
+                        marginBelow: "STANDARD",
+                        labelSize: "SMALL",
+                        style: "STANDARD",
+                        showShadow: false,
+                        showBorder: false,
+                        padding: "STANDARD",
+                        shape: "SEMI_ROUNDED"
+                      ),
+                      #"SYSTEM_SYSRULES_boxLayout"(
+                        label: "Chatbot del correo",
+                        contents: {
+                          #"SYSTEM_SYSRULES_recordsChatField"(
+                            recordType: #"urn:appian:record-type:v1:d0335d9d-448c-4ea5-8a21-246ceec74ffc",
+                            identifier: index(local!selectedMessage, "id", null),
+                            height: "MEDIUM",
+                            systemPrompt: "Eres un asistente virtual de la Contraloría General de la República de Colombia. Tu función es ayudar a los funcionarios a analizar y gestionar correos electrónicos institucionales del sistema SPARK (clasificación inteligente de correspondencia). REGLAS OBLIGATORIAS: 1. Responde SIEMPRE en español, sin excepción. 2. Nunca respondas en inglés ni en otro idioma. 3. Si el correo o sus adjuntos están en inglés u otro idioma, igual responde en español. 4. Sé formal y usa terminología institucional colombiana. 5. Cuando hagas referencia a datos del correo (asunto, remitente, fecha, etiquetas, estado), usa exactamente esos nombres en español."
+                          )
+                        },
+                        isCollapsible: false,
+                        marginBelow: "STANDARD",
+                        labelSize: "SMALL",
+                        showBorder: false,
+                        padding: "STANDARD",
+                        shape: "SEMI_ROUNDED"
+                      )
+                    }
+                  )
+                },
+                {}
+              )
+            },
+            padding: "EVEN_LESS"
+          ),
+          /* Filtros pane */
+          #"SYSTEM_SYSRULES_pane"(
+            contents: {
+              #"SYSTEM_SYSRULES_sideBySideLayout"(
+                items: {
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                      labelPosition: "COLLAPSED",
+                      value: #"SYSTEM_SYSRULES_richTextItem_v1"(
+                        text: "Filtros de búsqueda",
+                        size: "MEDIUM",
+                        style: "STRONG"
+                      ),
+                      marginAbove: "STANDARD",
+                      align: "CENTER"
+                    )
+                  )
+                },
+                marginBelow: "LESS",
+                alignVertical: "MIDDLE"
+              ),
+              a!localVariables(
+                local!etiquetasOpciones: #"_a-0000efbe-4e29-8000-9ce4-011c48011c48_6868057"(),
+                #"SYSTEM_SYSRULES_multipleDropdownField_v1"(
+                  label: "Etiquetas",
+                  placeholder: "Seleccione una etiqueta...",
+                  value: local!tagFilter,
+                  saveInto: {
+                    a!save(local!tagFilter, save!value),
+                    a!save(local!startIndex, 1)
+                  },
+                  choiceLabels: index(
+                    local!etiquetasOpciones,
+                    #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c328359a-a4b1-488a-8324-7beafa21d9ae",
+                    {}
+                  ),
+                  choiceValues: index(
+                    local!etiquetasOpciones,
+                    #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/2bcca99a-defc-4dc8-9f9c-4d388bc30236",
+                    {}
+                  )
+                )
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "De:",
+                value: local!fromFilter,
+                saveInto: {
+                  local!fromFilter,
+                  a!save(local!startIndex, 1),
+                  a!save(local!refresh, local!refresh + 1)
+                }
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Para:",
+                value: local!toFilter,
+                saveInto: {
+                  local!toFilter,
+                  a!save(local!startIndex, 1),
+                  a!save(local!refresh, local!refresh + 1)
+                }
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Asunto:",
+                value: local!subjectFilter,
+                saveInto: {
+                  local!subjectFilter,
+                  a!save(local!startIndex, 1),
+                  a!save(local!refresh, local!refresh + 1)
+                }
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Cuerpo:",
+                value: local!bodyFilter,
+                saveInto: {
+                  local!bodyFilter,
+                  a!save(local!startIndex, 1),
+                  a!save(local!refresh, local!refresh + 1)
+                }
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Nivel de confianza desde:",
+                value: local!fromConfidenceFilter,
+                saveInto: {
+                  a!save(local!fromConfidenceFilter, cleanwith(save!value, "0123456789"))
+                },
+                refreshAfter: "KEYPRESS",
+                validations: if(
+                  and(
+                    a!isNotNullOrEmpty(local!fromConfidenceFilter),
+                    or(
+                      tointeger(local!fromConfidenceFilter) &lt; 1,
+                      tointeger(local!fromConfidenceFilter) &gt; 100
+                    )
+                  ),
+                  "El nivel de confianza debe ser entre 1 y 100",
+                  null
+                )
+              ),
+              #"SYSTEM_SYSRULES_textField"(
+                label: "Nivel de confianza hasta:",
+                value: local!toConfidenceFilter,
+                saveInto: {
+                  a!save(local!toConfidenceFilter, cleanwith(save!value, "0123456789"))
+                },
+                refreshAfter: "KEYPRESS",
+                validations: if(
+                  and(
+                    a!isNotNullOrEmpty(local!toConfidenceFilter),
+                    or(
+                      tointeger(local!toConfidenceFilter) &lt; 1,
+                      tointeger(local!toConfidenceFilter) &gt; 100
+                    )
+                  ),
+                  "El nivel de confianza debe ser entre 1 y 100",
+                  null
+                )
+              ),
+              /* CAMBIO 1: Los campos de fecha ya existentes ahora sirven también
+                 como rango para el filtro "Clasificado por" cuando está activo.
+                 Se agrega un hint contextual para que el usuario lo sepa. */
+              #"SYSTEM_SYSRULES_dateTimeField"(
+                label: "Desde fecha:",
+                value: local!fromDateFilter,
+                saveInto: {
+                  a!save(local!fromDateFilter, save!value),
+                  a!save(local!refresh, local!refresh + 1)
+                }
+              ),
+              #"SYSTEM_SYSRULES_dateTimeField"(
+                label: "Hasta fecha:",
+                value: local!toDateFilter,
+                saveInto: {
+                  a!save(local!toDateFilter, save!value),
+                  a!save(local!refresh, local!refresh + 1)
+                }
+              ),
+              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                labelPosition: "COLLAPSED",
+                value: #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: "— Filtros por usuario —",
+                  size: "SMALL",
+                  color: "SECONDARY",
+                  style: "EMPHASIS"
+                ),
+                align: "CENTER",
+                marginAbove: "STANDARD",
+                marginBelow: "LESS"
+              ),
+              #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                label: "Aprobado por",
+                placeholder: "Usuario que aprobó...",
+                value: local!approbalUserFilter,
+                saveInto: local!approbalUserFilter
+              ),
+              #"SYSTEM_SYSRULES_pickerFieldUsers"(
+                label: "Clasificado por",
+                placeholder: "Usuario que clasificó...",
+                value: local!clasificadoPorFilter,
+                saveInto: local!clasificadoPorFilter,
+                maxSelections: 1
+              ),
+
+              #"SYSTEM_SYSRULES_radioButtonField_v1"(
+                label: "Clasificado:",
+                labelPosition: "ABOVE",
+                value: local!estadoFilter,
+                saveInto: {
+                  local!estadoFilter,
+                  a!save(local!refresh, local!refresh + 1)
+                },
+                choiceLabels: { "Si", "No", "Traer todo" },
+                choiceValues: { true, false, - 1 },
+                validations: {},
+                choiceLayout: "COMPACT"
+              ),
+              #"SYSTEM_SYSRULES_radioButtonField_v1"(
+                label: "Estado de aprobación:",
+                labelPosition: "ABOVE",
+                value: local!tipoEventoFilter,
+                saveInto: {
+                  local!tipoEventoFilter,
+                  a!save(local!refresh, local!refresh + 1)
+                },
+                choiceLabels: {
+                  "Aprobado",
+                  "Pendiente",
+                  "Reclasificado",
+                  "Traer todo"
+                },
+                choiceValues: { 5, 3, 6, - 1 },
+                showWhen: local!estadoFilter &lt;&gt; false,
+                validations: {},
+                choiceLayout: "COMPACT"
+              )
+            },
+            width: "NARROW",
+            padding: "EVEN_LESS",
+            showWhen: local!mostrarFiltros
+          )
+        }
+      )
+    }
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000eeb0-0577-8000-9be7-011c48011c48_1371496"/>
+        <historyInfo versionUuid="_a-0000eeb0-0577-8000-9be7-011c48011c48_1372985"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1391004"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1393398"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1399816"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1409636"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1420674"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1443238"/>
+        <historyInfo versionUuid="_a-0000eeec-9e93-8000-9ba8-011c48011c48_21640"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1564901"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5466674"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6774242"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6842641"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6935207"/>
+        <historyInfo versionUuid="_a-0000efc9-21d9-8000-9ce6-011c48011c48_7052508"/>
+    </history>
+</contentHaul>

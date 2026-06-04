@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec53-61b2-8000-9bbf-011c48011c48_9508</versionUuid>
+    <rule>
+        <name>TM_calculateTransactionsToStartPerJobType</name>
+        <uuid>_a-0000ec53-61b2-8000-9bbf-011c48011c48_9488</uuid>
+        <description>Calculate the ideal number of transactions to start for each job type</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289262</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>/*
+IMPORTANT: ri!remainingSortedJobTypes MUST be sorted by startableCount ascending
+
+This *recursive* expression calculates the ideal number of transactions to start for each job type.
+
+It has to work with several constraints:
+1. Number of Job Types is not static
+2. Each Job Type will be able to accomidate a different number of transactions (currently running vs max running allowed)
+3. The batch size won't divide equally across the job types
+*/
+a!match(
+  value: count(ri!remainingSortedJobTypes),
+
+  /* batch size is smaller than available job types. randomly choose job types to avoid always picking the same ones */
+  whenTrue: fv!value &gt; ri!remainingBatchSize,
+  then: a!localVariables(
+    local!shuffledJobTypeIndexes: todatasubset(
+      #"SYSTEM_SYSRULES_forEach"(
+        items: ri!remainingSortedJobTypes,
+        expression: {
+          sort: rand(),
+          index: fv!index
+        }
+      ),
+      #"SYSTEM_SYSRULES_pagingInfo"(
+        startIndex: 1,
+        batchSize: -1,
+        sort: #"SYSTEM_SYSRULES_sortInfo"(
+          field:"sort",
+          ascending: true
+        )
+      )
+    ).data.index,
+    local!indexesToReturn: tointeger(rdrop(local!shuffledJobTypeIndexes, count(ri!remainingSortedJobTypes) - ri!remainingBatchSize)),
+    #"SYSTEM_SYSRULES_forEach"(
+      items: ri!remainingSortedJobTypes,
+      expression: if(contains(local!indexesToReturn, fv!index), 1, 0)
+    )
+  ),
+
+  /* recursively distribute the available batch among the job types */
+  whenTrue: fv!value &gt; 0,
+  then: a!localVariables(
+    local!couldStart: floor(
+      ri!remainingBatchSize / count(ri!remainingSortedJobTypes)
+    ),
+    local!willStart: min(
+      local!couldStart,
+      ri!remainingSortedJobTypes[1][#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart"]
+    ),
+    #"_a-0000ec53-61b2-8000-9bbf-011c48011c48_9488"(
+      remainingSortedJobTypes: ldrop(ri!remainingSortedJobTypes, 1),
+      remainingBatchSize: ri!remainingBatchSize - local!willStart,
+      results: append(ri!results, local!willStart)
+    )
+  ),
+
+  /* return the final result */
+  default: ri!results
+)</definition>
+        <namedTypedValue>
+            <name>remainingSortedJobTypes</name>
+            <type>
+                <name>bb2a66ad-ea4d-439b-afbc-703858c5c12a?list</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>remainingBatchSize</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>results</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>2 job types batch smaller than startable</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 1
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 4
+  ),
+}</a:value>
+                    <a:nameRef>remainingSortedJobTypes</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">3</a:value>
+                    <a:nameRef>remainingBatchSize</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>results</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput>
+                        <a:type a:uuid="{http://www.appian.com/ae/types/2009}Integer?list"/>
+                        <a:runtimeType a:uuid="{http://www.appian.com/ae/types/2009}Integer?list"/>
+                        <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{1, 2}</a:value>
+                    </a:expectedOutput>
+                </a:assertions>
+            </el>
+            <el>
+                <a:name>Batch size larger than startable count</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 1
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 4
+  ),
+}</a:value>
+                    <a:nameRef>remainingSortedJobTypes</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">8</a:value>
+                    <a:nameRef>remainingBatchSize</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>results</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput>
+                        <a:type a:uuid="{http://www.appian.com/ae/types/2009}Integer?list"/>
+                        <a:runtimeType a:uuid="{http://www.appian.com/ae/types/2009}Integer?list"/>
+                        <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{1, 4}</a:value>
+                    </a:expectedOutput>
+                </a:assertions>
+            </el>
+            <el>
+                <a:name>Exactly 1 from 3 job types</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 1
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 3
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 4
+  )
+}</a:value>
+                    <a:nameRef>remainingSortedJobTypes</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">3</a:value>
+                    <a:nameRef>remainingBatchSize</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>results</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput>
+                        <a:type a:uuid="{http://www.appian.com/ae/types/2009}Integer?list"/>
+                        <a:runtimeType a:uuid="{http://www.appian.com/ae/types/2009}Integer?list"/>
+                        <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{1, 1, 1}</a:value>
+                    </a:expectedOutput>
+                </a:assertions>
+            </el>
+            <el>
+                <a:name>Batch size smaller than number of job types</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 1
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 3
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 4
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 4
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 4
+  ),
+  #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a"(
+    #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart": 4
+  )
+}</a:value>
+                    <a:nameRef>remainingSortedJobTypes</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">2</a:value>
+                    <a:nameRef>remainingBatchSize</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">null</a:value>
+                    <a:nameRef>results</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:resultAssertions>and(
+  /* total must be exactly 2 */
+  sum(test!output) = 2,
+
+  /* make sure we don't always choose the last 2 job types to start transactions (should be random) */
+  /* unfortunately this may randomly be true and result in test failing sometimes */
+  sum(ldrop(test!output, 4)) &lt;&gt; 2
+)</a:resultAssertions>
+                </a:assertions>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000ec53-61b2-8000-9bbf-011c48011c48_9508"/>
+    </history>
+</contentHaul>

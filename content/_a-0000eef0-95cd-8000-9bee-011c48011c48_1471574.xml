@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867980</versionUuid>
+    <interface>
+        <name>PQR_INT_recolectorCorreosLista</name>
+        <uuid>_a-0000eef0-95cd-8000-9bee-011c48011c48_1471574</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!etiquetas,
+  local!sincronizado: false,
+  local!CajaBusqueda,
+  #"SYSTEM_SYSRULES_headerContentLayout"(
+    header: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_stampField"(
+                          labelPosition: "COLLAPSED",
+                          icon: "inbox",
+                          contentColor: "STANDARD"
+                        ),
+                        width: "MINIMIZE"
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          label: "ffds",
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(
+                              text: "Correo electrónico",
+                              size: "LARGE",
+                              color: "#FFFFFF",
+                              style: "STRONG"
+                            )
+                          }
+                        )
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                },
+                width: "AUTO"
+              )
+            },
+            alignVertical: "MIDDLE",
+            spacing: "STANDARD"
+          )
+        },
+        marginBelow: "STANDARD",
+        style: "#1d2d44",
+        showBorder: false,
+        padding: "LESS"
+      )
+    },
+    contents: {
+      #"SYSTEM_SYSRULES_sideBySideLayout"(
+        items: {
+          #"SYSTEM_SYSRULES_sideBySideItem"(
+            item: #"SYSTEM_SYSRULES_textField"(
+              label: "Texto",
+              labelPosition: "COLLAPSED",
+              helpTooltip: "",
+              placeholder: "Buscar correos electrónicos",
+              value: local!CajaBusqueda,
+              saveInto: local!CajaBusqueda,
+              refreshAfter: "UNFOCUS",
+              validations: {}
+            ),
+            width: "2X"
+          ),
+          #"SYSTEM_SYSRULES_sideBySideItem"(
+            item: #"SYSTEM_SYSRULES_multipleDropdownField_v1"(
+              label: "Etiquetas",
+              labelPosition: "ADJACENT",
+              placeholder: "--- Seleccionar un valor ---",
+              data: #"SYSTEM_SYSRULES_recordData"(
+                recordType: #"urn:appian:record-type:v1:f7d4a31b-036e-413a-b0bf-2215cb228832",
+                filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+                  operator: "AND",
+                  filters: {
+                    #"SYSTEM_SYSRULES_queryFilter"(
+                      field: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c4acf3f7-4aae-4b49-b417-7a6b2a10680b",
+                      operator: "=",
+                      value: true
+                    )
+                  },
+                  ignoreFiltersWithEmptyValues: true
+                )
+              ),
+              value: local!etiquetas,
+              saveInto: local!etiquetas,
+              choiceLabels: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c328359a-a4b1-488a-8324-7beafa21d9ae",
+              choiceValues: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/2bcca99a-defc-4dc8-9f9c-4d388bc30236",
+              validations: {},
+              searchDisplay: "AUTO"
+            ),
+            width: "AUTO"
+          ),
+          #"SYSTEM_SYSRULES_sideBySideItem"(
+            item: #"SYSTEM_SYSRULES_radioButtonField_v1"(
+              label: "Sincronizado",
+              labelPosition: "ADJACENT",
+              value: local!sincronizado,
+              saveInto: local!sincronizado,
+              choiceLabels: { "Si", "No" },
+              choiceValues: { true, false },
+              validations: {},
+              marginAbove: "LESS",
+              choiceLayout: "COMPACT"
+            ),
+            width: "MINIMIZE"
+          )
+        }
+      ),
+      #"SYSTEM_SYSRULES_gridField_v5"(
+        label: "Tabla de solo lectura",
+        labelPosition: "COLLAPSED",
+        data: #"SYSTEM_SYSRULES_queryEntity_v2"(
+          entity: #"_a-0000ef02-3502-8000-9bf1-011c48011c48_1557667",
+          query: #"SYSTEM_SYSRULES_query"(
+            logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+              operator: "OR",
+              filters: {
+                #"SYSTEM_SYSRULES_queryFilter"(
+                  field: "SYNC",
+                  operator: "=",
+                  value: local!sincronizado
+                ),
+                #"SYSTEM_SYSRULES_queryFilter"(
+                  field: "SUBJECT",
+                  operator: "includes",
+                  value: local!CajaBusqueda
+                )
+              },
+              ignoreFiltersWithEmptyValues: true
+            ),
+            pagingInfo: fv!pagingInfo
+          ),
+          fetchTotalCount: true
+        ),
+        columns: {
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "",
+            value: if(
+              isnull(fv!row.SYNC),
+              "–",
+              #"SYSTEM_SYSRULES_richTextDisplayField"(
+                value: if(
+                  fv!row.SYNC,
+                  #"SYSTEM_SYSRULES_richTextIcon"(
+                    icon: "check",
+                    altText: "Yes",
+                    color: "#138901"
+                  ),
+                  #"SYSTEM_SYSRULES_richTextIcon"(
+                    icon: "clock",
+                    altText: "No",
+                    color: "SECONDARY"
+                  )
+                )
+              )
+            ),
+            sortField: "SYNC",
+            align: "CENTER",
+            width: "ICON"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "DE",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: {
+                    a!match(
+                      value: fv!row.IMPORTANCE,
+                      equals: "NORMAL",
+                      then: #"SYSTEM_SYSRULES_richTextIcon"(
+                        icon: "circle",
+                        caption: "NORMAL",
+                        color: "#1976D2"
+                      ),
+                      equals: "HIGH",
+                      then: #"SYSTEM_SYSRULES_richTextIcon"(
+                        icon: "exclamation-circle",
+                        caption: "HIGH",
+                        color: "#D32F2F"
+                      ),
+                      default: #"SYSTEM_SYSRULES_richTextIcon"(
+                        icon: "minus-circle",
+                        caption: "NONE",
+                        color: "#BDBDBD"
+                      )
+                    )
+                  }
+                ),
+                " ",
+                #"SYSTEM_SYSRULES_richTextItem_v1"(text: fv!row.FROM_NAME, style: "STRONG"),
+                char(10),
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: "&lt;" &amp; fv!row.FROM_EMAIL &amp; "&gt;",
+                  link: #"SYSTEM_SYSRULES_safeLink"(
+                    label: fv!row.FROM_EMAIL,
+                    uri: "mailto:" &amp; fv!row.FROM_EMAIL
+                  ),
+                  size: "SMALL",
+                  color: "SECONDARY"
+                )
+              }
+            ),
+            sortField: "FROM_NAME",
+            width: "MEDIUM_PLUS"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "PARA",
+            value: #"SYSTEM_SYSRULES_linkField"(
+              links: {
+                #"SYSTEM_SYSRULES_forEach"(
+                  items: split(fv!row.TO_EMAILS, ";"),
+                  expression: #"SYSTEM_SYSRULES_safeLink"(label: fv!item, uri: fv!item)
+                )
+              }
+            ),
+            sortField: "TO_EMAILS",
+            width: "MEDIUM"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Asunto",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: fv!row.SUBJECT,
+                  style: "STRONG",
+                  linkStyle: "STANDALONE"
+                ),
+                " ",
+                {
+                  #"SYSTEM_SYSRULES_richTextIcon"(icon: "paperclip", color: "SECONDARY")
+                },
+                char(10),
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: left(
+                    trim(
+                      substitute(
+                        substitute(
+                          substitute(
+                            striphtml(fv!row.BODY_HTML),
+                            char(13),
+                            " "
+                          ),
+                          char(10),
+                          " "
+                        ),
+                        "  ",
+                        " "
+                      )
+                    ),
+                    150
+                  ),
+                  size: "SMALL",
+                  color: "SECONDARY",
+                  style: { "EMPHASIS" }
+                )
+              },
+              preventWrapping: false
+            ),
+            align: "START",
+            width: "AUTO"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Fecha",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: text(fv!row.RECEIVED_DATE, "dd/mm/yyyy"),
+                  size: "SMALL"
+                ),
+                char(10),
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: text(fv!row.RECEIVED_DATE, "hh:mm AM/PM"),
+                  size: "SMALL",
+                  color: "SECONDARY"
+                )
+              }
+            ),
+            align: "END",
+            width: "NARROW"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "📎",
+            value: #"SYSTEM_SYSRULES_queryEntity_v2"(
+              entity: #"_a-0001eee3-3e88-8000-9cdc-011c48011c48_5399451",
+              query: #"SYSTEM_SYSRULES_query"(
+                logicalExpression: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+                  operator: "AND",
+                  filters: {
+                    #"SYSTEM_SYSRULES_queryFilter"(
+                      field: "APP_MAIL_POLLER_ID",
+                      operator: "=",
+                      value: fv!row.APP_MAIL_POLLER_ID
+                    )
+                  },
+                  ignoreFiltersWithEmptyValues: true
+                ),
+                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 1)
+              ),
+              fetchTotalCount: true
+            ).totalCount,
+            align: "CENTER",
+            width: "ICON"
+          )
+        },
+        initialSorts: #"SYSTEM_SYSRULES_sortInfo"(field: "SYS_DATE", ascending: false),
+        pageSize: 10,
+        validations: {},
+        spacing: "DENSE",
+        borderStyle: "STANDARD",
+        shadeAlternateRows: true
+      )
+    },
+    backgroundColor: "WHITE"
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1471708"/>
+        <historyInfo versionUuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1488139"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1564054"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5399490"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6593105"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867980"/>
+    </history>
+</contentHaul>

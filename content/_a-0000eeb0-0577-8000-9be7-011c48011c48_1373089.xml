@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5501208</versionUuid>
+    <interface>
+        <name>PQR_TipoCategoriaPQRDSFLista</name>
+        <uuid>_a-0000eeb0-0577-8000-9be7-011c48011c48_1373089</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_headerContentLayout"(
+  header: #"SYSTEM_SYSRULES_cardLayout"(
+    contents: {
+      #"SYSTEM_SYSRULES_columnsLayout"(
+        columns: {
+          #"SYSTEM_SYSRULES_columnLayout"(
+            contents: {
+              #"SYSTEM_SYSRULES_sideBySideLayout"(
+                items: {
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: #"SYSTEM_SYSRULES_stampField"(
+                      labelPosition: "COLLAPSED",
+                      icon: "layer-group",
+                      marginBelow: "NONE",
+                      backgroundColor: "#ffff00",
+                      contentColor: "#063853"
+                    ),
+                    width: "MINIMIZE"
+                  ),
+                  #"SYSTEM_SYSRULES_sideBySideItem"(
+                    item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                      labelPosition: "COLLAPSED",
+                      value: {
+                        #"SYSTEM_SYSRULES_richTextItem_v1"(
+                          text: "Categoría PQRDSF",
+                          size: "LARGE",
+                          color: "#FFFFFF",
+                          style: "STRONG"
+                        )
+                      },
+                      marginAbove: "MORE",
+                      marginBelow: "MORE",
+                      align: "LEFT",
+                      preventWrapping: true
+                    )
+                  )
+                },
+                alignVertical: "MIDDLE"
+              )
+            }
+          ),
+          #"SYSTEM_SYSRULES_columnLayout"(contents: {}, width: "NARROW"),
+          #"SYSTEM_SYSRULES_columnLayout"(contents: {}, width: "NARROW")
+        },
+        alignVertical: "MIDDLE"
+      )
+    },
+    style: "#063853",
+    showBorder: false,
+    padding: "LESS"
+  ),
+  contents: {
+    #"SYSTEM_SYSRULES_gridField_v5"(
+      label: "Tabla de solo lectura",
+      labelPosition: "COLLAPSED",
+      data: #"urn:appian:record-type:v1:479d0299-3fd3-4092-9c84-0738e3d0b224",
+      userFilters: {
+        #"urn:appian:user-filter:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/d7c93632-12cc-40d5-a459-566e09c7084c"
+      },
+      showRefreshButton: false,
+      showSearchBox: true,
+      similarityScoreThreshold: 1.0,
+      recordActions: {
+        #"SYSTEM_SYSRULES_recordActionItem"(
+          action: #"urn:appian:record-action:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/e2101729-677c-4e6e-a6e8-7c4643232523"
+        )
+      },
+      actionsStyle: "TOOLBAR_PRIMARY",
+      columns: {
+        #"SYSTEM_SYSRULES_gridColumn"(
+          label: "Nombre",
+          value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+            value: {
+              #"SYSTEM_SYSRULES_richTextItem_v1"(
+                text: fv!row[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/0d3277c0-0bf3-46d0-a3a8-49d8a2003c52"],
+                link: #"SYSTEM_SYSRULES_recordLink"(
+                  recordType: #"urn:appian:record-type:v1:479d0299-3fd3-4092-9c84-0738e3d0b224",
+                  identifier: fv!identifier
+                ),
+                linkStyle: "STANDALONE"
+              )
+            }
+          ),
+          sortField: #"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/0d3277c0-0bf3-46d0-a3a8-49d8a2003c52",
+          width: "MEDIUM"
+        ),
+        #"SYSTEM_SYSRULES_gridColumn"(
+          label: "Tipo",
+          value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+            value: {
+              #"SYSTEM_SYSRULES_richTextItem_v1"(
+                text: {
+                  #"SYSTEM_SYSRULES_richTextIcon"(
+                    icon: fv!row[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/2a56cd35-62a4-44a2-ba94-4c9194d779e6/6af9f4b2-c053-46e9-94cf-7ec419ad0131"],
+                    caption: fv!row[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/2a56cd35-62a4-44a2-ba94-4c9194d779e6/0b847abe-93cc-4934-89f1-1b95681497ac"],
+                    color: fv!row[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/2a56cd35-62a4-44a2-ba94-4c9194d779e6/ee275b43-5cd3-4403-87f4-5d34fbe97116"]
+                  ),
+                  " " &amp; fv!row[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/2a56cd35-62a4-44a2-ba94-4c9194d779e6/0b847abe-93cc-4934-89f1-1b95681497ac"]
+                }
+              )
+            }
+          ),
+          sortField: #"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/2a56cd35-62a4-44a2-ba94-4c9194d779e6/0b847abe-93cc-4934-89f1-1b95681497ac",
+          align: "CENTER",
+          width: "NARROW_PLUS"
+        ),
+        #"SYSTEM_SYSRULES_gridColumn"(
+          label: "Código",
+          value: fv!row[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/ce0fcdcc-de9c-4589-9f95-101832c2133f"],
+          sortField: #"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/ce0fcdcc-de9c-4589-9f95-101832c2133f",
+          align: "CENTER",
+          width: "NARROW"
+        ),
+        #"SYSTEM_SYSRULES_gridColumn"(
+          label: "Descripción",
+          value: fv!row[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/001053a9-09ae-47ff-a92e-d0c97a4c8038"],
+          sortField: #"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/001053a9-09ae-47ff-a92e-d0c97a4c8038",
+          align: "START"
+          
+        )
+      },
+      initialSorts: {},
+      refreshAfter: "RECORD_ACTION",
+      validations: {},
+      shadeAlternateRows: true
+    )
+  }
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000eeb0-0577-8000-9be7-011c48011c48_1373108"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1388866"/>
+        <historyInfo versionUuid="_a-0000eee6-5360-8000-9ba6-011c48011c48_9158"/>
+        <historyInfo versionUuid="_a-0000eeec-9e93-8000-9ba8-011c48011c48_26330"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5501208"/>
+    </history>
+</contentHaul>
