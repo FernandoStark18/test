@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867996</versionUuid>
+    <interface>
+        <name>PQR_INT_crearTipoCategoriaEtiqueta</name>
+        <uuid>7c7c0a5d-17b3-4192-b193-b826bc60733a</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo TipoCategoriaEtiqueta como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Nombre",
+          labelPosition: "ABOVE",
+          value: ri!tipocategoriaetiqueta[#"urn:appian:record-field:v1:f3ec0006-548d-4ea9-9537-802665e19cd8/6c94f83f-3c46-48f0-a689-f3fcb5143ac3"],
+          saveInto: ri!tipocategoriaetiqueta[#"urn:appian:record-field:v1:f3ec0006-548d-4ea9-9537-802665e19cd8/6c94f83f-3c46-48f0-a689-f3fcb5143ac3"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Código",
+          labelPosition: "ABOVE",
+          value: ri!tipocategoriaetiqueta[#"urn:appian:record-field:v1:f3ec0006-548d-4ea9-9537-802665e19cd8/65cdf38a-d02f-4338-9220-f48cf237f719"],
+          saveInto: ri!tipocategoriaetiqueta[#"urn:appian:record-field:v1:f3ec0006-548d-4ea9-9537-802665e19cd8/65cdf38a-d02f-4338-9220-f48cf237f719"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Crear",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Crear categoría de etiqueta",
+    secondaryText: "Introduzca los detalles de la categoría de etiqueta"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>tipocategoriaetiqueta</name>
+            <type>
+                <name>f3ec0006-548d-4ea9-9537-802665e19cd8</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="b67c4354-7307-43f0-afa9-203c977c293c"/>
+        <historyInfo versionUuid="_a-0000ef00-59b8-8000-9bf0-011c48011c48_1509226"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5381647"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5505304"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867996"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef03-0467-8000-9bf2-011c48011c48_1567620</versionUuid>
+    <interface>
+        <name>PQR_CrearPreguntasRecordsChat</name>
+        <uuid>75e1c5a3-05f9-4e4b-9cf9-a00cd0cd2797</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo PreguntasRecordsChat como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Nombre",
+          labelPosition: "ABOVE",
+          value: ri!preguntasrecordschat[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/b79e65fd-974b-4bfc-9584-97b3e19bb79e"],
+          saveInto: ri!preguntasrecordschat[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/b79e65fd-974b-4bfc-9584-97b3e19bb79e"],
+          required: true,
+          characterLimit: 100,
+          showCharacterCount: false
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Código",
+          labelPosition: "ABOVE",
+          helpTooltip: "",
+          value: ri!preguntasrecordschat[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/571b4534-6dca-453d-8fed-1a260b83116f"],
+          saveInto: ri!preguntasrecordschat[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/571b4534-6dca-453d-8fed-1a260b83116f"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_paragraphField"(
+          label: "Descripción",
+          labelPosition: "ABOVE",
+          value: ri!preguntasrecordschat[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/57cebef3-185b-4c3d-8a17-1740f76ffc25"],
+          saveInto: ri!preguntasrecordschat[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/57cebef3-185b-4c3d-8a17-1740f76ffc25"],
+          required: true,
+          characterLimit: 4000,
+          marginAbove: "LESS",
+          height: "TALL"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Crear",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Crear preguntas RecordsCHAT",
+    secondaryText: "Introduzca los detalles de las preguntas RecordsCHAT"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>preguntasrecordschat</name>
+            <type>
+                <name>94c565a2-d767-4905-af1c-43ac7bc935a1</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="d379a809-8308-4f28-904b-5a39fc2489ef"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1567620"/>
+    </history>
+</contentHaul>

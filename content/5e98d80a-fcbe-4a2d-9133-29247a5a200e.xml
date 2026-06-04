@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867992</versionUuid>
+    <interface>
+        <name>PQR_INT_actualizarTipoCategoriaPQRDSF</name>
+        <uuid>5e98d80a-fcbe-4a2d-9133-29247a5a200e</uuid>
+        <description>Interfaz de formulario para actualizar TipoCategoriaPQRDSF como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_dropdownField_v1"(
+          label: "Tipo",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione un tipo",
+          data: #"urn:appian:record-type:v1:28d1f59c-2ecf-4714-a8bc-484710650339",
+          value: ri!record[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/77a2f5d7-584a-4786-acaf-b0340bd1c387"],
+          saveInto: ri!record[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/77a2f5d7-584a-4786-acaf-b0340bd1c387"],
+          choiceLabels: #"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/0b847abe-93cc-4934-89f1-1b95681497ac",
+          choiceValues: #"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/bb96de8d-fedb-4c25-a091-005bc8301bdc",
+          required: true,
+          searchDisplay: "AUTO"
+        ),
+        #"SYSTEM_SYSRULES_sideBySideLayout"(
+          items: {
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              item: #"SYSTEM_SYSRULES_textField"(
+                label: "Nombre",
+                labelPosition: "ABOVE",
+                value: ri!record[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/0d3277c0-0bf3-46d0-a3a8-49d8a2003c52"],
+                saveInto: ri!record[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/0d3277c0-0bf3-46d0-a3a8-49d8a2003c52"],
+                required: true,
+                characterLimit: 100,
+                showCharacterCount: false
+              )
+            ),
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              item: #"SYSTEM_SYSRULES_textField"(
+                label: "Código",
+                labelPosition: "ABOVE",
+                value: ri!record[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/ce0fcdcc-de9c-4589-9f95-101832c2133f"],
+                saveInto: ri!record[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/ce0fcdcc-de9c-4589-9f95-101832c2133f"],
+                required: true,
+                characterLimit: 10,
+                showCharacterCount: false
+              ),
+              width: "MINIMIZE"
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_paragraphField"(
+          label: "Descripción",
+          labelPosition: "ABOVE",
+          value: ri!record[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/001053a9-09ae-47ff-a92e-d0c97a4c8038"],
+          saveInto: ri!record[#"urn:appian:record-field:v1:479d0299-3fd3-4092-9c84-0738e3d0b224/001053a9-09ae-47ff-a92e-d0c97a4c8038"],
+          required: true,
+          characterLimit: 400,
+          height: "SHORT"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Guardar",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Actualizar Categoría PQRDSF"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>479d0299-3fd3-4092-9c84-0738e3d0b224</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="a5e0c6df-fd2d-47c2-91ce-77c6cd912623"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1388816"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5505348"/>
+        <historyInfo versionUuid="_a-0000efbe-4e29-8000-9ce4-011c48011c48_6867992"/>
+    </history>
+</contentHaul>

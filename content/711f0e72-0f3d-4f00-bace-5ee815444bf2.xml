@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5503985</versionUuid>
+    <interface>
+        <name>PQR_CrearTipoCondicionesEspeciales</name>
+        <uuid>711f0e72-0f3d-4f00-bace-5ee815444bf2</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo TipoCondicionesEspeciales como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_sideBySideLayout"(
+          items: {
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              item: #"SYSTEM_SYSRULES_textField"(
+                label: "Nombre",
+                labelPosition: "ABOVE",
+                value: ri!record[#"urn:appian:record-field:v1:fb451186-de5a-46b7-9b2c-9966bbf8a357/0a63c638-9174-40eb-a8f2-d3d828f0fd7b"],
+                saveInto: ri!record[#"urn:appian:record-field:v1:fb451186-de5a-46b7-9b2c-9966bbf8a357/0a63c638-9174-40eb-a8f2-d3d828f0fd7b"],
+                required: true,
+                characterLimit: 100,
+                showCharacterCount: false
+              )
+            ),
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              item: #"SYSTEM_SYSRULES_textField"(
+                label: "Código",
+                labelPosition: "ABOVE",
+                value: ri!record[#"urn:appian:record-field:v1:fb451186-de5a-46b7-9b2c-9966bbf8a357/2e186123-398d-4029-8cd2-622b9f271f71"],
+                saveInto: ri!record[#"urn:appian:record-field:v1:fb451186-de5a-46b7-9b2c-9966bbf8a357/2e186123-398d-4029-8cd2-622b9f271f71"],
+                required: true,
+                characterLimit: 10,
+                showCharacterCount: false,
+                marginAbove: "LESS"
+              ),
+              width: "MINIMIZE"
+            )
+          }
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Crear",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Crear TipoCondicionesEspeciales",
+    secondaryText: "Introduzca los detalles del tipocondicionesespeciales"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>record</name>
+            <type>
+                <name>fb451186-de5a-46b7-9b2c-9966bbf8a357</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="3f5cfd73-3d22-4963-a997-401e950f86b6"/>
+        <historyInfo versionUuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1390280"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5503985"/>
+    </history>
+</contentHaul>

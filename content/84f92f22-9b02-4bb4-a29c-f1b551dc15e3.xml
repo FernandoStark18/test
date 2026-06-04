@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef03-0467-8000-9bf2-011c48011c48_1580763</versionUuid>
+    <interface>
+        <name>PQR_CrearTipoPQRDSF</name>
+        <uuid>84f92f22-9b02-4bb4-a29c-f1b551dc15e3</uuid>
+        <description>Interfaz de formulario para la creación de un nuevo tipo de PQRDSF como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Nombre",
+          labelPosition: "ABOVE",
+          value: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/0b847abe-93cc-4934-89f1-1b95681497ac"],
+          saveInto: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/0b847abe-93cc-4934-89f1-1b95681497ac"],
+          required: true,
+          characterLimit: 100,
+          showCharacterCount: false
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Código",
+          labelPosition: "ABOVE",
+          value: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/807862f9-5899-46c1-a0c1-0dc7bf187cf9"],
+          saveInto: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/807862f9-5899-46c1-a0c1-0dc7bf187cf9"],
+          required: true,
+          characterLimit: 50,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Descripción",
+          labelPosition: "ABOVE",
+          value: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/978dedca-8c6e-43ed-9245-70eab1c0e907"],
+          saveInto: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/978dedca-8c6e-43ed-9245-70eab1c0e907"],
+          required: true,
+          characterLimit: 250,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Color",
+          labelPosition: "ABOVE",
+          value: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/ee275b43-5cd3-4403-87f4-5d34fbe97116"],
+          saveInto: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/ee275b43-5cd3-4403-87f4-5d34fbe97116"],
+          required: true,
+          characterLimit: 10,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Ícono",
+          labelPosition: "ABOVE",
+          helpTooltip: "",
+          value: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/6af9f4b2-c053-46e9-94cf-7ec419ad0131"],
+          saveInto: ri!tipopqrdsf[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/6af9f4b2-c053-46e9-94cf-7ec419ad0131"],
+          required: true,
+          characterLimit: 20,
+          showCharacterCount: false,
+          marginAbove: "LESS"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Crear",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Crear tipo de PQRDSF",
+    secondaryText: "Introduzca los detalles del tipo de PQRDSF"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>tipopqrdsf</name>
+            <type>
+                <name>28d1f59c-2ecf-4714-a8bc-484710650339</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="f4ddfd15-cdc8-482b-9c5e-cd9f692becbb"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1580763"/>
+    </history>
+</contentHaul>

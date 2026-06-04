@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5440374</versionUuid>
+    <interface>
+        <name>PQR_ActualizarReglaCorreo</name>
+        <uuid>7ef2b9e9-7054-40cc-93cd-b832e80e93aa</uuid>
+        <description>Interfaz de formulario para actualizar una regla de correo como acción</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_formLayout_v2"(
+  contents: {
+    #"SYSTEM_SYSRULES_cardLayout"(
+      contents: {
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Nombre",
+          labelPosition: "ABOVE",
+          value: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/0b9657e0-34fd-48d4-aea9-a872c8907912"],
+          saveInto: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/0b9657e0-34fd-48d4-aea9-a872c8907912"],
+          required: true,
+          characterLimit: 100,
+          showCharacterCount: false
+        ),
+        #"SYSTEM_SYSRULES_textField"(
+          label: "Descripción",
+          labelPosition: "ABOVE",
+          value: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/cde68e44-9c58-4929-884c-e395a6f7b97c"],
+          saveInto: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/cde68e44-9c58-4929-884c-e395a6f7b97c"],
+          required: false,
+          characterLimit: 250,
+          showCharacterCount: false
+        ),
+        #"SYSTEM_SYSRULES_sideBySideLayout"(
+          items: {
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              item: #"SYSTEM_SYSRULES_dropdownField_v1"(
+                label: "Condición",
+                labelPosition: "ABOVE",
+                placeholder: "Seleccione un tipo condicion regla",
+                data: #"urn:appian:record-type:v1:3584bf2d-6819-48ae-905a-6603fd2c07cf",
+                value: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e"],
+                saveInto: {
+                  ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e"],
+                  a!save(
+                    ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"],
+                    if(
+                      ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e"] = 8,
+                      "Tiene adjuntos",
+                      null
+                    )
+                  )
+                },
+                choiceLabels: #"urn:appian:record-field:v1:3584bf2d-6819-48ae-905a-6603fd2c07cf/93f1e086-3918-44ff-a9bb-98052db6dc59",
+                choiceValues: #"urn:appian:record-field:v1:3584bf2d-6819-48ae-905a-6603fd2c07cf/a3b45ee6-9c61-469d-a8fe-3d3baeeef1a4",
+                required: true
+              )
+            ),
+            #"SYSTEM_SYSRULES_sideBySideItem"(
+              item: #"SYSTEM_SYSRULES_textField"(
+                label: "Acción",
+                labelPosition: "ABOVE",
+                value: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"],
+                saveInto: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/9031f715-b001-43e8-b07e-c67ded2f9477"],
+                disabled: and(
+                  a!isNotNullOrEmpty(
+                    ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e"]
+                  ),
+                  ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/36087fb3-3349-4af6-8c6c-307162c97f4e"] = 8
+                ),
+                required: true,
+                characterLimit: 100,
+                showCharacterCount: false
+              )
+            )
+          }
+        ),
+        #"SYSTEM_SYSRULES_dropdownField_v1"(
+          label: "Etiqueta",
+          labelPosition: "ABOVE",
+          placeholder: "Seleccione un tipo etiqueta",
+          data: #"urn:appian:record-type:v1:f7d4a31b-036e-413a-b0bf-2215cb228832",
+          value: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/b0ec07a4-545b-4772-b588-cf1bc199c032"],
+          saveInto: ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/b0ec07a4-545b-4772-b588-cf1bc199c032"],
+          choiceLabels: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/c328359a-a4b1-488a-8324-7beafa21d9ae",
+          choiceValues: #"urn:appian:record-field:v1:f7d4a31b-036e-413a-b0bf-2215cb228832/2bcca99a-defc-4dc8-9f9c-4d388bc30236",
+          required: true
+        ),
+        #"SYSTEM_SYSRULES_checkboxField_v1"(
+          labelPosition: "COLLAPSED",
+          value: if(
+            ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/48eaa0bc-a50c-4e35-81c9-991c8771aa8d"],
+            true,
+            null
+          ),
+          saveInto: a!save(
+            ri!reglacorreo[#"urn:appian:record-field:v1:d81be1e7-776a-47cf-976a-1460af8a706c/48eaa0bc-a50c-4e35-81c9-991c8771aa8d"],
+            if(isnull(save!value), false, true)
+          ),
+          choiceLabels: { "Activo" },
+          choiceValues: { true },
+          marginAbove: "STANDARD",
+          spacing: "MORE"
+        )
+      },
+      style: "NONE",
+      padding: "MORE",
+      shape: "SEMI_ROUNDED"
+    )
+  },
+  buttons: #"SYSTEM_SYSRULES_ButtonLayout"(
+    primaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Guardar",
+        validate: true,
+        submit: true,
+        style: "SOLID"
+      )
+    },
+    secondaryButtons: {
+      #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        value: true,
+        saveInto: ri!cancel,
+        validate: false,
+        submit: true,
+        style: "OUTLINE"
+      )
+    }
+  ),
+  isTitleBarFixed: true,
+  titleBar: #"SYSTEM_SYSRULES_headerTemplateFull"(
+    title: "Actualizar regla de correo",
+    secondaryText: "Actualizar los detalles de una regla de correo"
+  ),
+  contentsWidth: "FULL",
+  backgroundColor: "#F6F7F9",
+  showTitleBarDivider: false
+)</definition>
+        <namedTypedValue>
+            <name>reglacorreo</name>
+            <type>
+                <name>d81be1e7-776a-47cf-976a-1460af8a706c</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>cancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="1db42af9-fe66-484a-824f-493145e88f14"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5382063"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5440374"/>
+    </history>
+</contentHaul>

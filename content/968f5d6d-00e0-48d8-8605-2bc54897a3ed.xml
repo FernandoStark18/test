@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383763</versionUuid>
+    <interface>
+        <name>PQR_FuncionarioResumen</name>
+        <uuid>968f5d6d-00e0-48d8-8605-2bc54897a3ed</uuid>
+        <description>La interfaz utilizada para la visualización de su registro</description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_headerContentLayout"(
+  contents: {
+    #"SYSTEM_SYSRULES_columnsLayout"(
+      columns: {
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {},
+          showWhen: #"SYSTEM_SYSRULES_isPageWidth"({ "DESKTOP", "DESKTOP_WIDE" })
+        ),
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/69a11a70-44e5-4721-8d6d-b556fb9138d4"],
+              contents: {
+                #"SYSTEM_SYSRULES_cardLayout"(
+                  contents: {
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Tipo Identificacion",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/783f0c27-1595-45f1-824c-cb3302796b07/c86e3fe0-c75c-4752-9aa8-8c9cabe7ad56"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Numero Identificacion",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/935884ab-1471-407c-8a70-3d5d7e4c7b8d"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      }
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Nombres",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3f5afcc1-8ca2-47ca-8950-271e971d370c"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Apellidos",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/cf29f7fa-5f07-4b0e-bfbb-4748d99d1e73"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Apodo",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/86f14a6e-5782-47c9-93dd-e2ecc5700b46"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Iniciales",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/96a7ca28-2f89-4030-a8d7-e60bd391694e"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Codigo",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/77581ed3-ab09-4f2c-8509-6e3df5ce70f1"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Usuario",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/726e8710-2b0b-4a6f-8385-ab72cc1c254b"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Tipo Vinculacion Entidad",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/efb41106-2eea-41f5-ac76-9f4bed22ebc2/73f753fb-cec5-433c-ad8d-284267bd2913"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Funcionario Supervisor",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/4234347d-2321-40c9-b8d5-0bcba728cb74/935884ab-1471-407c-8a70-3d5d7e4c7b8d"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Fecha Posesion",
+                              value: {
+                                if(
+                                  isnull(
+                                    ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/a83883ed-fe66-450c-b837-f4c42a7af959"]
+                                  ),
+                                  "–",
+                                  {
+                                    #"SYSTEM_SYSRULES_richTextIcon"(
+                                      icon: "calendar",
+                                      color: "SECONDARY"
+                                    ),
+                                    " ",
+                                    #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                      text: text(
+                                        ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/a83883ed-fe66-450c-b837-f4c42a7af959"],
+                                        "mmmm d, yyyy"
+                                      )
+                                    )
+                                  }
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Fecha Nacimiento",
+                              value: {
+                                if(
+                                  isnull(
+                                    ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/70397edd-9a77-4375-a954-8f1432719a83"]
+                                  ),
+                                  "–",
+                                  {
+                                    #"SYSTEM_SYSRULES_richTextIcon"(
+                                      icon: "calendar",
+                                      color: "SECONDARY"
+                                    ),
+                                    " ",
+                                    #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                      text: text(
+                                        ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/70397edd-9a77-4375-a954-8f1432719a83"],
+                                        "mmmm d, yyyy"
+                                      )
+                                    )
+                                  }
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Telefono",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/b4c90893-7dbb-489b-925a-b280b517fd88"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Lugar Expedicion",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/32ca2167-77a1-4ac4-9fb9-9eee3ccb9f95"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Correo Personal",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/e2311dd7-5b60-40ec-adc8-f5a23a51f379"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Direccion Residencia",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/ee98b182-8327-42d6-a688-50dcb825c20c"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Barrio Localidad",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/e92d2132-fc31-4aa1-8607-b9e0a53143f1"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Coordenadas",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/9ca7d1d5-7e1e-47ed-b67c-f234a18de756"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Tipo Estado Funcionario",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3aef796c-4510-425f-9ae6-2cbc92b303a1/2f16e71f-2cc5-4b45-ab0c-97fbbcce62fd"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Fecha Vencimiento",
+                              value: {
+                                if(
+                                  isnull(
+                                    ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/fe6da04c-5bfe-43e5-b51e-8f9ea6c20f79"]
+                                  ),
+                                  "–",
+                                  {
+                                    #"SYSTEM_SYSRULES_richTextIcon"(
+                                      icon: "calendar",
+                                      color: "SECONDARY"
+                                    ),
+                                    " ",
+                                    #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                      text: text(
+                                        ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/fe6da04c-5bfe-43e5-b51e-8f9ea6c20f79"],
+                                        "mmmm d, yyyy"
+                                      )
+                                    )
+                                  }
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Entidad Publica",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3d71ed50-d887-4c00-a94c-477fc3290afe/a42f1b63-7bf1-49a1-a653-bbc56962b67b"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Min Event Timestamp",
+                              value: {
+                                if(
+                                  isnull(
+                                    ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3bea92e0-b5eb-4ef3-90d1-d116a1637dcd"]
+                                  ),
+                                  "–",
+                                  {
+                                    #"SYSTEM_SYSRULES_richTextIcon"(
+                                      icon: "calendar-o",
+                                      color: "SECONDARY"
+                                    ),
+                                    " ",
+                                    #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                      text: text(
+                                        ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3bea92e0-b5eb-4ef3-90d1-d116a1637dcd"],
+                                        "mmmm d, yyyy h:mm AM/PM"
+                                      )
+                                    )
+                                  }
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    ),
+                    #"SYSTEM_SYSRULES_columnsLayout"(
+                      columns: {
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Max Event Timestamp",
+                              value: {
+                                if(
+                                  isnull(
+                                    ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/40310fb4-8b2a-4d6e-8b74-a45e78ee6c02"]
+                                  ),
+                                  "–",
+                                  {
+                                    #"SYSTEM_SYSRULES_richTextIcon"(
+                                      icon: "calendar-o",
+                                      color: "SECONDARY"
+                                    ),
+                                    " ",
+                                    #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                      text: text(
+                                        ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/40310fb4-8b2a-4d6e-8b74-a45e78ee6c02"],
+                                        "mmmm d, yyyy h:mm AM/PM"
+                                      )
+                                    )
+                                  }
+                                )
+                              }
+                            )
+                          }
+                        ),
+                        #"SYSTEM_SYSRULES_columnLayout"(
+                          contents: {
+                            #"SYSTEM_SYSRULES_richTextDisplayField"(
+                              label: "Duration",
+                              value: {
+                                a!defaultValue(
+                                  ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/fe10e95a-c40f-418b-ac2b-e3193e5e8afc"],
+                                  "–"
+                                )
+                              }
+                            )
+                          }
+                        )
+                      },
+                      marginAbove: "STANDARD"
+                    )
+                  },
+                  padding: "STANDARD",
+                  shape: "SEMI_ROUNDED"
+                )
+              },
+              marginBelow: "MORE",
+              labelSize: "MEDIUM",
+              labelColor: "STANDARD"
+            )
+          },
+          width: "WIDE"
+        ),
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Acciones",
+              contents: {
+                #"SYSTEM_SYSRULES_recordActionField_v1"(
+                  actions: {
+                    #"SYSTEM_SYSRULES_recordActionItem"(
+                      action: #"urn:appian:record-action:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/c116846c-0b34-44f0-a4dd-1823e9c548b7",
+                      identifier: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/c9efe6d1-37e9-46a3-a6cf-f7a74f56203e"]
+                    ),
+                    #"SYSTEM_SYSRULES_recordActionItem"(
+                      action: #"urn:appian:record-action:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/6066adc5-d2cd-45d5-bf81-aa0d2210e7c9",
+                      identifier: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/c9efe6d1-37e9-46a3-a6cf-f7a74f56203e"]
+                    )
+                  },
+                  align: "CENTER",
+                  style: "SIDEBAR_PRIMARY",
+                  display: "LABEL_AND_ICON"
+                )
+              },
+              marginBelow: "MORE",
+              labelSize: "MEDIUM",
+              labelColor: "STANDARD"
+            ),
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Contactos",
+              contents: {
+                #"SYSTEM_SYSRULES_cardLayout"(
+                  contents: {
+                    #"SYSTEM_SYSRULES_sideBySideLayout"(
+                      items: {
+                        #"SYSTEM_SYSRULES_sideBySideItem"(
+                          item: #"SYSTEM_SYSRULES_imageField_v1"(
+                            labelPosition: "COLLAPSED",
+                            images: #"SYSTEM_SYSRULES_userImage"(
+                              user: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d9eca622-48e6-44d8-b8bf-809c807bbe41"]
+                            ),
+                            size: "EXTRA_SMALL",
+                            style: "AVATAR"
+                          ),
+                          width: "MINIMIZE"
+                        ),
+                        #"SYSTEM_SYSRULES_sideBySideItem"(
+                          item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                            labelPosition: "COLLAPSED",
+                            value: {
+                              if(
+                                a!isNullOrEmpty(ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d9eca622-48e6-44d8-b8bf-809c807bbe41"]),
+                                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                  text: {
+                                    "-"
+                                  }
+                                ),
+                                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                  text: {
+                                    user(
+                                      ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d9eca622-48e6-44d8-b8bf-809c807bbe41"],
+                                      "firstName"
+                                    ) &amp; " " &amp; user(
+                                      ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d9eca622-48e6-44d8-b8bf-809c807bbe41"],
+                                      "lastName"
+                                    )
+                                  },
+                                  color: "ACCENT",
+                                  style: {
+                                    "STRONG"
+                                  }
+                                )
+                              ),
+                              char(10),
+                              #"SYSTEM_SYSRULES_richTextItem_v1"(
+                                text: {
+                                  "Correo Empresarial"
+                                },
+                                color: "SECONDARY"
+                              )
+                            }
+                          )
+                        )
+                      },
+                      alignVertical: "MIDDLE"
+                    )
+                  },
+                  link: if(
+                    a!isNullOrEmpty(ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d9eca622-48e6-44d8-b8bf-809c807bbe41"]),
+                    null,
+                    #"SYSTEM_SYSRULES_userRecordLink"(
+                      user: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/d9eca622-48e6-44d8-b8bf-809c807bbe41"]
+                    )
+                  ),
+                  marginBelow: "STANDARD",
+                  padding: "LESS",
+                  shape: "SEMI_ROUNDED"
+                )
+              },
+              marginBelow: "MORE",
+              labelSize: "MEDIUM",
+              labelColor: "STANDARD"
+            ),
+            #"SYSTEM_SYSRULES_sectionLayout_v1"(
+              label: "Historial de eventos",
+              contents: {
+                #"SYSTEM_SYSRULES_cardLayout"(
+                  contents: {
+                    #"SYSTEM_SYSRULES_eventHistoryListField"(
+                      labelPosition: "COLLAPSED",
+                      eventData: #"SYSTEM_SYSRULES_eventData"(
+                        recordType: #"urn:appian:record-type:v1:cb047873-35dd-4dc4-b5ce-f63e07d3741a",
+                        filters: #"SYSTEM_SYSRULES_queryFilter"(
+                          field: #"urn:appian:record-field:v1:cb047873-35dd-4dc4-b5ce-f63e07d3741a/9dd9a037-5a80-4110-a01e-c5d8e802a65c",
+                          operator: "=",
+                          value: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/c9efe6d1-37e9-46a3-a6cf-f7a74f56203e"]
+                        ),
+                        allowUsersToComment: true,
+                        allowUsersToReply: false,
+                        baseRecordIdForComment: ri!Funcionario[#"urn:appian:record-field:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/c9efe6d1-37e9-46a3-a6cf-f7a74f56203e"],
+                        timestamp: #"urn:appian:record-field:v1:cb047873-35dd-4dc4-b5ce-f63e07d3741a/5804b831-63ee-4e89-aed9-8adb10141134",
+                        user: #"urn:appian:record-field:v1:cb047873-35dd-4dc4-b5ce-f63e07d3741a/9aadf991-75c2-4f42-9fa4-bffdb05217bb",
+                        comment: #"urn:appian:record-field:v1:cb047873-35dd-4dc4-b5ce-f63e07d3741a/63ebd432-5b64-40d9-a36c-ee18df66b657",
+                        eventTypeName: fv!data[#"urn:appian:record-field:v1:cb047873-35dd-4dc4-b5ce-f63e07d3741a/25b86a43-ace0-42eb-a3bd-fde44d4cf034/4f228af8-42b7-4a17-9cb7-7c40222357b9"]
+                      ),
+                      showSearchBox: false,
+                      showReverseSortButton: false,
+                      pageSize: 3,
+                      refreshAfter: "RECORD_ACTION",
+                      eventStyle: "LIST_WITH_COMMENTS",
+                      displayUser: "IMAGE",
+                      commentLayout: "LIST",
+                      commentCardColor: "TRANSPARENT"
+                    )
+                  },
+                  padding: "LESS",
+                  shape: "SEMI_ROUNDED"
+                )
+              },
+              marginBelow: "MORE",
+              labelSize: "MEDIUM",
+              labelColor: "STANDARD"
+            )
+          },
+          width: "MEDIUM"
+        ),
+        #"SYSTEM_SYSRULES_columnLayout"(
+          contents: {},
+          showWhen: #"SYSTEM_SYSRULES_isPageWidth"({ "DESKTOP", "DESKTOP_WIDE" })
+        )
+      },
+      stackWhen: {
+        "TABLET_PORTRAIT",
+        "PHONE"
+      },
+      marginAbove: if(
+        #"SYSTEM_SYSRULES_isNativeMobile"(),
+        "NONE",
+        if(
+          #"SYSTEM_SYSRULES_isPageWidth"({ "DESKTOP", "DESKTOP_WIDE" }),
+          "MORE",
+          "STANDARD"
+        )
+      ),
+      spacing: "SPARSE"
+    )
+  },
+  backgroundColor: "#fbfbfb"
+)</definition>
+        <namedTypedValue>
+            <name>Funcionario</name>
+            <type>
+                <name>1b6c0485-a30c-4da8-b598-4c1124db0e12</name>
+                <namespace>urn:com:appian:recordtype:datatype</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">#"SYSTEM_SYSRULES_queryRecordType_v4"(
+  recordType: #"urn:appian:record-type:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12",
+  fields: #"SYSTEM_SYSRULES_selectionFields"(
+    allFieldsFromRecordType: {
+      #"urn:appian:record-type:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12",
+      #"urn:appian:record-relationship:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3d71ed50-d887-4c00-a94c-477fc3290afe",
+      #"urn:appian:record-relationship:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/4234347d-2321-40c9-b8d5-0bcba728cb74",
+      #"urn:appian:record-relationship:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/3aef796c-4510-425f-9ae6-2cbc92b303a1",
+      #"urn:appian:record-relationship:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/783f0c27-1595-45f1-824c-cb3302796b07",
+      #"urn:appian:record-relationship:v1:1b6c0485-a30c-4da8-b598-4c1124db0e12/efb41106-2eea-41f5-ac76-9f4bed22ebc2"
+    }
+  ),
+  pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: 1
+  )
+).data</a:value>
+                    <a:nameRef>Funcionario</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="fe1498ce-0d05-41a5-966c-99f6b6b0d438"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383763"/>
+    </history>
+</contentHaul>
