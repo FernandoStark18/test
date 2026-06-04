@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5379378</versionUuid>
+    <interface>
+        <name>TM_if_HistoricalTransactionCountsChart</name>
+        <uuid>_a-0000e470-9a48-8000-8592-01ef9001ef90_106912</uuid>
+        <description>A chart showing the historical transaction counts</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289268</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!hoursToDisplay: 4,
+  local!statuses: {
+    a!map(
+      name: "Queued",
+      value: #"_a-0000ec54-b070-8000-9bc1-011c48011c48_10675"
+    ),
+    a!map(
+      name: "Running",
+      value: #"_a-0000ec93-b74f-8000-9bd1-011c48011c48_16933"
+    ),
+    a!map(
+      name: "Running (Microbatch)",
+      value: #"_a-0000ec93-b74f-8000-9bd1-011c48011c48_17065"
+    ),
+    a!map(
+      name: "Failed",
+      value: #"_a-0000e398-8061-8000-8592-01ef9001ef90_104405"
+    ),
+    a!map(
+      name: "Cancelled",
+      value: #"_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_13633"
+    ),
+    a!map(
+      name: "Completed",
+      value: #"_a-0000e398-8061-8000-8592-01ef9001ef90_104259"
+    )
+  },
+  local!status: { #"_a-0000e398-8061-8000-8592-01ef9001ef90_104259" },
+  local!userSelectedEndDateTime,
+  local!endDateTime: a!refreshVariable(
+    value: if(
+      local!userSelectedEndDateTime,
+      local!userSelectedEndDateTime,
+      now()
+    ),
+    refreshOnVarChange: local!userSelectedEndDateTime,
+    refreshInterval: #"_a-0000ec54-b070-8000-9bc1-011c48011c48_10966"
+  ),
+  local!data: #"SYSTEM_SYSRULES_recordData"(
+    recordType: #"urn:appian:record-type:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88",
+    filters: {
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/timestamp",
+        operator: "between",
+        value: {
+          local!endDateTime - intervalds(local!hoursToDisplay, 0, 0),
+          local!endDateTime
+        }
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/statusId",
+        operator: "in",
+        value: local!status
+      ),
+      #"SYSTEM_SYSRULES_queryFilter"(
+        field: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/jobTypeId",
+        operator: "=",
+        value: ri!jobTypeId,
+        applyWhen: a!isNotNullOrEmpty(ri!jobTypeId)
+      )
+    }
+  ),
+  #"SYSTEM_SYSRULES_sectionLayout_v1"(
+    label: "Rendimiento de la transacción",
+    contents: {
+      #"SYSTEM_SYSRULES_sideBySideLayout"(
+        items: {
+          #"SYSTEM_SYSRULES_sideBySideItem"(
+            item: #"SYSTEM_SYSRULES_dateTimeField"(
+              label: "Fecha de finalización",
+              labelPosition: "ABOVE",
+              value: local!endDateTime,
+              saveInto: local!userSelectedEndDateTime
+            ),
+            width: "MINIMIZE"
+          ),
+          #"SYSTEM_SYSRULES_sideBySideItem"(
+            item: #"SYSTEM_SYSRULES_dropdownField_v1"(
+              label: "Periodo",
+              value: local!hoursToDisplay,
+              saveInto: local!hoursToDisplay,
+              choiceLabels: {
+                "1 hora",
+                "2 horas",
+                "4 horas",
+                "8 horas",
+                "24 horas",
+                "48 horas"
+              },
+              choiceValues: { 1, 2, 4, 8, 24, 48 }
+            ),
+            width: "MINIMIZE"
+          ),
+          #"SYSTEM_SYSRULES_sideBySideItem"(
+            item: #"SYSTEM_SYSRULES_multipleDropdownField_v1"(
+              label: "Estatus",
+              placeholder: "Estatus",
+              value: local!status,
+              saveInto: local!status,
+              choiceLabels: local!statuses.name,
+              choiceValues: local!statuses.value
+            )
+          )
+        }
+      ),
+      #"SYSTEM_SYSRULES_lineChartField_v1"(
+        data: local!data,
+        config: #"SYSTEM_SYSRULES_lineChartConfig"(
+          primaryGrouping: #"SYSTEM_SYSRULES_grouping"(
+            field: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/timestamp",
+            interval: if(local!hoursToDisplay &gt; 4, "HOUR", "MINUTE"),
+            alias: "time_group"
+          ),
+          secondaryGrouping: #"SYSTEM_SYSRULES_grouping"(
+            field: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/statusId",
+            alias: "status_id",
+            formatValue: displayvalue(
+              fv!value,
+              local!statuses.value,
+              local!statuses.name,
+              "Status " &amp; fv!value
+            )
+          ),
+          measures: #"SYSTEM_SYSRULES_measure"(
+            field: #"urn:appian:record-field:v1:733f5dfe-3d3c-4db8-a281-c2c14365ba88/id",
+            function: "COUNT"
+          ),
+          sort: #"SYSTEM_SYSRULES_sortInfo"(field: "time_group", ascending: false),
+          dataLimit: 300,
+          showIntervalsWithNoData: true
+        ),
+        height: "SHORT",
+        yAxisTitle: "# de transacciones"
+      )
+    },
+    labelSize: "SMALL"
+  )
+)</definition>
+        <namedTypedValue>
+            <name>jobTypeId</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e470-9a48-8000-8592-01ef9001ef90_106938"/>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_30274"/>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_30813"/>
+        <historyInfo versionUuid="_a-0000e844-c11d-8000-9bc9-011c48011c48_1106140"/>
+        <historyInfo versionUuid="_a-0000ec53-364e-8000-9bbd-011c48011c48_9158"/>
+        <historyInfo versionUuid="_a-0000ec53-61b2-8000-9bbf-011c48011c48_10009"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10730"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10981"/>
+        <historyInfo versionUuid="_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_12681"/>
+        <historyInfo versionUuid="_a-0000ec76-910b-8000-9bcb-011c48011c48_14037"/>
+        <historyInfo versionUuid="_a-0000ec93-b74f-8000-9bd1-011c48011c48_17025"/>
+        <historyInfo versionUuid="_a-0000ec93-b74f-8000-9bd1-011c48011c48_17119"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1568720"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5379378"/>
+    </history>
+</contentHaul>

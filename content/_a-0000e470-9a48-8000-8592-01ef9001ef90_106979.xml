@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ef54-29a7-8000-9ce2-011c48011c48_6859629</versionUuid>
+    <interface>
+        <name>TM_if_JobType</name>
+        <uuid>_a-0000e470-9a48-8000-8592-01ef9001ef90_106979</uuid>
+        <description>Main Job Type representation</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289268</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!isMicrobatch: ri!jobType.microbatchSize &gt; 1,
+  local!cantidadBatch: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6841711",
+  local!ejecutionInterval: #"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6859470",
+  {
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Nombre",
+      labelPosition: "JUSTIFIED",
+      value: ri!jobType.name,
+      saveInto: {
+        ri!jobType.name,
+        /* by default we want context to be passed */
+        if(
+          a!isNullOrEmpty(ri!jobType.isContextPassed),
+          a!save(
+            target: ri!jobType.isContextPassed,
+            value: true
+          ),
+          {}
+        )
+      },
+      refreshAfter: "UNFOCUS",
+      required: not(ri!readOnly),
+      validations: {
+        if(
+          len(ri!jobType.name) &gt; 45,
+          "Maximum length must not exceed 45 characters",
+          null
+        )
+      },
+      readOnly: ri!readOnly
+    ),
+    #"SYSTEM_SYSRULES_paragraphField"(
+      label: "Descripción",
+      labelPosition: "JUSTIFIED",
+      value: ri!jobType.description,
+      saveInto: ri!jobType.description,
+      refreshAfter: "UNFOCUS",
+      validations: {},
+      readOnly: ri!readOnly,
+      height: "MEDIUM"
+    ),
+    #"SYSTEM_SYSRULES_pickerFieldCustom"(
+      label: "Modelo de proceso",
+      labelPosition: "JUSTIFIED",
+      placeholder: "Buscar un modelo de proceso",
+      instructions: "Cree un modelo de proceso y configúrelo como se define en la sección Configuración de procesos a continuación",
+      value: ri!jobType.modelUuid,
+      saveInto: ri!jobType.modelUuid,
+      selectedLabels: if(
+        a!isNullOrEmpty(ri!jobType.modelUuid),
+        {},
+        a!defaultValue(
+          #"_a-0000e3b8-7177-8000-8592-01ef9001ef90_104830"(modelUuids: ri!jobType.modelUuid),
+          { name: "Process Model Not Found" }
+        ).name
+      ),
+      suggestFunction: #"_a-0000e7da-c788-8000-d625-01ef9001ef90_29385"(filter: _),
+      showWhen: not(ri!readOnly),
+      required: not(ri!readOnly),
+      maxSelections: 1,
+      readOnly: ri!readOnly
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Process Model",
+      labelPosition: "JUSTIFIED",
+      value: ri!jobType.modelUuid,
+      saveInto: ri!jobType.modelUuid,
+      refreshAfter: "UNFOCUS",
+      showWhen: ri!readOnly,
+      required: not(ri!readOnly),
+      validations: {
+        if(
+          len(ri!jobType.modelUuid) &lt;&gt; 36,
+          "Process Model UUID must be exactly 36 characters",
+          null
+        )
+      },
+      readOnly: ri!readOnly
+    ),
+    #"SYSTEM_SYSRULES_checkboxField_v1"(
+      label: "¿Empiezar con el contexto?",
+      labelPosition: "JUSTIFIED",
+      instructions: if(
+        ri!readOnly,
+        "",
+        "Si el proceso debe rellenar automáticamente los parámetros del proceso desde el contexto JSON de las transacciones. Si tiene un contexto grande (&gt; 10KiB), debe desmarcar esto y recuperarlo en tiempo de ejecución dentro del proceso."
+      ),
+      value: if(
+        or(
+          ri!jobType.isContextPassed,
+          a!isNullOrEmpty(ri!jobType.isContextPassed)
+        ),
+        true,
+        null
+      ),
+      saveInto: {
+        a!save(
+          target: ri!jobType.isContextPassed,
+          value: if(isnull(save!value), false, true)
+        ),
+        a!save(
+          target: ri!jobType.microbatchSize,
+          value: if(save!value, 0, ri!jobType.microbatchSize)
+        )
+      },
+      choiceLabels: {
+        "Sí, pasa el contexto al proceso que se inicia"
+      },
+      choiceValues: { true },
+      showWhen: not(ri!readOnly)
+    ),
+    #"SYSTEM_SYSRULES_textField"(
+      label: "Start with context?",
+      labelPosition: "JUSTIFIED",
+      value: if(ri!jobType.isContextPassed, "Yes", "No"),
+      showWhen: ri!readOnly,
+      readOnly: ri!readOnly
+    ),
+    #"SYSTEM_SYSRULES_sideBySideLayout"(
+      items: {
+        #"SYSTEM_SYSRULES_sideBySideItem"(
+          item: #"SYSTEM_SYSRULES_integerField"(
+            label: "Máximo funcionamiento",
+            labelPosition: "JUSTIFIED",
+            instructions: if(
+              not(ri!readOnly),
+              if(
+                local!isMicrobatch,
+                a!localVariables(
+                  local!totalTransactions: ri!jobType.maxRunning * ri!jobType.microbatchSize,
+                  "El número máximo de microlotes que se permite ejecutar en paralelo" &amp; if(
+                    local!totalTransactions &gt; 0,
+                    " (resultantes en el procesamiento" &amp; local!totalTransactions &amp; " transactions across " &amp; ri!jobType.maxRunning &amp; " microbatches).",
+                    "."
+                  )
+                ),
+                "El número máximo de transacciones que se permiten ejecutar en paralelo."
+              ),
+              null
+            ),
+            value: ri!jobType.maxRunning,
+            saveInto: ri!jobType.maxRunning,
+            refreshAfter: "UNFOCUS",
+            required: not(ri!readOnly),
+            validations: {
+              if(
+                ri!jobType.maxRunning &lt; 1,
+                "Debe ser al menos 1",
+                null
+              )
+            },
+            readOnly: ri!readOnly
+          )
+        ),
+        #"SYSTEM_SYSRULES_sideBySideItem"(
+          item: #"SYSTEM_SYSRULES_integerField"(
+            label: "Tamaño del microlote",
+            labelPosition: "JUSTIFIED",
+            instructions: if(
+              not(ri!readOnly),
+              "Configura opcionalmente como un microlote. Esto agrupa automáticamente las transacciones del tamaño especificado. Utilice microlotes para lograr el mayor rendimiento.",
+              null
+            ),
+            value: ri!jobType.microbatchSize,
+            saveInto: {
+              ri!jobType.microbatchSize,
+              if(
+                ri!jobType.microbatchSize &gt; 1,
+                a!save(
+                  target: ri!jobType.isContextPassed,
+                  value: false
+                ),
+                {}
+              )
+            },
+            refreshAfter: "UNFOCUS",
+            showWhen: or(
+              and(ri!readOnly, local!isMicrobatch),
+              not(ri!readOnly)
+            ),
+            validations: {
+              if(
+                or(
+                  ri!jobType.microbatchSize = 0,
+                  ri!jobType.microbatchSize &gt; 1
+                ),
+                null,
+                "Debe ser 0 o mayor que 1"
+              )
+            },
+            readOnly: ri!readOnly
+          )
+        )
+      }
+    ),
+    #"SYSTEM_SYSRULES_integerField"(
+      label: "Tamaño del batch",
+      labelPosition: "JUSTIFIED",
+      instructions: if(
+        not(ri!readOnly),
+        "Número de correos a clasificar en cada ejecución",
+        null
+      ),
+      value: local!cantidadBatch,
+      saveInto: local!cantidadBatch,
+      refreshAfter: "UNFOCUS",
+      required: not(ri!readOnly),
+      validations: {
+        if(
+          local!cantidadBatch &lt; 1,
+          "Debe ser al menos 1",
+          if(
+            local!cantidadBatch &gt; 100,
+            "Debe ser máximo 100",
+            null
+          )
+        )
+      },
+      readOnly: ri!readOnly,
+      showWhen: contains(#"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6859502", ri!jobType.modelUuid)
+    ),
+    #"SYSTEM_SYSRULES_integerField"(
+      label: "Intervalo de ejecución",
+      labelPosition: "JUSTIFIED",
+      instructions: if(
+        not(ri!readOnly),
+        "Cada cuánto tiempo en minutos se lanzará una nueva ejecución del proceso",
+        null
+      ),
+      value: local!ejecutionInterval,
+      saveInto: local!ejecutionInterval,
+      refreshAfter: "UNFOCUS",
+      required: not(ri!readOnly),
+      validations: {
+        if(
+          local!ejecutionInterval &lt; 1,
+          "Debe ser al menos 1",
+          null
+        )
+      },
+      readOnly: ri!readOnly,
+      showWhen: contains(#"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6859502", ri!jobType.modelUuid)
+    ),
+    #"SYSTEM_SYSRULES_sectionLayout_v1"(
+      label: "Configuración del proceso",
+      contents: {
+        #"SYSTEM_SYSRULES_gridField_v2"(
+          label: "Parámetros del proceso",
+          labelPosition: "ABOVE",
+          instructions: "Cree un modelo de proceso con los siguientes parámetros de proceso",
+          data: {
+            {
+              name: "transaction",
+              dataType: "TM_Transaction",
+              array: "No",
+              desc: if(
+                local!isMicrobatch,
+                "Parámetro requerido que representa el microlote de transacciones creadas a partir de varias transacciones individuales.",
+                "Parámetro requerido que representa su transacción. Se utiliza para marcar la transacción como completada."
+              )
+            },
+            if(
+              local!isMicrobatch,
+              {
+                name: "transactionIds",
+                dataType: "Integer",
+                array: "Yes",
+                desc: "Required parameter that provides a list of transaction ids for each of the transactions within this microbatch."
+              },
+              {}
+            ),
+            if(
+              local!isMicrobatch,
+              {
+                name: "Sin parámetros de proceso adicionales",
+                dataType: "n/a",
+                array: "n/a",
+                desc: "Los parámetros de proceso adicionales que definió NO se rellenarán."
+              },
+              {
+                name: "Los parámetros de su proceso",
+                dataType: "-",
+                array: "-",
+                desc: "Agregue parámetros de proceso para que coincidan con su contexto."
+              }
+            )
+          },
+          columns: {
+            #"SYSTEM_SYSRULES_gridColumn"(
+              label: "Name",
+              value: fv!row.name,
+              width: "MEDIUM"
+            ),
+            #"SYSTEM_SYSRULES_gridColumn"(
+              label: "Tipo de datos",
+              value: fv!row.dataType,
+              width: "NARROW"
+            ),
+            #"SYSTEM_SYSRULES_gridColumn"(
+              label: "Múltiples",
+              value: fv!row.array,
+              width: "NARROW"
+            ),
+            #"SYSTEM_SYSRULES_gridColumn"(label: "Descripción", value: fv!row.desc)
+          }
+        ),
+        #"SYSTEM_SYSRULES_richTextDisplayField"(
+          label: "Nodos de proceso",
+          labelPosition: "ABOVE",
+          value: {
+            "Como cada instancia de proceso individual procesará una sola transacción, utilice los parámetros del proceso como con cualquier otro proceso para realizar los pasos requeridos.",
+            char(10),
+            "Antes de que finalice su proceso, use un subproceso para ejecutar TM Marque la transacción como completa pasando el parámetro de proceso de transacción como una entrada."
+          },
+          showWhen: not(local!isMicrobatch)
+        ),
+        #"SYSTEM_SYSRULES_richTextDisplayField"(
+          label: "Process Nodes",
+          labelPosition: "ABOVE",
+          value: {
+            "As each individual process instance will process ",
+            #"SYSTEM_SYSRULES_richTextItem_v1"(
+              text: { "a microbatch of several transactions" },
+              style: { "STRONG" }
+            ),
+            " use the ",
+            #"SYSTEM_SYSRULES_richTextItem_v1"(
+              text: { "transactionIds " },
+              style: { "EMPHASIS" }
+            ),
+            "parameter to retrieve the context you require from ",
+            #"SYSTEM_SYSRULES_richTextItem_v1"(
+              text: { "tm_transaction" },
+              style: { "EMPHASIS" }
+            ),
+            " table.",
+            char(10),
+            char(10),
+            "Before your process ends use a subprocess to execute ",
+            #"SYSTEM_SYSRULES_richTextItem_v1"(
+              text: { "TM Mark Transactions as Complete " },
+              style: { "STRONG" }
+            ),
+            "passing ",
+            #"SYSTEM_SYSRULES_richTextItem_v1"(text: { "both " }, style: { "STRONG" }),
+            #"SYSTEM_SYSRULES_richTextItem_v1"(
+              text: { "transaction " },
+              style: { "EMPHASIS" }
+            ),
+            "and ",
+            #"SYSTEM_SYSRULES_richTextItem_v1"(
+              text: { "transactionIds" },
+              style: { "EMPHASIS" }
+            ),
+            " process parameter as an input. As in - ",
+            #"SYSTEM_SYSRULES_richTextItem_v1"(
+              text: {
+                "=append(pv!transactionIds, pv!transaction.id)"
+              },
+              color: "#666666"
+            )
+          },
+          showWhen: local!isMicrobatch
+        )
+        
+      },
+      showWhen: not(ri!readOnly),
+      isCollapsible: true
+    ),
+    #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Update",
+        saveInto: {
+          a!save(target: ri!readOnly, value: true),
+          #"SYSTEM_SYSRULES_startProcess"(
+            processModel: #"_a-0000e470-9a48-8000-8592-01ef9001ef90_107007",
+            processParameters: {
+              jobType: ri!jobType,
+              batchSize: local!cantidadBatch,
+              ejecutionInterval: local!ejecutionInterval
+            }
+          )
+        },
+        style: "SOLID"
+      ),
+      secondaryButtons: #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancel",
+        saveInto: a!save(target: ri!readOnly, value: true),
+        style: "OUTLINE"
+      ),
+      showWhen: and(
+        not(ri!readOnly),
+        contains(#"_a-0000ef54-29a7-8000-9ce2-011c48011c48_6859502", ri!jobType.modelUuid)
+      )
+    ),
+    #"SYSTEM_SYSRULES_ButtonLayout"(
+      primaryButtons: #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Añadir tipo de trabajo",
+        saveInto: a!save(target: ri!jobType.isActive, value: true),
+        submit: true,
+        style: "SOLID"
+      ),
+      secondaryButtons: #"SYSTEM_SYSRULES_buttonWidget_v1"(
+        label: "Cancelar",
+        saveInto: a!save(target: ri!isCancel, value: true),
+        validate: false,
+        submit: true
+      ),
+      showWhen: or(
+        isnull(ri!recordContext),
+        not(ri!recordContext)
+      )
+    )
+  }
+)</definition>
+        <namedTypedValue>
+            <name>jobType</name>
+            <type>
+                <name>TM_JobType</name>
+                <namespace>urn:com:appian:types:TM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>readOnly</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>recordContext</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>isCancel</name>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>batchSize</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>ejecutionInterval</name>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name/>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types:TM}TM_JobType'(
+
+)</a:value>
+                    <a:nameRef>jobType</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xsd:boolean">false</a:value>
+                    <a:nameRef>readOnly</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>recordContext</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:boolean"/>
+                    <a:nameRef>isCancel</a:nameRef>
+                    <a:id>4</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>batchSize</a:nameRef>
+                    <a:id>5</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" xsi:type="xsd:int"/>
+                    <a:nameRef>ejecutionInterval</a:nameRef>
+                    <a:id>6</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e470-9a48-8000-8592-01ef9001ef90_107283"/>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_29242"/>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_30242"/>
+        <historyInfo versionUuid="_a-0000ec53-364e-8000-9bbd-011c48011c48_9255"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10673"/>
+        <historyInfo versionUuid="_a-0000ec5a-d579-8000-9bc3-011c48011c48_11169"/>
+        <historyInfo versionUuid="_a-0000ec5a-d579-8000-9bc3-011c48011c48_11468"/>
+        <historyInfo versionUuid="_a-0000ec5e-d78c-8000-9bc5-011c48011c48_12005"/>
+        <historyInfo versionUuid="_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_13725"/>
+        <historyInfo versionUuid="_a-0000ec93-b74f-8000-9bd1-011c48011c48_16570"/>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1572142"/>
+        <historyInfo versionUuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6859629"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec7f-d3cb-8000-9bcd-011c48011c48_15909</versionUuid>
+    <constant>
+        <name>TM_BATCH_SLEEP_SEC</name>
+        <uuid>_a-0000e393-277a-8000-8592-01ef9001ef90_95319</uuid>
+        <description>The amount of time in seconds to sleep between batches</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3274097</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>int</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </typedValue>
+        <isEnvironmentSpecific>true</isEnvironmentSpecific>
+    </constant>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e393-277a-8000-8592-01ef9001ef90_95323"/>
+        <historyInfo versionUuid="_a-0000e3ab-2e40-8000-8592-01ef9001ef90_104595"/>
+        <historyInfo versionUuid="_a-0000e3b9-9c60-8000-8592-01ef9001ef90_105080"/>
+        <historyInfo versionUuid="_a-0000e41e-1753-8000-9ba9-011c48011c48_3289291"/>
+        <historyInfo versionUuid="_a-0000e470-9a48-8000-8592-01ef9001ef90_107393"/>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_30630"/>
+        <historyInfo versionUuid="_a-0000ec53-364e-8000-9bbd-011c48011c48_9276"/>
+        <historyInfo versionUuid="_a-0000ec53-61b2-8000-9bbf-011c48011c48_9479"/>
+        <historyInfo versionUuid="_a-0000ec5a-d579-8000-9bc3-011c48011c48_11695"/>
+        <historyInfo versionUuid="_a-0000ec5e-d78c-8000-9bc5-011c48011c48_12064"/>
+        <historyInfo versionUuid="_a-0000ec6d-4ad8-8000-9bc9-011c48011c48_12704"/>
+        <historyInfo versionUuid="_a-0000ec76-910b-8000-9bcb-011c48011c48_15152"/>
+        <historyInfo versionUuid="_a-0000ec7f-d3cb-8000-9bcd-011c48011c48_15909"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec54-b070-8000-9bc1-011c48011c48_10872</versionUuid>
+    <rule>
+        <name>TM_buildTransactionStatuesFromFailedTransactionStarts</name>
+        <uuid>_a-0000e398-8061-8000-8592-01ef9001ef90_104411</uuid>
+        <description>Returns Transactions That Failed In Start Processes</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289262</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  local!transactionIds: ri!transactionStarts.context.transaction.id,
+  local!allIndexes: enumerate(
+    count(
+      local!transactionIds
+    )
+  ) + 1,
+  local!indexesNotStarted: symmetricdifference(
+    local!allIndexes,
+    ri!indexesStarted
+  ),
+  #"SYSTEM_SYSRULES_forEach"(
+    items: index(
+      ri!transactionStarts.context.transaction.id,
+      local!indexesNotStarted
+    ),
+    expression: 'type!{urn:com:appian:types:TM}TM_TransactionStatus'(
+      id: fv!item,
+      statusId: #"_a-0000e398-8061-8000-8592-01ef9001ef90_104405"
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>transactionStarts</name>
+            <type>
+                <name>TM_TransactionStart?list</name>
+                <namespace>urn:com:appian:types:TM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>indexesStarted</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>All transactions started OK</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{
+  'type!{urn:com:appian:types:TM}TM_TransactionStart'(
+    modelId: 1,
+    context: a!map(
+      transaction: a!map(
+        id: 111
+      )
+    )
+  ),
+  'type!{urn:com:appian:types:TM}TM_TransactionStart'(
+    modelId: 2,
+    context: a!map(
+      transaction: a!map(
+        id: 222
+      )
+    )
+  )
+}</a:value>
+                    <a:nameRef>transactionStarts</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{2, 1}</a:value>
+                    <a:nameRef>indexesStarted</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput>
+                        <a:type a:uuid="{http://www.appian.com/ae/types/2009}Integer?list"/>
+                        <a:runtimeType a:uuid="{http://www.appian.com/ae/types/2009}Integer?list"/>
+                        <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{}</a:value>
+                    </a:expectedOutput>
+                </a:assertions>
+                <a:isDefault>true</a:isDefault>
+            </el>
+            <el>
+                <a:name>First transaction failed to start</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{
+  'type!{urn:com:appian:types:TM}TM_TransactionStart'(
+    modelId: 1,
+    context: a!map(
+      transaction: a!map(
+        id: 111
+      )
+    )
+  ),
+  'type!{urn:com:appian:types:TM}TM_TransactionStart'(
+    modelId: 2,
+    context: a!map(
+      transaction: a!map(
+        id: 222
+      )
+    )
+  )
+}</a:value>
+                    <a:nameRef>transactionStarts</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{ 2 }</a:value>
+                    <a:nameRef>indexesStarted</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+                    <a:resultAssertions>test!output[1].id = ri!transactionStarts[1].context.transaction.id</a:resultAssertions>
+                </a:assertions>
+                <a:isDefault>false</a:isDefault>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e398-8061-8000-8592-01ef9001ef90_104454"/>
+        <historyInfo versionUuid="_a-0000e41e-1753-8000-9ba9-011c48011c48_3289398"/>
+        <historyInfo versionUuid="_a-0000ec54-b070-8000-9bc1-011c48011c48_10872"/>
+    </history>
+</contentHaul>

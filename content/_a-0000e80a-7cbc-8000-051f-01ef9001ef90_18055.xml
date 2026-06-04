@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e80a-7cbc-8000-051f-01ef9001ef90_18306</versionUuid>
+    <constant>
+        <name>TM_USE_ORACLE_RDBMS</name>
+        <uuid>_a-0000e80a-7cbc-8000-051f-01ef9001ef90_18055</uuid>
+        <description>Toggles certain places in the application that require different configurations when connected to an Oracle RDBMS (vs MySQL/MariaDb and SQL Server). Additionally, separate SQL scripts need to be run depending on the RDBMS.</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3274097</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>boolean</name>
+                <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+            </type>
+        </typedValue>
+        <isEnvironmentSpecific>true</isEnvironmentSpecific>
+    </constant>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e80a-7cbc-8000-051f-01ef9001ef90_18059"/>
+        <historyInfo versionUuid="_a-0000e80a-7cbc-8000-051f-01ef9001ef90_18306"/>
+    </history>
+</contentHaul>

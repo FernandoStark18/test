@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e7da-c788-8000-d625-01ef9001ef90_29384</versionUuid>
+    <rule>
+        <name>TM_buildTransactionStarts</name>
+        <uuid>_a-0000e398-8061-8000-8592-01ef9001ef90_104323</uuid>
+        <description>Builds TM_TransactionStart Objects Required To Initiate The Transaction Process Instances</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289262</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_forEach"(
+  items: merge(
+    ri!modelUuids,
+    ri!transactionIds,
+    ri!contextJSONs
+  ),
+  expression: a!localVariables(
+    local!modelId: displayvalue(
+      fv!item[1],
+      ri!models.uuid,
+      ri!models.id,
+      null
+    ),
+    local!isJsonEmpty: or(
+      isnull(
+        fv!item[3]
+      ),
+      len(
+        fv!item[3]
+      ) &lt;= 2
+    ),
+    local!transaction: 'type!{urn:com:appian:types:TM}TM_TransactionToken'(
+      id: fv!item[2]
+    ),
+    'type!{urn:com:appian:types:TM}TM_TransactionStart'(
+      modelId: local!modelId,
+      context: if(
+        local!isJsonEmpty,
+        /* only pass transaction token */
+        {
+          transaction: local!transaction
+        },
+        /* add transaction token to existing context */
+        #"SYSTEM_SYSRULES_fromJson_v1"(
+          jsonText: left(
+            fv!item[3],
+            len(
+              fv!item[3]
+            ) - 1
+          ) &amp; ", " &amp; """transaction"": " &amp; #"SYSTEM_SYSRULES_toJson_v1"(
+            local!transaction
+          ) &amp; "}"
+        )
+      )
+    )
+  )
+)</definition>
+        <namedTypedValue>
+            <name>models</name>
+            <type>
+                <name>TM_ProcessModel?list</name>
+                <namespace>urn:com:appian:types:TM</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>modelUuids</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>transactionIds</name>
+            <type>
+                <name>Integer?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <namedTypedValue>
+            <name>contextJSONs</name>
+            <type>
+                <name>Text?list</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+        </namedTypedValue>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>Builder Test</a:name>
+                <a:description/>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">'type!{urn:com:appian:types:TM}TM_ProcessModel'(
+  id: 1,
+  uuid: "uuid"
+)</a:value>
+                    <a:nameRef>models</a:nameRef>
+                    <a:id>1</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{"uuid", "uuid", "uuid"}</a:value>
+                    <a:nameRef>modelUuids</a:nameRef>
+                    <a:id>2</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{1, 2, 3}</a:value>
+                    <a:nameRef>transactionIds</a:nameRef>
+                    <a:id>3</a:id>
+                </a:ruleInputTestConfigs>
+                <a:ruleInputTestConfigs>
+                    <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{
+  #"SYSTEM_SYSRULES_toJson_v1"({activityId: 1}),
+  null,
+  #"SYSTEM_SYSRULES_toJson_v1"({dbId: 3})
+}</a:value>
+                    <a:nameRef>contextJSONs</a:nameRef>
+                    <a:id>4</a:id>
+                </a:ruleInputTestConfigs>
+                <a:assertions>
+                    <a:expectedOutput>
+                        <a:type a:uuid="{http://www.appian.com/ae/types/2009}Variant"/>
+                        <a:runtimeType a:uuid="{http://www.appian.com/ae/types/2009}Variant"/>
+                        <a:value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="a:Expression">{
+  'type!{urn:com:appian:types:TM}TM_TransactionStart'(
+    modelId: 1,
+    context: {
+      activityId: 1,
+      transaction: {
+        id: 1
+      }
+    }
+  ),
+  'type!{urn:com:appian:types:TM}TM_TransactionStart'(
+    modelId: 1,
+    context: {
+      transaction: 'type!{urn:com:appian:types:TM}TM_TransactionToken'(
+        id: 2
+      )
+    }
+  ),
+  'type!{urn:com:appian:types:TM}TM_TransactionStart'(
+    modelId: 1,
+    context: {
+      dbId: 3,
+      transaction: {
+        id: 3
+      }
+    }
+  )
+}</a:value>
+                    </a:expectedOutput>
+                </a:assertions>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000e3ab-2e40-8000-8592-01ef9001ef90_104519"/>
+        <historyInfo versionUuid="_a-0000e3b8-7177-8000-8592-01ef9001ef90_104886"/>
+        <historyInfo versionUuid="_a-0000e3b9-9c60-8000-8592-01ef9001ef90_105006"/>
+        <historyInfo versionUuid="_a-0000e41e-1753-8000-9ba9-011c48011c48_3289392"/>
+        <historyInfo versionUuid="_a-0000e4d6-77d9-8000-8592-01ef9001ef90_107830"/>
+        <historyInfo versionUuid="_a-0000e7da-c788-8000-d625-01ef9001ef90_29384"/>
+    </history>
+</contentHaul>

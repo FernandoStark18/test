@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000e494-3e27-8000-8592-01ef9001ef90_107543</versionUuid>
+    <constant>
+        <name>TM_PM_MAIN_TOGGLE_ACTION</name>
+        <uuid>_a-0000e470-9a48-8000-8592-01ef9001ef90_107172</uuid>
+        <description>References the process model for enabling and disabling the main Transaction Manager process</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3274097</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <typedValue>
+            <type>
+                <name>ProcessModel</name>
+                <namespace>http://www.appian.com/ae/types/2009</namespace>
+            </type>
+            <value>0002e470-d0da-8000-855d-014d98014d98</value>
+        </typedValue>
+        <isEnvironmentSpecific>false</isEnvironmentSpecific>
+    </constant>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000e470-9a48-8000-8592-01ef9001ef90_107176"/>
+        <historyInfo versionUuid="_a-0000e494-3e27-8000-8592-01ef9001ef90_107543"/>
+    </history>
+</contentHaul>

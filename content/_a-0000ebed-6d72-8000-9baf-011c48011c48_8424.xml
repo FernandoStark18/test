@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0000ec53-364e-8000-9bbd-011c48011c48_9190</versionUuid>
+    <rule>
+        <name>TM_getJobTypeModelUuids</name>
+        <uuid>_a-0000ebed-6d72-8000-9baf-011c48011c48_8424</uuid>
+        <description>query record expression to get model UUIDs from the Job Type record (used instead of checking process model report in TM_getProcessModels)</description>
+        <parentUuid>_a-0000e41e-1753-8000-9ba9-011c48011c48_3289276</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>#"SYSTEM_SYSRULES_queryRecordType_v1"(
+  recordType: #"urn:appian:record-type:v1:b3b53bd9-776c-40c2-a42b-bd112b0fd293",
+  fields: {
+    #"urn:appian:record-field:v1:b3b53bd9-776c-40c2-a42b-bd112b0fd293/modelUuid"
+  },
+  pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(
+    startIndex: 1,
+    batchSize: #"_a-0000ec53-364e-8000-9bbd-011c48011c48_9160"
+  )
+).data[#"urn:appian:record-field:v1:b3b53bd9-776c-40c2-a42b-bd112b0fd293/modelUuid"]</definition>
+        <preferredEditor>legacy</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+    </rule>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <typedValue>
+        <type>
+            <name>RuleTestConfig?list</name>
+            <namespace>http://www.appian.com/ae/types/2009</namespace>
+        </type>
+        <value>
+            <el>
+                <a:name>runs without errors</a:name>
+                <a:description/>
+                <a:assertions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+            </el>
+        </value>
+    </typedValue>
+    <history>
+        <historyInfo versionUuid="_a-0000ec53-364e-8000-9bbd-011c48011c48_9190"/>
+    </history>
+</contentHaul>
