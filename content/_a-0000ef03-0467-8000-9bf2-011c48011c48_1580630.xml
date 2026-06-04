@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5501162</versionUuid>
+    <interface>
+        <name>PQR_VinculacionEntidadLista</name>
+        <uuid>_a-0000ef03-0467-8000-9bf2-011c48011c48_1580630</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  #"SYSTEM_SYSRULES_headerContentLayout"(
+    header: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_stampField"(
+                          labelPosition: "COLLAPSED",
+                          icon: "handshake",
+                          contentColor: "STANDARD"
+                        ),
+                        width: "MINIMIZE"
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(
+                              text: "Vinculación entidad",
+                              size: "LARGE",
+                              color: "#FFFFFF",
+                              style: "STRONG"
+                            )
+                          }
+                        )
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                },
+                width: "WIDE"
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_recordActionField_v1"(
+                    actions: {
+                      #"SYSTEM_SYSRULES_recordActionItem"(
+                        action: #"urn:appian:record-action:v1:da2d4c98-9a7c-448d-97b5-6fe73589ad7e/8bfd5dea-af01-44ff-9fb1-ea36c71fed97"
+                      )
+                    },
+                    align: "END",
+                    style: "LINKS",
+                    display: "LABEL_AND_ICON"
+                  )
+                },
+                width: "AUTO"
+              )
+            },
+            alignVertical: "MIDDLE",
+            spacing: "STANDARD"
+          )
+        },
+        marginBelow: "STANDARD",
+        style: "#1d2d44",
+        showBorder: false,
+        padding: "LESS"
+      )
+    },
+    contents: {
+      #"SYSTEM_SYSRULES_gridField_v5"(
+        label: "",
+        labelPosition: "COLLAPSED",
+        data: #"SYSTEM_SYSRULES_recordData"(
+          recordType: #"urn:appian:record-type:v1:8150e182-a133-4bb8-a849-3286f903cb29",
+          fields: {}
+        ),
+        showRefreshButton: false,
+        showSearchBox: false,
+        similarityScoreThreshold: null,
+        recordActions: {},
+        columns: {
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Nombre",
+            value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+              value: {
+                #"SYSTEM_SYSRULES_richTextItem_v1"(
+                  text: fv!row[#"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/73f753fb-cec5-433c-ad8d-284267bd2913"],
+                  link: #"SYSTEM_SYSRULES_recordLink"(
+                    recordType: #"urn:appian:record-type:v1:8150e182-a133-4bb8-a849-3286f903cb29",
+                    identifier: fv!identifier
+                  ),
+                  linkStyle: "STANDALONE"
+                )
+              }
+            ),
+            sortField: #"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/73f753fb-cec5-433c-ad8d-284267bd2913"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Código",
+            value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/74b00dc1-2e3b-478b-bc7d-50ad4334551a"], "–"),
+            sortField: #"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/74b00dc1-2e3b-478b-bc7d-50ad4334551a",
+            align: "CENTER",
+            width: "NARROW"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "",
+            value: #"SYSTEM_SYSRULES_recordActionField_v1"(
+              actions: {
+                #"SYSTEM_SYSRULES_recordActionItem"(
+                  action: #"urn:appian:record-action:v1:8150e182-a133-4bb8-a849-3286f903cb29/e96ea981-9633-41bd-9cd9-b7a731e9a32f",
+                  identifier: fv!row[#"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/2b1230d9-6f5e-40cc-8431-6392697951c4"]
+                ),
+                #"SYSTEM_SYSRULES_recordActionItem"(
+                  action: #"urn:appian:record-action:v1:8150e182-a133-4bb8-a849-3286f903cb29/a23347b3-97e3-4378-b66f-1e31fcc33bcf",
+                  identifier: fv!row[#"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/2b1230d9-6f5e-40cc-8431-6392697951c4"]
+                )
+              },
+              style: "MENU_ICON",
+              display: "LABEL_AND_ICON"
+            ),
+            sortField: #"urn:appian:record-field:v1:8150e182-a133-4bb8-a849-3286f903cb29/2b1230d9-6f5e-40cc-8431-6392697951c4",
+            align: "CENTER",
+            width: "ICON"
+          )
+        },
+        refreshAfter: "RECORD_ACTION",
+        validations: {},
+        shadeAlternateRows: true
+      )
+    },
+    backgroundColor: "WHITE"
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1580649"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5501162"/>
+    </history>
+</contentHaul>

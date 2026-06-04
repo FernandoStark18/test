@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5489286</versionUuid>
+    <interface>
+        <name>PQR_DependenciaPublicaLista</name>
+        <uuid>_a-0000ef03-0467-8000-9bf2-011c48011c48_1558832</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  #"SYSTEM_SYSRULES_headerContentLayout"(
+    header: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_stampField"(
+                          labelPosition: "COLLAPSED",
+                          icon: "network-wired",
+                          contentColor: "STANDARD"
+                        ),
+                        width: "MINIMIZE"
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(
+                              text: "Dependencias",
+                              size: "LARGE",
+                              color: "#FFFFFF",
+                              style: "STRONG"
+                            )
+                          }
+                        )
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                },
+                width: "WIDE"
+              )
+            },
+            alignVertical: "MIDDLE",
+            spacing: "STANDARD"
+          )
+        },
+        marginBelow: "STANDARD",
+        style: "#1d2d44",
+        showBorder: false,
+        padding: "LESS"
+      )
+    },
+    contents: {
+      #"SYSTEM_SYSRULES_gridField_v5"(
+        labelPosition: "ABOVE",
+        data: #"SYSTEM_SYSRULES_recordData"(
+          recordType: #"urn:appian:record-type:v1:8f642b83-4da0-4cba-9543-5fe4685f073e",
+          fields: {}
+        ),
+        showRefreshButton: true,
+        showSearchBox: true,
+        similarityScoreThreshold: 1.0,
+        pageSize: 20,
+        columns: {
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Nombre",
+            value: a!defaultValue(
+              fv!row[#"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/94460adb-4d22-47e3-a1fe-3282fd3f505d"],
+              "–"
+            ),
+            sortField: #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/94460adb-4d22-47e3-a1fe-3282fd3f505d"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Codigo",
+            value: a!defaultValue(
+              fv!row[#"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/ff71f403-d065-4682-b2ef-a52d30caa783"],
+              "–"
+            ),
+            sortField: #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/ff71f403-d065-4682-b2ef-a52d30caa783"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Estado",
+            value: a!defaultValue(
+              fv!row[#"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/f909a40c-e9a3-42d2-a907-32df5f8974b3"],
+              "–"
+            ),
+            sortField: #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/f909a40c-e9a3-42d2-a907-32df5f8974b3"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Padre",
+            value: if(
+              a!isNullOrEmpty(
+                fv!row[#"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/4f93bb18-57b9-4d5b-a77c-88451dc00b54"]
+              ),
+              "-",
+              #"SYSTEM_SYSRULES_queryRecordType_v4"(
+                recordType: #"urn:appian:record-type:v1:8f642b83-4da0-4cba-9543-5fe4685f073e",
+                fields: {
+                  #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/94460adb-4d22-47e3-a1fe-3282fd3f505d"
+                },
+                filters: #"SYSTEM_SYSRULES_queryLogicalExpression"(
+                  operator: "AND",
+                  filters: {
+                    #"SYSTEM_SYSRULES_queryFilter"(
+                      field: #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/f427b119-d2ca-40f9-af20-f9f180ebe51f",
+                      operator: "=",
+                      value: fv!row[#"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/4f93bb18-57b9-4d5b-a77c-88451dc00b54"]
+                    )
+                  },
+                  ignoreFiltersWithEmptyValues: true
+                ),
+                pagingInfo: #"SYSTEM_SYSRULES_pagingInfo"(startIndex: 1, batchSize: 1)
+              ).data[#"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/94460adb-4d22-47e3-a1fe-3282fd3f505d"]
+            ),
+            sortField: #"urn:appian:record-field:v1:8f642b83-4da0-4cba-9543-5fe4685f073e/4f93bb18-57b9-4d5b-a77c-88451dc00b54"
+          )
+        },
+        refreshAfter: "RECORD_ACTION",
+        validations: {}
+      )
+    },
+    backgroundColor: "WHITE"
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1558889"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383344"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5489286"/>
+    </history>
+</contentHaul>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<contentHaul xmlns:a="http://www.appian.com/ae/types/2009">
+    <versionUuid>_a-0001eee3-3e88-8000-9cdc-011c48011c48_5501103</versionUuid>
+    <interface>
+        <name>PQR_TipoPQRDSFLista</name>
+        <uuid>_a-0000ef03-0467-8000-9bf2-011c48011c48_1580791</uuid>
+        <description></description>
+        <parentUuid>fec7b947-e78b-4b48-b823-cf6f3c839c50</parentUuid>
+        <visibility>
+            <advertise>false</advertise>
+            <hierarchy>true</hierarchy>
+            <indexable>true</indexable>
+            <quota>false</quota>
+            <searchable>true</searchable>
+            <system>false</system>
+            <unlogged>false</unlogged>
+        </visibility>
+        <definition>a!localVariables(
+  #"SYSTEM_SYSRULES_headerContentLayout"(
+    header: {
+      #"SYSTEM_SYSRULES_cardLayout"(
+        contents: {
+          #"SYSTEM_SYSRULES_columnsLayout"(
+            columns: {
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_sideBySideLayout"(
+                    items: {
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_stampField"(
+                          labelPosition: "COLLAPSED",
+                          icon: "list-alt",
+                          contentColor: "STANDARD"
+                        ),
+                        width: "MINIMIZE"
+                      ),
+                      #"SYSTEM_SYSRULES_sideBySideItem"(
+                        item: #"SYSTEM_SYSRULES_richTextDisplayField"(
+                          labelPosition: "COLLAPSED",
+                          value: {
+                            #"SYSTEM_SYSRULES_richTextItem_v1"(
+                              text: "Tipo PQRDSF",
+                              size: "LARGE",
+                              color: "#FFFFFF",
+                              style: "STRONG"
+                            )
+                          }
+                        )
+                      )
+                    },
+                    alignVertical: "MIDDLE"
+                  )
+                },
+                width: "WIDE"
+              ),
+              #"SYSTEM_SYSRULES_columnLayout"(
+                contents: {
+                  #"SYSTEM_SYSRULES_recordActionField_v1"(
+                    actions: {
+                      #"SYSTEM_SYSRULES_recordActionItem"(
+                        action: #"urn:appian:record-action:v1:28d1f59c-2ecf-4714-a8bc-484710650339/c5ade5db-9974-45be-9800-874d67708ed7"
+                      )
+                    },
+                    align: "END",
+                    style: "LINKS",
+                    display: "LABEL_AND_ICON"
+                  )
+                },
+                width: "AUTO"
+              )
+            },
+            alignVertical: "MIDDLE",
+            spacing: "STANDARD"
+          )
+        },
+        marginBelow: "STANDARD",
+        style: "#1d2d44",
+        showBorder: false,
+        padding: "LESS"
+      )
+    },
+    contents: {
+      #"SYSTEM_SYSRULES_gridField_v5"(
+        label: "Tabla de solo lectura",
+        labelPosition: "COLLAPSED",
+        data: #"SYSTEM_SYSRULES_recordData"(
+          recordType: #"urn:appian:record-type:v1:28d1f59c-2ecf-4714-a8bc-484710650339",
+          fields: {}
+        ),
+        showRefreshButton: true,
+        showSearchBox: true,
+        similarityScoreThreshold: 1.0,
+        recordActions: {
+          #"SYSTEM_SYSRULES_recordActionItem"(
+            action: #"urn:appian:record-action:v1:28d1f59c-2ecf-4714-a8bc-484710650339/c5ade5db-9974-45be-9800-874d67708ed7"
+          )
+        },
+        columns: {
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Nombre",
+            value: fv!row[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/0b847abe-93cc-4934-89f1-1b95681497ac"],
+            sortField: #"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/0b847abe-93cc-4934-89f1-1b95681497ac",
+            width: "MEDIUM"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Descripcion",
+            value: a!defaultValue(
+        fv!row[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/978dedca-8c6e-43ed-9245-70eab1c0e907"],
+        "–"
+      ),
+            sortField: #"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/978dedca-8c6e-43ed-9245-70eab1c0e907"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Color",
+            value: a!defaultValue(
+        fv!row[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/ee275b43-5cd3-4403-87f4-5d34fbe97116"],
+        "–"
+      ),
+            sortField: #"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/ee275b43-5cd3-4403-87f4-5d34fbe97116",
+            align: "CENTER",
+            width: "NARROW"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "Icono",
+            value: a!defaultValue(
+        fv!row[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/6af9f4b2-c053-46e9-94cf-7ec419ad0131"],
+        "–"
+      ),
+            sortField: #"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/6af9f4b2-c053-46e9-94cf-7ec419ad0131",
+            align: "CENTER",
+            width: "NARROW"
+          ),
+          #"SYSTEM_SYSRULES_gridColumn"(
+            label: "",
+            value: #"SYSTEM_SYSRULES_recordActionField_v1"(
+              actions: {
+                #"SYSTEM_SYSRULES_recordActionItem"(
+                  action: #"urn:appian:record-action:v1:28d1f59c-2ecf-4714-a8bc-484710650339/f1ef85e1-10f2-4866-9896-e84f8bbb66fe",
+                  identifier: fv!row[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/bb96de8d-fedb-4c25-a091-005bc8301bdc"]
+                ),
+                #"SYSTEM_SYSRULES_recordActionItem"(
+                  action: #"urn:appian:record-action:v1:28d1f59c-2ecf-4714-a8bc-484710650339/69adb1b7-2389-46f7-bba3-0d1a97d1f636",
+                  identifier: fv!row[#"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/bb96de8d-fedb-4c25-a091-005bc8301bdc"]
+                )
+              },
+              style: "MENU_ICON",
+              display: "LABEL_AND_ICON"
+            ),
+            sortField: #"urn:appian:record-field:v1:28d1f59c-2ecf-4714-a8bc-484710650339/bb96de8d-fedb-4c25-a091-005bc8301bdc",
+            align: "CENTER",
+            width: "ICON"
+          )
+        },
+        refreshAfter: "RECORD_ACTION",
+        validations: {}
+      )
+    },
+    backgroundColor: "WHITE"
+  )
+)</definition>
+        <preferredEditor>interface</preferredEditor>
+        <offlineEnabled>false</offlineEnabled>
+        <isCustom>false</isCustom>
+    </interface>
+    <roleMap public="true">
+        <role inherit="true" allowForAll="false" name="readers">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="authors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="true" allowForAll="false" name="administrators">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyReaders">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAuthors">
+            <users/>
+            <groups/>
+        </role>
+        <role inherit="false" allowForAll="false" name="denyAdministrators">
+            <users/>
+            <groups/>
+        </role>
+    </roleMap>
+    <history>
+        <historyInfo versionUuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1580930"/>
+        <historyInfo versionUuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5501103"/>
+    </history>
+</contentHaul>
