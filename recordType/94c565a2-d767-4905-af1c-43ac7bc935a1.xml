@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>afc50363-229a-4322-9772-0000e453d3a7</versionUuid>
+  <recordType a:uuid="94c565a2-d767-4905-af1c-43ac7bc935a1" name="PQR PreguntasRecordsChat">
+    <a:pluralName>PreguntasRecordsChat</a:pluralName>
+    <a:description/>
+    <a:urlStub>LjHbAw</a:urlStub>
+    <a:source xsi:type="a:RecordsReplica"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridField"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Nombre",
+      value: fv!row[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/b79e65fd-974b-4bfc-9584-97b3e19bb79e"],
+      sortField: #"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/b79e65fd-974b-4bfc-9584-97b3e19bb79e",
+      width: "MEDIUM"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Descripción",
+      value: fv!row[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/57cebef3-185b-4c3d-8a17-1740f76ffc25"],
+      sortField: #"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/57cebef3-185b-4c3d-8a17-1740f76ffc25",
+      align: "START"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Código",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/571b4534-6dca-453d-8fed-1a260b83116f"], "–"),
+      sortField: #"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/571b4534-6dca-453d-8fed-1a260b83116f",
+      align: "CENTER",
+      width: "NARROW"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "",
+      value: #"SYSTEM_SYSRULES_recordActionField_v1"(
+        actions: {
+          #"SYSTEM_SYSRULES_recordActionItem"(
+            action: #"urn:appian:record-action:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/fe28905f-ebdf-4478-aa36-16818c4b305a",
+            identifier: fv!row[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/d2be5cf2-d81f-4474-83cd-1f791d5f8f9e"]
+          ),
+          #"SYSTEM_SYSRULES_recordActionItem"(
+            action: #"urn:appian:record-action:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/cd18be3b-cb2e-4521-8eae-c8bc3ae5c48f",
+            identifier: fv!row[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/d2be5cf2-d81f-4474-83cd-1f791d5f8f9e"]
+          )
+        },
+        style: "MENU_ICON",
+        display: "LABEL_AND_ICON"
+      ),
+      sortField: #"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/d2be5cf2-d81f-4474-83cd-1f791d5f8f9e",
+      align: "START",
+      width: "ICON"
+    )
+  },
+  pageSize: 10,
+  initialSorts: {
+    #"SYSTEM_SYSRULES_sortInfo"(
+      field: #"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/571b4534-6dca-453d-8fed-1a260b83116f",
+      ascending: true
+    )
+  },
+  borderStyle: "LIGHT",
+  shadeAlternateRows: true
+)</a:listViewTemplateExpr>
+    <a:detailViewCfg>
+      <a:nameExpr>#"SYSTEM_SYSRULES_rtd_getDefaultSummaryViewName"()</a:nameExpr>
+      <a:uiExpr/>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+      <a:detailViewHeaderCfg>
+        <a:headerTypeByte>1</a:headerTypeByte>
+        <a:isHeaderFixed>false</a:isHeaderFixed>
+        <a:showDivider>true</a:showDivider>
+        <a:hideHeader>true</a:hideHeader>
+      </a:detailViewHeaderCfg>
+      <a:recordUiSecurityType>EXPRESSION</a:recordUiSecurityType>
+    </a:detailViewCfg>
+    <a:relatedActionCfg a:uuid="cd18be3b-cb2e-4521-8eae-c8bc3ae5c48f">
+      <a:target a:uuid="435aba62-e5c8-4102-94d7-53ba9a33638b" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  preguntasrecordschat: rv!record,
+  cancel: false()
+}</a:contextExpr>
+      <a:visibilityExpr/>
+      <a:iconId>f1f8</a:iconId>
+      <a:refId>refId-cd18be3b-cb2e-4521-8eae-c8bc3ae5c48f</a:refId>
+      <a:staticTitleString>Eliminar</a:staticTitleString>
+      <a:staticDescriptionString>Acción para eliminar un preguntas RecordsChat</a:staticDescriptionString>
+      <a:referenceKey>eliminarPreguntasRecordsChat</a:referenceKey>
+      <a:showInRecordList>false</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>NARROW</a:dialogWidth>
+      <a:dialogHeight>AUTO</a:dialogHeight>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg a:uuid="fe28905f-ebdf-4478-aa36-16818c4b305a">
+      <a:target a:uuid="00ee545b-9cf2-46e8-8561-1790c32f1318" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  preguntasrecordschat: rv!record,
+  cancel: false()
+}</a:contextExpr>
+      <a:visibilityExpr/>
+      <a:iconId>f044</a:iconId>
+      <a:refId>refId-fe28905f-ebdf-4478-aa36-16818c4b305a</a:refId>
+      <a:staticTitleString>Actualizar</a:staticTitleString>
+      <a:staticDescriptionString>Acción para actualizar un preguntas RecordsChat</a:staticDescriptionString>
+      <a:referenceKey>actualizarPreguntasRecordsChat</a:referenceKey>
+      <a:showInRecordList>false</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>MEDIUM</a:dialogWidth>
+      <a:dialogHeight>EXTRA_TALL</a:dialogHeight>
+    </a:relatedActionCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rv!record[#"urn:appian:record-field:v1:94c565a2-d767-4905-af1c-43ac7bc935a1/b79e65fd-974b-4bfc-9584-97b3e19bb79e"]</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:hideNewsView>true</a:hideNewsView>
+    <a:hideRelatedActionsView>true</a:hideRelatedActionsView>
+    <a:isExportable>true</a:isExportable>
+    <a:listViewSrcExpr/>
+    <a:recordViewSrcExpr/>
+    <a:recordListActionCfg a:uuid="9aa6a15f-dcbe-45ce-99d2-00c81cd6e93b">
+      <a:staticTitle>Nuevo</a:staticTitle>
+      <a:staticDescription>Acción para crear un nueva preguntas RecordsChat</a:staticDescription>
+      <a:iconId>f067</a:iconId>
+      <a:target a:uuid="6f30d8cf-7fae-45e9-9df5-46331ed6f12a" xsi:type="a:ProcessModel"/>
+      <a:visibilityExpr/>
+      <a:referenceKey>nuevoPreguntasRecordsChat</a:referenceKey>
+      <a:showInRecordList>true</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>MEDIUM</a:dialogWidth>
+      <a:dialogHeight>EXTRA_TALL</a:dialogHeight>
+    </a:recordListActionCfg>
+    <a:recordTypeSearchCfg>
+      <searchFieldsSrc>DEFAULT</searchFieldsSrc>
+      <placeholderSrc>EXPRESSION</placeholderSrc>
+      <placeholder>"Búsqueda preguntas RecordsChat"</placeholder>
+    </a:recordTypeSearchCfg>
+    <a:iconId/>
+    <a:listAutoRefreshInterval>0.0</a:listAutoRefreshInterval>
+    <a:sourceConfiguration>
+      <sourceUuid>dbo.PreguntasRecordsChat@_a-0000eb5c-0afc-8000-9bb3-011c48011c48_460874</sourceUuid>
+      <sourceType>RDBMS_TABLE</sourceType>
+      <sourceSubType>NONE</sourceSubType>
+      <sourceContextExpr/>
+      <friendlyName>PreguntasRecordsChat</friendlyName>
+      <sourceFilterExpr/>
+      <field>
+        <uuid>d2be5cf2-d81f-4474-83cd-1f791d5f8f9e</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idPreguntasRecordsChat</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idPreguntasRecordsChat</fieldName>
+        <displayName>idPreguntasRecordsChat</displayName>
+        <isRecordId>true</isRecordId>
+        <isUnique>true</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>b79e65fd-974b-4bfc-9584-97b3e19bb79e</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>Nombre</sourceFieldName>
+        <sourceFieldType>NVARCHAR(100)</sourceFieldType>
+        <fieldName>Nombre</fieldName>
+        <displayName>Nombre</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>571b4534-6dca-453d-8fed-1a260b83116f</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>Codigo</sourceFieldName>
+        <sourceFieldType>NVARCHAR(50)</sourceFieldType>
+        <fieldName>Codigo</fieldName>
+        <displayName>Codigo</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>57cebef3-185b-4c3d-8a17-1740f76ffc25</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>Descripcion</sourceFieldName>
+        <sourceFieldType>NVARCHAR(400)</sourceFieldType>
+        <fieldName>Descripcion</fieldName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <uuid>335ea8d1-7c6a-469a-8e79-f6a8c2a2763d</uuid>
+      <refreshSchedule>
+        <value>{"hour":3,"minute":"00","amPM":"AM","timeZone":"America/Bogota"}</value>
+        <activated>false</activated>
+      </refreshSchedule>
+      <skipFailureEnabled>true</skipFailureEnabled>
+      <recordIdGeneratorUuid/>
+    </a:sourceConfiguration>
+    <a:enabledFeatures>1023</a:enabledFeatures>
+    <a:isVisibleInRecordTypeList>false</a:isVisibleInRecordTypeList>
+    <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+    <a:showSearchBox>true</a:showSearchBox>
+    <a:isVisibleInDataFabric>false</a:isVisibleInDataFabric>
+    <a:usesRollingSyncLimit>false</a:usesRollingSyncLimit>
+    <a:usesRecoverySync>false</a:usesRecoverySync>
+    <a:isScheduledIndexingEnabled>false</a:isScheduledIndexingEnabled>
+    <a:smartSearchAcceptableFailureRate>0.0</a:smartSearchAcceptableFailureRate>
+    <a:skipFailedSmartServicesSync>false</a:skipFailedSmartServicesSync>
+    <a:creationSource>UNKNOWN</a:creationSource>
+    <a:sqlEnabled>false</a:sqlEnabled>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>2ecd9162-3121-486b-886b-00cba71a3a41</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="aee79c5f-0f93-4412-9298-5014db982148"/>
+    <historyInfo versionUuid="dc852120-ede6-4c32-aae2-78f2bbf1cc9f"/>
+    <historyInfo versionUuid="3026d4ae-4397-4edd-9469-4ec94b6eda06"/>
+    <historyInfo versionUuid="afc50363-229a-4322-9772-0000e453d3a7"/>
+  </history>
+  <migrationVersion>1</migrationVersion>
+</recordTypeHaul>

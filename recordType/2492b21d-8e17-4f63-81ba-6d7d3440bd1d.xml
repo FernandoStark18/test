@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>0067798e-9096-43b8-a62e-537a3e04169f</versionUuid>
+  <recordType a:uuid="2492b21d-8e17-4f63-81ba-6d7d3440bd1d" name="PQR EtiquetaXFuncionario">
+    <a:pluralName>EtiquetaXFuncionario</a:pluralName>
+    <a:description/>
+    <a:urlStub>46L5ng</a:urlStub>
+    <a:source xsi:type="a:RecordsReplica"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridField"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Etiqueta",
+      value: fv!row[#"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/3a00a3a9-e643-4c71-af14-b18e9710b311/c328359a-a4b1-488a-8324-7beafa21d9ae"],
+      sortField: #"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/3a00a3a9-e643-4c71-af14-b18e9710b311/c328359a-a4b1-488a-8324-7beafa21d9ae"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Funcionario",
+      value: fv!row[#"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/ccd43ba4-5987-4c3a-891c-904879404ee2/69a11a70-44e5-4721-8d6d-b556fb9138d4"],
+      sortField: #"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/ccd43ba4-5987-4c3a-891c-904879404ee2/69a11a70-44e5-4721-8d6d-b556fb9138d4",
+      align: "END"
+    )
+  },
+  pageSize: 15,
+  borderStyle: "LIGHT",
+  shadeAlternateRows: true
+)</a:listViewTemplateExpr>
+    <a:fieldCfg a:uuid="cdd69bc7-2684-44bc-b9d7-67da57bcc8ad" name="SPK TipoEtiqueta">
+      <a:description/>
+      <a:sourceRef>3a00a3a9-e643-4c71-af14-b18e9710b311/c328359a-a4b1-488a-8324-7beafa21d9ae</a:sourceRef>
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetLabelExpr>"Etiqueta"</a:facetLabelExpr>
+      <a:sortOrderIndex>0</a:sortOrderIndex>
+      <a:facetOrderIndex>0</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+      <a:relatedRecordFieldUuid>3a00a3a9-e643-4c71-af14-b18e9710b311/c328359a-a4b1-488a-8324-7beafa21d9ae</a:relatedRecordFieldUuid>
+      <a:relatedRecordUserFilterSort>ASCENDING</a:relatedRecordUserFilterSort>
+    </a:fieldCfg>
+    <a:fieldCfg a:uuid="180d9fa2-841a-4751-8cbf-5e8e8a4c7038" name="PQR Funcionario">
+      <a:description/>
+      <a:sourceRef>ccd43ba4-5987-4c3a-891c-904879404ee2/935884ab-1471-407c-8a70-3d5d7e4c7b8d</a:sourceRef>
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetLabelExpr>"Funcionario"</a:facetLabelExpr>
+      <a:sortOrderIndex>1</a:sortOrderIndex>
+      <a:facetOrderIndex>1</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+      <a:relatedRecordFieldUuid>ccd43ba4-5987-4c3a-891c-904879404ee2/935884ab-1471-407c-8a70-3d5d7e4c7b8d</a:relatedRecordFieldUuid>
+      <a:relatedRecordUserFilterSort>ASCENDING</a:relatedRecordUserFilterSort>
+    </a:fieldCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>#"SYSTEM_SYSRULES_rtd_getDefaultSummaryViewName"()</a:nameExpr>
+      <a:uiExpr/>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+      <a:detailViewHeaderCfg>
+        <a:headerTypeByte>1</a:headerTypeByte>
+        <a:isHeaderFixed>false</a:isHeaderFixed>
+        <a:showDivider>true</a:showDivider>
+        <a:hideHeader>true</a:hideHeader>
+      </a:detailViewHeaderCfg>
+      <a:recordUiSecurityType>EXPRESSION</a:recordUiSecurityType>
+    </a:detailViewCfg>
+    <a:relatedActionCfg a:uuid="ea70ad8e-3c98-40fc-b95b-6af7564aa693">
+      <a:target a:uuid="df96922d-54f0-44b9-8fe8-de3b37860c5e" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  etiquetaxfuncionario: rv!record,
+  cancel: false()
+}</a:contextExpr>
+      <a:visibilityExpr/>
+      <a:iconId>f1f8</a:iconId>
+      <a:refId>refId-ea70ad8e-3c98-40fc-b95b-6af7564aa693</a:refId>
+      <a:staticTitleString>Eliminar</a:staticTitleString>
+      <a:staticDescriptionString>Acción para eliminar un EtiquetaXFuncionario</a:staticDescriptionString>
+      <a:referenceKey>eliminarEtiquetaXFuncionario</a:referenceKey>
+      <a:showInRecordList>false</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>NARROW</a:dialogWidth>
+      <a:dialogHeight>AUTO</a:dialogHeight>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg a:uuid="84ba4fbe-d22a-4284-97df-52aa10212ee5">
+      <a:target a:uuid="32a5f30b-11e2-489c-8fb3-5800632c6918" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  etiquetaxfuncionario: rv!record,
+  cancel: false()
+}</a:contextExpr>
+      <a:visibilityExpr/>
+      <a:iconId>f044</a:iconId>
+      <a:refId>refId-84ba4fbe-d22a-4284-97df-52aa10212ee5</a:refId>
+      <a:staticTitleString>Actualizar</a:staticTitleString>
+      <a:staticDescriptionString>Acción para actualizar un EtiquetaXFuncionario</a:staticDescriptionString>
+      <a:referenceKey>actualizarEtiquetaXFuncionario</a:referenceKey>
+      <a:showInRecordList>false</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>MEDIUM</a:dialogWidth>
+      <a:dialogHeight>AUTO</a:dialogHeight>
+    </a:relatedActionCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rv!record[#"urn:appian:record-field:v1:2492b21d-8e17-4f63-81ba-6d7d3440bd1d/b7c8e7a8-d8bc-4ac0-b0bc-6723e6b189a3"]</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:hideNewsView>true</a:hideNewsView>
+    <a:hideRelatedActionsView>true</a:hideRelatedActionsView>
+    <a:isExportable>true</a:isExportable>
+    <a:listViewSrcExpr/>
+    <a:recordViewSrcExpr/>
+    <a:recordListActionCfg a:uuid="fc22fbe4-26d8-44f6-bb5b-d52f8ba043bc">
+      <a:staticTitle>Asociar Etiqueta y Funcionario</a:staticTitle>
+      <a:staticDescription>Acción para crear un nuevo EtiquetaXFuncionario</a:staticDescription>
+      <a:iconId>f067</a:iconId>
+      <a:target a:uuid="225f745f-b8c2-4f7e-b64a-ebfb04b63637" xsi:type="a:ProcessModel"/>
+      <a:visibilityExpr/>
+      <a:referenceKey>nuevoEtiquetaXFuncionario</a:referenceKey>
+      <a:showInRecordList>true</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>MEDIUM</a:dialogWidth>
+      <a:dialogHeight>AUTO</a:dialogHeight>
+    </a:recordListActionCfg>
+    <a:recordRelationshipCfg>
+      <uuid>3a00a3a9-e643-4c71-af14-b18e9710b311</uuid>
+      <relationshipName>Tipoetiqueta</relationshipName>
+      <targetRecordTypeUuid>f7d4a31b-036e-413a-b0bf-2215cb228832</targetRecordTypeUuid>
+      <relationshipType>MANY_TO_ONE</relationshipType>
+      <relationshipData>{"sourceRecordTypeFieldUuid":"67943370-9180-4597-91bd-65bcbb1eb3df","targetRecordTypeFieldUuid":"2bcca99a-defc-4dc8-9f9c-4d388bc30236","relationshipOperator":"1","joinTableSourceField":"","joinTableTargetField":""}</relationshipData>
+      <updateBehavior>NON_CASCADING</updateBehavior>
+    </a:recordRelationshipCfg>
+    <a:recordRelationshipCfg>
+      <uuid>ccd43ba4-5987-4c3a-891c-904879404ee2</uuid>
+      <relationshipName>funcionario</relationshipName>
+      <targetRecordTypeUuid>1b6c0485-a30c-4da8-b598-4c1124db0e12</targetRecordTypeUuid>
+      <relationshipType>MANY_TO_ONE</relationshipType>
+      <relationshipData>{"sourceRecordTypeFieldUuid":"97bc2301-2dec-4f9e-9ba8-90aa62820b6a","targetRecordTypeFieldUuid":"c9efe6d1-37e9-46a3-a6cf-f7a74f56203e","relationshipOperator":"1","joinTableSourceField":"","joinTableTargetField":""}</relationshipData>
+      <updateBehavior>NON_CASCADING</updateBehavior>
+    </a:recordRelationshipCfg>
+    <a:recordTypeSearchCfg>
+      <searchFieldsSrc>DEFAULT</searchFieldsSrc>
+      <placeholderSrc>DEFAULT</placeholderSrc>
+      <placeholder/>
+    </a:recordTypeSearchCfg>
+    <a:iconId/>
+    <a:listAutoRefreshInterval>0.0</a:listAutoRefreshInterval>
+    <a:sourceConfiguration>
+      <sourceUuid>dbo.EtiquetaXFuncionario@_a-0000eb5c-0afc-8000-9bb3-011c48011c48_460874</sourceUuid>
+      <sourceType>RDBMS_TABLE</sourceType>
+      <sourceSubType>NONE</sourceSubType>
+      <sourceContextExpr/>
+      <friendlyName>EtiquetaXFuncionario</friendlyName>
+      <sourceFilterExpr/>
+      <field>
+        <uuid>b7c8e7a8-d8bc-4ac0-b0bc-6723e6b189a3</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idEtiquetaXFuncionario</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idEtiquetaXFuncionario</fieldName>
+        <displayName>idEtiquetaXFuncionario</displayName>
+        <isRecordId>true</isRecordId>
+        <isUnique>true</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>67943370-9180-4597-91bd-65bcbb1eb3df</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idTipoEtiqueta</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idTipoEtiqueta</fieldName>
+        <displayName>idTipoEtiqueta</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>97bc2301-2dec-4f9e-9ba8-90aa62820b6a</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idFuncionario</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idFuncionario</fieldName>
+        <displayName>idFuncionario</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <uuid>ad3ec788-e03b-428b-96b1-5622a751ebbe</uuid>
+      <refreshSchedule>
+        <value>{"hour":3,"minute":"00","amPM":"AM","timeZone":"America/Bogota"}</value>
+        <activated>false</activated>
+      </refreshSchedule>
+      <skipFailureEnabled>true</skipFailureEnabled>
+      <recordIdGeneratorUuid/>
+    </a:sourceConfiguration>
+    <a:enabledFeatures>1023</a:enabledFeatures>
+    <a:isVisibleInRecordTypeList>false</a:isVisibleInRecordTypeList>
+    <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+    <a:showSearchBox>true</a:showSearchBox>
+    <a:isVisibleInDataFabric>false</a:isVisibleInDataFabric>
+    <a:usesRollingSyncLimit>false</a:usesRollingSyncLimit>
+    <a:usesRecoverySync>false</a:usesRecoverySync>
+    <a:isScheduledIndexingEnabled>false</a:isScheduledIndexingEnabled>
+    <a:smartSearchAcceptableFailureRate>0.0</a:smartSearchAcceptableFailureRate>
+    <a:skipFailedSmartServicesSync>false</a:skipFailedSmartServicesSync>
+    <a:creationSource>UNKNOWN</a:creationSource>
+    <a:sqlEnabled>false</a:sqlEnabled>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>2ecd9162-3121-486b-886b-00cba71a3a41</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="5bdf1d98-e4b1-4712-bada-d6fa6910f3a0"/>
+    <historyInfo versionUuid="c5fd4563-2214-4d60-b2a0-3c225ecbf42a"/>
+    <historyInfo versionUuid="0013e812-23c2-4eb9-92aa-33b7381de209"/>
+    <historyInfo versionUuid="0067798e-9096-43b8-a62e-537a3e04169f"/>
+  </history>
+  <migrationVersion>1</migrationVersion>
+</recordTypeHaul>

@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>c1ae75bd-5aaf-4bff-ba6f-fa1f0aac1c0d</versionUuid>
+  <recordType a:uuid="0520f9d8-f93b-4a9b-9913-d1c7defccf48" name="PQR Direccion">
+    <a:pluralName>Direccions</a:pluralName>
+    <a:description/>
+    <a:urlStub>KT-T_w</a:urlStub>
+    <a:source xsi:type="a:RecordsReplica"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridField"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Id Direccion",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/327f4775-096c-4bf9-b80b-3dfd7fd37b49",
+      value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+        value: {
+          #"SYSTEM_SYSRULES_richTextItem_v1"(
+            text: if(
+              fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/327f4775-096c-4bf9-b80b-3dfd7fd37b49"] &lt; 100000,
+              text(
+                fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/327f4775-096c-4bf9-b80b-3dfd7fd37b49"],
+                "#00000"
+              ),
+              fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/327f4775-096c-4bf9-b80b-3dfd7fd37b49"]
+            ),
+            link: #"SYSTEM_SYSRULES_recordLink"(
+              recordType: #"urn:appian:record-type:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48",
+              identifier: fv!identifier
+            ),
+            linkStyle: "STANDALONE"
+          )
+        }
+      )
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Tipo Direccion",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/396a4a7b-c733-41ff-96ef-80c12022c1c2/7717b4d0-a941-4ab4-b8db-8643063af399",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/396a4a7b-c733-41ff-96ef-80c12022c1c2/7717b4d0-a941-4ab4-b8db-8643063af399"], "–")
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Ciudadano",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/1fbe0c0d-44f1-421f-8165-194663fb3588/23107ae6-5290-421e-ac31-b8f859cd70d2",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/1fbe0c0d-44f1-421f-8165-194663fb3588/23107ae6-5290-421e-ac31-b8f859cd70d2"], "–")
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Tipo Municipio",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/7226d612-cfe9-4e9a-9013-f37582381289/3a72ffa2-c6cf-4f55-9b7a-fb3cb69460ed",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/7226d612-cfe9-4e9a-9013-f37582381289/3a72ffa2-c6cf-4f55-9b7a-fb3cb69460ed"], "–")
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Nomenclatura",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/3fd8981c-5b2e-4883-b8fe-8c8e28fbe33f",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/3fd8981c-5b2e-4883-b8fe-8c8e28fbe33f"], "–")
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Barrio Vereda",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/e7bdf10c-94fb-49de-a699-fb8ae44d0633",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/e7bdf10c-94fb-49de-a699-fb8ae44d0633"], "–")
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Complemento",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/f25dfbcb-2e37-4549-abe3-d3518a83bbf3",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/f25dfbcb-2e37-4549-abe3-d3518a83bbf3"], "–")
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Codigo Postal",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/f07bcdd6-5e68-446c-9bef-c91b231848a2",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/f07bcdd6-5e68-446c-9bef-c91b231848a2"], "–")
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Latitud",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/f3db3481-13ac-4d5f-ae79-86711762770f",
+      value: if(
+        isnull(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/f3db3481-13ac-4d5f-ae79-86711762770f"]),
+        "–",
+        fixed(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/f3db3481-13ac-4d5f-ae79-86711762770f"], 2)
+      ),
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Longitud",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/46f17e17-7e25-4e21-bca7-23ad015c2195",
+      value: if(
+        isnull(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/46f17e17-7e25-4e21-bca7-23ad015c2195"]),
+        "–",
+        fixed(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/46f17e17-7e25-4e21-bca7-23ad015c2195"], 2)
+      ),
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Es Principal",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/d8a5f367-7798-4ec7-8c4f-06a27b365e6d",
+      value: if(
+        isnull(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/d8a5f367-7798-4ec7-8c4f-06a27b365e6d"]),
+        "–",
+        #"SYSTEM_SYSRULES_richTextDisplayField"(
+          value: if(
+            fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/d8a5f367-7798-4ec7-8c4f-06a27b365e6d"],
+            #"SYSTEM_SYSRULES_richTextIcon"(
+              icon: "check",
+              altText: "Yes",
+              color: "#138901"
+            ),
+            #"SYSTEM_SYSRULES_richTextIcon"(
+              icon: "times",
+              altText: "No",
+              color: "SECONDARY"
+            )
+          )
+        )
+      ),
+      align: "CENTER"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Activo",
+      sortField: #"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/4f142c31-e543-4ce2-901f-a8b7c930d9fd",
+      value: if(
+        isnull(fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/4f142c31-e543-4ce2-901f-a8b7c930d9fd"]),
+        "–",
+        #"SYSTEM_SYSRULES_richTextDisplayField"(
+          value: if(
+            fv!row[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/4f142c31-e543-4ce2-901f-a8b7c930d9fd"],
+            #"SYSTEM_SYSRULES_richTextIcon"(
+              icon: "check",
+              altText: "Yes",
+              color: "#138901"
+            ),
+            #"SYSTEM_SYSRULES_richTextIcon"(
+              icon: "times",
+              altText: "No",
+              color: "SECONDARY"
+            )
+          )
+        )
+      ),
+      align: "CENTER"
+    )
+  },
+  pageSize: 50,
+  borderStyle: "LIGHT",
+  shadeAlternateRows: false
+)</a:listViewTemplateExpr>
+    <a:fieldCfg a:uuid="491baa54-d7d0-4b30-9a42-8e8ce8a9d3ee" name="SPK TipoDireccion">
+      <a:description/>
+      <a:sourceRef>396a4a7b-c733-41ff-96ef-80c12022c1c2/7717b4d0-a941-4ab4-b8db-8643063af399</a:sourceRef>
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetLabelExpr>"Tipo Direccion"</a:facetLabelExpr>
+      <a:sortOrderIndex>0</a:sortOrderIndex>
+      <a:facetOrderIndex>0</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+      <a:relatedRecordFieldUuid>396a4a7b-c733-41ff-96ef-80c12022c1c2/7717b4d0-a941-4ab4-b8db-8643063af399</a:relatedRecordFieldUuid>
+      <a:relatedRecordUserFilterSort>ASCENDING</a:relatedRecordUserFilterSort>
+    </a:fieldCfg>
+    <a:fieldCfg a:uuid="895fdaa8-b077-4ea0-89dc-03a40526352c" name="SPK Ciudadano">
+      <a:description/>
+      <a:sourceRef>1fbe0c0d-44f1-421f-8165-194663fb3588/23107ae6-5290-421e-ac31-b8f859cd70d2</a:sourceRef>
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetLabelExpr>"Ciudadano"</a:facetLabelExpr>
+      <a:sortOrderIndex>1</a:sortOrderIndex>
+      <a:facetOrderIndex>1</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+      <a:relatedRecordFieldUuid>1fbe0c0d-44f1-421f-8165-194663fb3588/23107ae6-5290-421e-ac31-b8f859cd70d2</a:relatedRecordFieldUuid>
+      <a:relatedRecordUserFilterSort>ASCENDING</a:relatedRecordUserFilterSort>
+    </a:fieldCfg>
+    <a:fieldCfg a:uuid="db10a8bf-52d2-4e3a-99b7-6765ce7515a3" name="SPK TipoMunicipio">
+      <a:description/>
+      <a:sourceRef>7226d612-cfe9-4e9a-9013-f37582381289/3a72ffa2-c6cf-4f55-9b7a-fb3cb69460ed</a:sourceRef>
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetLabelExpr>"Tipo Municipio"</a:facetLabelExpr>
+      <a:sortOrderIndex>2</a:sortOrderIndex>
+      <a:facetOrderIndex>2</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr/>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+      <a:relatedRecordFieldUuid>7226d612-cfe9-4e9a-9013-f37582381289/3a72ffa2-c6cf-4f55-9b7a-fb3cb69460ed</a:relatedRecordFieldUuid>
+      <a:relatedRecordUserFilterSort>ASCENDING</a:relatedRecordUserFilterSort>
+    </a:fieldCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>#"SYSTEM_SYSRULES_rtd_getDefaultSummaryViewName"()</a:nameExpr>
+      <a:uiExpr/>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+      <a:recordUiSecurityType>EXPRESSION</a:recordUiSecurityType>
+    </a:detailViewCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rv!record[#"urn:appian:record-field:v1:0520f9d8-f93b-4a9b-9913-d1c7defccf48/3fd8981c-5b2e-4883-b8fe-8c8e28fbe33f"]</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:hideNewsView>false</a:hideNewsView>
+    <a:hideRelatedActionsView>false</a:hideRelatedActionsView>
+    <a:isExportable>true</a:isExportable>
+    <a:listViewSrcExpr/>
+    <a:recordViewSrcExpr/>
+    <a:recordRelationshipCfg>
+      <uuid>396a4a7b-c733-41ff-96ef-80c12022c1c2</uuid>
+      <relationshipName>TipoDireccion</relationshipName>
+      <targetRecordTypeUuid>c55163e3-20ce-438b-a3fa-f5768264d1d4</targetRecordTypeUuid>
+      <relationshipType>MANY_TO_ONE</relationshipType>
+      <relationshipData>{"sourceRecordTypeFieldUuid":"9cf1b5d1-8edc-4073-94f5-98cf07391530","targetRecordTypeFieldUuid":"8bc1f23b-3bc8-4ed7-b68e-677b975d44ee","relationshipOperator":"1","joinTableSourceField":"","joinTableTargetField":""}</relationshipData>
+      <updateBehavior>NON_CASCADING</updateBehavior>
+    </a:recordRelationshipCfg>
+    <a:recordRelationshipCfg>
+      <uuid>1fbe0c0d-44f1-421f-8165-194663fb3588</uuid>
+      <relationshipName>Ciudadano</relationshipName>
+      <targetRecordTypeUuid>0929493f-cd4a-4d2a-ac93-485c458c24e5</targetRecordTypeUuid>
+      <relationshipType>MANY_TO_ONE</relationshipType>
+      <relationshipData>{"sourceRecordTypeFieldUuid":"88e08db9-5097-42a3-b360-142c1dd7bf79","targetRecordTypeFieldUuid":"d2e04fb7-f10a-4db5-824a-3a5e700e2768","relationshipOperator":"1","joinTableSourceField":"","joinTableTargetField":""}</relationshipData>
+      <updateBehavior>NON_CASCADING</updateBehavior>
+    </a:recordRelationshipCfg>
+    <a:recordRelationshipCfg>
+      <uuid>7226d612-cfe9-4e9a-9013-f37582381289</uuid>
+      <relationshipName>TipoMunicipio</relationshipName>
+      <targetRecordTypeUuid>1e82d74f-4403-44c7-ad6d-93fbc724080a</targetRecordTypeUuid>
+      <relationshipType>MANY_TO_ONE</relationshipType>
+      <relationshipData>{"sourceRecordTypeFieldUuid":"6401ad2c-8271-4162-9c2e-88378d638d08","targetRecordTypeFieldUuid":"22d77cab-f74e-4f44-9671-07cc73424b05","relationshipOperator":"1","joinTableSourceField":"","joinTableTargetField":""}</relationshipData>
+      <updateBehavior>NON_CASCADING</updateBehavior>
+    </a:recordRelationshipCfg>
+    <a:recordTypeSearchCfg>
+      <searchFieldsSrc>DEFAULT</searchFieldsSrc>
+      <placeholderSrc>DEFAULT</placeholderSrc>
+      <placeholder/>
+    </a:recordTypeSearchCfg>
+    <a:iconId/>
+    <a:listAutoRefreshInterval>0.0</a:listAutoRefreshInterval>
+    <a:sourceConfiguration>
+      <sourceUuid>CORE.Direccion@_a-0000eb5c-0afc-8000-9bb3-011c48011c48_460874</sourceUuid>
+      <sourceType>RDBMS_TABLE</sourceType>
+      <sourceSubType>NONE</sourceSubType>
+      <sourceContextExpr/>
+      <friendlyName>Direccion</friendlyName>
+      <sourceFilterExpr/>
+      <field>
+        <uuid>327f4775-096c-4bf9-b80b-3dfd7fd37b49</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idDireccion</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idDireccion</fieldName>
+        <displayName>idDireccion</displayName>
+        <isRecordId>true</isRecordId>
+        <isUnique>true</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>9cf1b5d1-8edc-4073-94f5-98cf07391530</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idTipoDireccion</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idTipoDireccion</fieldName>
+        <displayName>idTipoDireccion</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>88e08db9-5097-42a3-b360-142c1dd7bf79</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idCiudadano</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idCiudadano</fieldName>
+        <displayName>idCiudadano</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>6401ad2c-8271-4162-9c2e-88378d638d08</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idTipoMunicipio</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idTipoMunicipio</fieldName>
+        <displayName>idTipoMunicipio</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>3fd8981c-5b2e-4883-b8fe-8c8e28fbe33f</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>Nomenclatura</sourceFieldName>
+        <sourceFieldType>NVARCHAR(200)</sourceFieldType>
+        <fieldName>Nomenclatura</fieldName>
+        <displayName>Nomenclatura</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>e7bdf10c-94fb-49de-a699-fb8ae44d0633</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>BarrioVereda</sourceFieldName>
+        <sourceFieldType>NVARCHAR(100)</sourceFieldType>
+        <fieldName>BarrioVereda</fieldName>
+        <displayName>BarrioVereda</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>f25dfbcb-2e37-4549-abe3-d3518a83bbf3</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>Complemento</sourceFieldName>
+        <sourceFieldType>NVARCHAR(100)</sourceFieldType>
+        <fieldName>Complemento</fieldName>
+        <displayName>Complemento</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>f07bcdd6-5e68-446c-9bef-c91b231848a2</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>CodigoPostal</sourceFieldName>
+        <sourceFieldType>NVARCHAR(15)</sourceFieldType>
+        <fieldName>CodigoPostal</fieldName>
+        <displayName>CodigoPostal</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>f3db3481-13ac-4d5f-ae79-86711762770f</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Decimal</type>
+        <sourceFieldName>Latitud</sourceFieldName>
+        <sourceFieldType>DECIMAL</sourceFieldType>
+        <fieldName>Latitud</fieldName>
+        <displayName>Latitud</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>46f17e17-7e25-4e21-bca7-23ad015c2195</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Decimal</type>
+        <sourceFieldName>Longitud</sourceFieldName>
+        <sourceFieldType>DECIMAL</sourceFieldType>
+        <fieldName>Longitud</fieldName>
+        <displayName>Longitud</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>d8a5f367-7798-4ec7-8c4f-06a27b365e6d</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Boolean</type>
+        <sourceFieldName>EsPrincipal</sourceFieldName>
+        <sourceFieldType>BIT</sourceFieldType>
+        <fieldName>EsPrincipal</fieldName>
+        <displayName>EsPrincipal</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>4f142c31-e543-4ce2-901f-a8b7c930d9fd</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Boolean</type>
+        <sourceFieldName>Activo</sourceFieldName>
+        <sourceFieldType>BIT</sourceFieldType>
+        <fieldName>Activo</fieldName>
+        <displayName>Activo</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <uuid>37e68b55-3218-43f1-bf93-f33ca666cf85</uuid>
+      <refreshSchedule>
+        <value>{"hour":3,"minute":"00","amPM":"AM","timeZone":"America/Bogota"}</value>
+        <activated>false</activated>
+      </refreshSchedule>
+      <skipFailureEnabled>true</skipFailureEnabled>
+      <recordIdGeneratorUuid/>
+    </a:sourceConfiguration>
+    <a:enabledFeatures>1023</a:enabledFeatures>
+    <a:isVisibleInRecordTypeList>false</a:isVisibleInRecordTypeList>
+    <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+    <a:showSearchBox>true</a:showSearchBox>
+    <a:isVisibleInDataFabric>false</a:isVisibleInDataFabric>
+    <a:usesRollingSyncLimit>false</a:usesRollingSyncLimit>
+    <a:usesRecoverySync>false</a:usesRecoverySync>
+    <a:isScheduledIndexingEnabled>false</a:isScheduledIndexingEnabled>
+    <a:smartSearchAcceptableFailureRate>0.0</a:smartSearchAcceptableFailureRate>
+    <a:skipFailedSmartServicesSync>false</a:skipFailedSmartServicesSync>
+    <a:creationSource>UNKNOWN</a:creationSource>
+    <a:sqlEnabled>false</a:sqlEnabled>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>00f7102e-3659-45b7-ba48-d7f35c904f06</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>84151504-b1b7-44fe-9590-a5823e783286</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="35ac48fd-1719-4c87-957c-7a603776a8d0"/>
+    <historyInfo versionUuid="34c402b7-5cc7-4367-994c-fc5f055de9c7"/>
+    <historyInfo versionUuid="c1ae75bd-5aaf-4bff-ba6f-fa1f0aac1c0d"/>
+  </history>
+  <migrationVersion>1</migrationVersion>
+</recordTypeHaul>

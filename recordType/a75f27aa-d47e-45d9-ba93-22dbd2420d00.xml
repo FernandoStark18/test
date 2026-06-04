@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>4f398f03-4d56-4938-a411-50cf7654470d</versionUuid>
+  <recordType a:uuid="a75f27aa-d47e-45d9-ba93-22dbd2420d00" name="PQR TipoMedioRecepcion">
+    <a:pluralName>TipoMedioRecepcion</a:pluralName>
+    <a:description/>
+    <a:urlStub>bdoaag</a:urlStub>
+    <a:source xsi:type="a:RecordsReplica"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridField"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Nombre",
+      value: fv!row[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/67b9f49d-8a67-4c4c-9383-23ad130549bf"],
+      sortField: #"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/67b9f49d-8a67-4c4c-9383-23ad130549bf"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Código",
+      value: a!defaultValue(fv!row[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/c3805b5c-322b-4cf7-8974-132492335248"], "–"),
+      sortField: #"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/c3805b5c-322b-4cf7-8974-132492335248",
+      align: "CENTER",
+      width: "NARROW"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "",
+      value: #"SYSTEM_SYSRULES_recordActionField_v1"(
+        actions: {
+          #"SYSTEM_SYSRULES_recordActionItem"(
+            action: #"urn:appian:record-action:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/f887227f-80cb-4122-ac29-1515c957a5de",
+            identifier: fv!row[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/0e978c6a-cfe0-4a2f-b0cb-511958cd0220"]
+          ),
+          #"SYSTEM_SYSRULES_recordActionItem"(
+            action: #"urn:appian:record-action:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/8a53746f-4305-4577-83fe-202387e9003e",
+            identifier: fv!row[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/0e978c6a-cfe0-4a2f-b0cb-511958cd0220"]
+          )
+        },
+        style: "MENU_ICON",
+        display: "LABEL_AND_ICON"
+      ),
+      sortField: #"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/0e978c6a-cfe0-4a2f-b0cb-511958cd0220",
+      align: "CENTER",
+      width: "ICON"
+    )
+  },
+  pageSize: 10,
+  initialSorts: {
+    #"SYSTEM_SYSRULES_sortInfo"(
+      field: #"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/c3805b5c-322b-4cf7-8974-132492335248",
+      ascending: true
+    )
+  },
+  borderStyle: "LIGHT",
+  shadeAlternateRows: true,
+  rowHeader: null
+)</a:listViewTemplateExpr>
+    <a:detailViewCfg>
+      <a:nameExpr>#"SYSTEM_SYSRULES_rtd_getDefaultSummaryViewName"()</a:nameExpr>
+      <a:uiExpr>#"fde89d49-fd85-474d-af1b-1a3526e00634"(TipoMedioRecepcion: rv!record)</a:uiExpr>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+      <a:detailViewHeaderCfg>
+        <a:headerTypeByte>1</a:headerTypeByte>
+        <a:isHeaderFixed>false</a:isHeaderFixed>
+        <a:showDivider>true</a:showDivider>
+        <a:hideHeader>true</a:hideHeader>
+      </a:detailViewHeaderCfg>
+      <a:recordUiSecurityType>EXPRESSION</a:recordUiSecurityType>
+    </a:detailViewCfg>
+    <a:relatedActionCfg a:uuid="8a53746f-4305-4577-83fe-202387e9003e">
+      <a:target a:uuid="76cbd229-e45d-4305-8aec-17f819206721" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  pqrTipomediorecepcion: rv!record,
+  cancel: false()
+}</a:contextExpr>
+      <a:visibilityExpr/>
+      <a:iconId>f1f8</a:iconId>
+      <a:refId>refId-8a53746f-4305-4577-83fe-202387e9003e</a:refId>
+      <a:staticTitleString>Eliminar</a:staticTitleString>
+      <a:staticDescriptionString>Acción para eliminar un PQR TipoMedioRecepcion</a:staticDescriptionString>
+      <a:referenceKey>eliminarPqrTipoMedioRecepcion</a:referenceKey>
+      <a:showInRecordList>false</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>NARROW</a:dialogWidth>
+      <a:dialogHeight>AUTO</a:dialogHeight>
+    </a:relatedActionCfg>
+    <a:relatedActionCfg a:uuid="f887227f-80cb-4122-ac29-1515c957a5de">
+      <a:target a:uuid="3ffc108b-baa0-44a3-abe6-5db73f32f7a7" xsi:type="a:ProcessModel"/>
+      <a:contextExpr>{
+  pqrTipomediorecepcion: rv!record,
+  cancel: false()
+}</a:contextExpr>
+      <a:visibilityExpr/>
+      <a:iconId>f044</a:iconId>
+      <a:refId>refId-f887227f-80cb-4122-ac29-1515c957a5de</a:refId>
+      <a:staticTitleString>Actualizar</a:staticTitleString>
+      <a:staticDescriptionString>Acción para actualizar un medio de recepción</a:staticDescriptionString>
+      <a:referenceKey>actualizarPqrTipoMedioRecepcion</a:referenceKey>
+      <a:showInRecordList>false</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>MEDIUM</a:dialogWidth>
+      <a:dialogHeight>EXTRA_TALL</a:dialogHeight>
+    </a:relatedActionCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rv!record[#"urn:appian:record-field:v1:a75f27aa-d47e-45d9-ba93-22dbd2420d00/67b9f49d-8a67-4c4c-9383-23ad130549bf"]</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:hideNewsView>true</a:hideNewsView>
+    <a:hideRelatedActionsView>true</a:hideRelatedActionsView>
+    <a:isExportable>true</a:isExportable>
+    <a:listViewSrcExpr/>
+    <a:recordViewSrcExpr/>
+    <a:recordListActionCfg a:uuid="9e137ef6-0fa7-4bec-8544-e53c31087ebd">
+      <a:staticTitle>Nuevo</a:staticTitle>
+      <a:staticDescription>Acción para crear un nuevo PQR TipoMedioRecepcion</a:staticDescription>
+      <a:iconId>f067</a:iconId>
+      <a:target a:uuid="f01a0ec3-57fb-436e-a939-0797d0f264e8" xsi:type="a:ProcessModel"/>
+      <a:visibilityExpr/>
+      <a:referenceKey>nuevoPqrTipoMedioRecepcion</a:referenceKey>
+      <a:showInRecordList>true</a:showInRecordList>
+      <a:recordUiSecurityType>GUIDED</a:recordUiSecurityType>
+      <a:securityCfg>
+        <a:membershipFilter>{"type":"MEMBERSHIP_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityMembershipFilter"}</a:membershipFilter>
+        <a:dataFilter>{"type":"ALLOW_ALL","config":{"#v":[],"#t":"Variant?list"},"#t":"RecordRowLevelSecurityDataFilter"}</a:dataFilter>
+      </a:securityCfg>
+      <a:dialogWidth>MEDIUM</a:dialogWidth>
+      <a:dialogHeight>EXTRA_TALL</a:dialogHeight>
+    </a:recordListActionCfg>
+    <a:recordTypeSearchCfg>
+      <searchFieldsSrc>DEFAULT</searchFieldsSrc>
+      <placeholderSrc>DEFAULT</placeholderSrc>
+      <placeholder/>
+    </a:recordTypeSearchCfg>
+    <a:iconId/>
+    <a:listAutoRefreshInterval>0.0</a:listAutoRefreshInterval>
+    <a:sourceConfiguration>
+      <sourceUuid>dbo.TipoMedioRecepcion@_a-0000eb5c-0afc-8000-9bb3-011c48011c48_460874</sourceUuid>
+      <sourceType>RDBMS_TABLE</sourceType>
+      <sourceSubType>NONE</sourceSubType>
+      <sourceContextExpr/>
+      <friendlyName>TipoMedioRecepcion</friendlyName>
+      <sourceFilterExpr/>
+      <field>
+        <uuid>0e978c6a-cfe0-4a2f-b0cb-511958cd0220</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>idTipoMedioRecepcion</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>idTipoMedioRecepcion</fieldName>
+        <displayName>idTipoMedioRecepcion</displayName>
+        <isRecordId>true</isRecordId>
+        <isUnique>true</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <fieldMetaData a:uuid="9e0c855e-5fa5-4768-9bee-ddd2cb4b8b8b">
+          <a:metaDataType>1</a:metaDataType>
+          <a:metaDataExpression/>
+        </fieldMetaData>
+        <fieldMetaData a:uuid="6066f9ae-6588-4466-89aa-423ded6354b9">
+          <a:metaDataType>2</a:metaDataType>
+          <a:metaDataExpression/>
+        </fieldMetaData>
+        <fieldMetaData a:uuid="0ada0fc4-15b2-44d2-92f3-f542c11f9716">
+          <a:metaDataType>3</a:metaDataType>
+          <a:metaDataExpression/>
+        </fieldMetaData>
+        <fieldMetaData a:uuid="372ecf94-7c44-451a-969a-19ea2bee56f9">
+          <a:metaDataType>4</a:metaDataType>
+          <a:metaDataExpression/>
+        </fieldMetaData>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>c3805b5c-322b-4cf7-8974-132492335248</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>Codigo</sourceFieldName>
+        <sourceFieldType>NVARCHAR(50)</sourceFieldType>
+        <fieldName>Codigo</fieldName>
+        <displayName>Codigo</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>67b9f49d-8a67-4c4c-9383-23ad130549bf</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Text</type>
+        <sourceFieldName>Nombre</sourceFieldName>
+        <sourceFieldType>NVARCHAR(100)</sourceFieldType>
+        <fieldName>Nombre</fieldName>
+        <displayName>Nombre</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <customFieldDefaultValueStr>null</customFieldDefaultValueStr>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <uuid>78fe27f8-c0d5-4ef2-b796-37f6bbcbff76</uuid>
+      <refreshSchedule>
+        <value>{"hour":3,"minute":"00","amPM":"AM","timeZone":"America/Bogota"}</value>
+        <activated>false</activated>
+      </refreshSchedule>
+      <skipFailureEnabled>true</skipFailureEnabled>
+      <recordIdGeneratorUuid/>
+    </a:sourceConfiguration>
+    <a:enabledFeatures>1023</a:enabledFeatures>
+    <a:isVisibleInRecordTypeList>false</a:isVisibleInRecordTypeList>
+    <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+    <a:showSearchBox>true</a:showSearchBox>
+    <a:isVisibleInDataFabric>false</a:isVisibleInDataFabric>
+    <a:usesRollingSyncLimit>false</a:usesRollingSyncLimit>
+    <a:usesRecoverySync>false</a:usesRecoverySync>
+    <a:isScheduledIndexingEnabled>false</a:isScheduledIndexingEnabled>
+    <a:smartSearchAcceptableFailureRate>0.0</a:smartSearchAcceptableFailureRate>
+    <a:skipFailedSmartServicesSync>false</a:skipFailedSmartServicesSync>
+    <a:creationSource>UNKNOWN</a:creationSource>
+    <a:sqlEnabled>false</a:sqlEnabled>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>00f7102e-3659-45b7-ba48-d7f35c904f06</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>84151504-b1b7-44fe-9590-a5823e783286</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="53cbe2d5-0dcd-4862-84e8-dae197655e5a"/>
+    <historyInfo versionUuid="aaa597ef-ff08-4826-84cb-686ca2daefdc"/>
+    <historyInfo versionUuid="23ea1fee-6f08-41e0-aef3-9b842cdacb3f"/>
+    <historyInfo versionUuid="296a0042-5ff0-4b64-b438-14b204f16356"/>
+    <historyInfo versionUuid="54dd5a5d-52bc-44b4-a92f-9ea9ab238f20"/>
+    <historyInfo versionUuid="4f398f03-4d56-4938-a411-50cf7654470d"/>
+  </history>
+  <migrationVersion>1</migrationVersion>
+</recordTypeHaul>

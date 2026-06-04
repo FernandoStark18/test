@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>cffe1662-0aeb-408f-bd0f-c71d59a66ee2</versionUuid>
+  <recordType a:uuid="1b94f213-04a2-4dc5-9852-ed822750fc29" name="PQR_RT_AItokens">
+    <a:pluralName>_RT_AItokenses</a:pluralName>
+    <a:description>RecordType que contabiliza los tokens gastados</a:description>
+    <a:urlStub>8xaEGQ</a:urlStub>
+    <a:source xsi:type="a:RecordsReplica"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridField"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Id",
+      value: #"SYSTEM_SYSRULES_richTextDisplayField"(
+        value: {
+          #"SYSTEM_SYSRULES_richTextItem_v1"(
+            text: if(
+              fv!row['recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{5976cb00-ade7-4aea-bb19-67e93fed5c0b}id'] &lt; 100000,
+              text(
+                fv!row['recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{5976cb00-ade7-4aea-bb19-67e93fed5c0b}id'],
+                "#00000"
+              ),
+              fv!row['recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{5976cb00-ade7-4aea-bb19-67e93fed5c0b}id']
+            ),
+            link: #"SYSTEM_SYSRULES_recordLink"(
+              recordType: #"urn:appian:record-type:v1:1b94f213-04a2-4dc5-9852-ed822750fc29",
+              identifier: fv!identifier
+            ),
+            linkStyle: "STANDALONE"
+          )
+        }
+      ),
+      sortField: 'recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{5976cb00-ade7-4aea-bb19-67e93fed5c0b}id'
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Inputtokens",
+      value: a!defaultValue(fv!row['recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{761d1e22-31ee-4392-b5d4-6d4781881603}inputtokens'], "–"),
+      sortField: 'recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{761d1e22-31ee-4392-b5d4-6d4781881603}inputtokens',
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Outputtokens",
+      value: a!defaultValue(fv!row['recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{b549a74a-ff35-4301-be46-6946e4186030}outputtokens'], "–"),
+      sortField: 'recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{b549a74a-ff35-4301-be46-6946e4186030}outputtokens',
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Fecha",
+      value: if(
+        isnull(fv!row['recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{8607fecd-f5f9-4eba-b54d-b496c9ccfdd9}fecha']),
+        "–",
+        datetext(fv!row['recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{8607fecd-f5f9-4eba-b54d-b496c9ccfdd9}fecha'], "default")
+      ),
+      sortField: 'recordType!{1b94f213-04a2-4dc5-9852-ed822750fc29}PQR_RT_AItokens.fields.{8607fecd-f5f9-4eba-b54d-b496c9ccfdd9}fecha',
+      align: "END",
+      width: "NARROW_PLUS"
+    )
+  },
+  pageSize: 50,
+  borderStyle: "LIGHT",
+  shadeAlternateRows: false
+)</a:listViewTemplateExpr>
+    <a:detailViewCfg>
+      <a:nameExpr>#"SYSTEM_SYSRULES_rtd_getDefaultSummaryViewName"()</a:nameExpr>
+      <a:uiExpr/>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+      <a:recordUiSecurityType>EXPRESSION</a:recordUiSecurityType>
+    </a:detailViewCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rv!record[#"urn:appian:record-field:v1:1b94f213-04a2-4dc5-9852-ed822750fc29/5976cb00-ade7-4aea-bb19-67e93fed5c0b"]</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:hideNewsView>false</a:hideNewsView>
+    <a:hideRelatedActionsView>false</a:hideRelatedActionsView>
+    <a:isExportable>true</a:isExportable>
+    <a:listViewSrcExpr/>
+    <a:recordViewSrcExpr/>
+    <a:recordTypeSearchCfg>
+      <searchFieldsSrc>DEFAULT</searchFieldsSrc>
+      <placeholderSrc>DEFAULT</placeholderSrc>
+      <placeholder/>
+    </a:recordTypeSearchCfg>
+    <a:iconId/>
+    <a:listAutoRefreshInterval>0.0</a:listAutoRefreshInterval>
+    <a:sourceConfiguration>
+      <sourceUuid>dbo.pqrcdtaitokens@_a-0000eb5c-0afc-8000-9bb3-011c48011c48_460874</sourceUuid>
+      <sourceType>RDBMS_TABLE</sourceType>
+      <sourceSubType>NONE</sourceSubType>
+      <sourceContextExpr/>
+      <friendlyName>pqrcdtaitokens</friendlyName>
+      <sourceFilterExpr/>
+      <field>
+        <uuid>5976cb00-ade7-4aea-bb19-67e93fed5c0b</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>id</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>id</fieldName>
+        <displayName>Id</displayName>
+        <isRecordId>true</isRecordId>
+        <isUnique>true</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>761d1e22-31ee-4392-b5d4-6d4781881603</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>inputtokens</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>inputtokens</fieldName>
+        <displayName>Inputtokens</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>b549a74a-ff35-4301-be46-6946e4186030</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Integer</type>
+        <sourceFieldName>outputtokens</sourceFieldName>
+        <sourceFieldType>INTEGER</sourceFieldType>
+        <fieldName>outputtokens</fieldName>
+        <displayName>Outputtokens</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <field>
+        <uuid>8607fecd-f5f9-4eba-b54d-b496c9ccfdd9</uuid>
+        <type>{http://www.appian.com/ae/types/2009}Datetime</type>
+        <sourceFieldName>fecha</sourceFieldName>
+        <sourceFieldType>TIMESTAMP</sourceFieldType>
+        <fieldName>fecha</fieldName>
+        <displayName>Fecha</displayName>
+        <isRecordId>false</isRecordId>
+        <isUnique>false</isUnique>
+        <isCustomField>false</isCustomField>
+        <customFieldExpr/>
+        <fieldCalculationType>NA</fieldCalculationType>
+        <fieldTemplateType>NA</fieldTemplateType>
+        <recordFieldSecurityMembershipFilter/>
+        <fieldFormat/>
+        <isIndexable>false</isIndexable>
+        <subType>NA</subType>
+        <displayNameSource>STATIC</displayNameSource>
+        <descriptionSource>STATIC</descriptionSource>
+        <compositePkPrecedence>-1</compositePkPrecedence>
+        <isHidden>false</isHidden>
+      </field>
+      <uuid>05ae4c18-661e-470d-8e6a-1b110854f799</uuid>
+      <refreshSchedule>
+        <value>{"hour":3,"minute":"00","amPM":"AM","timeZone":"America/Bogota"}</value>
+        <activated>false</activated>
+      </refreshSchedule>
+      <skipFailureEnabled>true</skipFailureEnabled>
+      <recordIdGeneratorUuid/>
+    </a:sourceConfiguration>
+    <a:enabledFeatures>1023</a:enabledFeatures>
+    <a:isVisibleInRecordTypeList>false</a:isVisibleInRecordTypeList>
+    <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+    <a:showSearchBox>true</a:showSearchBox>
+    <a:isVisibleInDataFabric>false</a:isVisibleInDataFabric>
+    <a:usesRollingSyncLimit>false</a:usesRollingSyncLimit>
+    <a:usesRecoverySync>false</a:usesRecoverySync>
+    <a:isScheduledIndexingEnabled>false</a:isScheduledIndexingEnabled>
+    <a:smartSearchAcceptableFailureRate>0.0</a:smartSearchAcceptableFailureRate>
+    <a:skipFailedSmartServicesSync>false</a:skipFailedSmartServicesSync>
+    <a:creationSource>UNKNOWN</a:creationSource>
+    <a:sqlEnabled>false</a:sqlEnabled>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>2ecd9162-3121-486b-886b-00cba71a3a41</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="cffe1662-0aeb-408f-bd0f-c71d59a66ee2"/>
+  </history>
+  <migrationVersion>1</migrationVersion>
+</recordTypeHaul>

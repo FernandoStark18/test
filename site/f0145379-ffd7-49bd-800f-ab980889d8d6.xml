@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<siteHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>4622c390-fe58-4d55-804d-a3b58ff323cd</versionUuid>
+  <site a:uuid="f0145379-ffd7-49bd-800f-ab980889d8d6" name="PQR_SITE_CLASIFICACIONCORREOS">
+    <description/>
+    <urlStub>clasificacion-de-correos</urlStub>
+    <page a:uuid="e17102ed-6ec4-4683-b1a3-e53a7be7c633">
+      <staticName>Inicio</staticName>
+      <description/>
+      <urlStub>inicio</urlStub>
+      <uiObject a:uuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1561735" xsi:type="a:ContentFreeformRule"/>
+      <iconId>f015</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+      <pageWidth>FULL</pageWidth>
+      <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+      <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+      <siteBrandingEnabled>true</siteBrandingEnabled>
+      <darkThemeEnabled>false</darkThemeEnabled>
+    </page>
+    <page a:uuid="2b25e913-2ead-447a-80ed-ed8a57263f11">
+      <staticName>CORREOS</staticName>
+      <description/>
+      <urlStub>pqrdsf</urlStub>
+      <uiObject a:uuid="_a-0000eeb0-0577-8000-9be7-011c48011c48_1370089" xsi:type="a:ContentFreeformRule"/>
+      <iconId>f0a1</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+      <pageWidth>FULL</pageWidth>
+      <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+      <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+      <siteBrandingEnabled>true</siteBrandingEnabled>
+      <darkThemeEnabled>false</darkThemeEnabled>
+    </page>
+    <page a:uuid="f5ac5788-751c-4c3f-87e5-2f2884bb7450">
+      <staticName>Ciudadanos</staticName>
+      <description/>
+      <urlStub>ciudadanos</urlStub>
+      <uiObject a:uuid="_a-0000ef02-3502-8000-9bf1-011c48011c48_1558097" xsi:type="a:ContentFreeformRule"/>
+      <iconId>f3ab</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+      <pageWidth>FULL</pageWidth>
+      <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+      <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+      <siteBrandingEnabled>true</siteBrandingEnabled>
+      <darkThemeEnabled>false</darkThemeEnabled>
+    </page>
+    <page a:uuid="73a12f8f-9e02-4524-9499-93bf95e8e081">
+      <staticName>Organización</staticName>
+      <description/>
+      <urlStub>organizacion</urlStub>
+      <iconId>f0e8</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+      <pageWidth>STANDARD</pageWidth>
+      <page a:uuid="e72bf014-9b3d-49c7-9d44-57422d614ddf">
+        <staticName>Entidades</staticName>
+        <description/>
+        <urlStub>entidades</urlStub>
+        <uiObject
+          a:uuid="_a-0000ee96-b730-8000-9be5-011c48011c48_1367495" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="2dc841b6-c30f-4d6a-b7fb-b80fc4240cf7">
+        <staticName>Dependencias</staticName>
+        <description/>
+        <urlStub>dependencias</urlStub>
+        <uiObject
+          a:uuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1558832" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="58dd423a-ccb5-4095-8454-7b3bbc6d2d1e">
+        <staticName>Funcionario</staticName>
+        <description/>
+        <urlStub>funcionario</urlStub>
+        <uiObject
+          a:uuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1394363" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="3b546cfb-604c-4978-b351-9d7b4813be32">
+        <staticName>Etiquetas y Usuarios</staticName>
+        <description/>
+        <urlStub>etiquetas-usuarios</urlStub>
+        <uiObject
+          a:uuid="_a-0001eee3-3e88-8000-9cdc-011c48011c48_5383684" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+      <autoContextUpdateEnabled>false</autoContextUpdateEnabled>
+      <siteBrandingEnabled>true</siteBrandingEnabled>
+      <darkThemeEnabled>false</darkThemeEnabled>
+    </page>
+    <page a:uuid="0225ac89-8043-4864-8061-f36965f79c7d">
+      <staticName>Configuración correo</staticName>
+      <description/>
+      <urlStub>configuracion-correo</urlStub>
+      <iconId>f085</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+      <pageWidth>STANDARD</pageWidth>
+      <page a:uuid="7c91a431-f43d-4809-8130-fdd2083f13bb">
+        <staticName>Consola</staticName>
+        <description/>
+        <urlStub>consola</urlStub>
+        <uiObject a:uuid="_a-0000e393-277a-8000-8592-01ef9001ef90_95308" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="7421591a-68c2-4ea3-94e3-9447ba470545">
+        <staticName>Bandeja de correos</staticName>
+        <description/>
+        <urlStub>bandeja-correos</urlStub>
+        <uiObject
+          a:uuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1471574" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="ca4369a5-0c28-4135-8cca-090c262e5ace">
+        <staticName>Categorías etiquetas</staticName>
+        <description/>
+        <urlStub>categorias-etiquetas</urlStub>
+        <uiObject
+          a:uuid="_a-0000ef00-59b8-8000-9bf0-011c48011c48_1509119" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="f710bc4d-6834-41e5-a1d8-502a6a532a06">
+        <staticName>Etiquetas</staticName>
+        <description/>
+        <urlStub>etiquetas</urlStub>
+        <uiObject
+          a:uuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1463101" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="be2689f9-fbfe-4e61-9ed7-a26a17141fec">
+        <staticName>Reglas</staticName>
+        <description/>
+        <urlStub>reglas</urlStub>
+        <uiObject
+          a:uuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1471005" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="54b95c89-363c-451c-acd3-7bcb8f450ebc">
+        <staticName>Estados</staticName>
+        <description/>
+        <urlStub>estados</urlStub>
+        <uiObject
+          a:uuid="_a-0000eef0-95cd-8000-9bee-011c48011c48_1472890" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+      <autoContextUpdateEnabled>false</autoContextUpdateEnabled>
+      <siteBrandingEnabled>true</siteBrandingEnabled>
+      <darkThemeEnabled>false</darkThemeEnabled>
+    </page>
+    <page a:uuid="05e57ad1-b1d4-4997-a901-c67a64455862">
+      <staticName>Configuración PQRDSF</staticName>
+      <description/>
+      <urlStub>configuracion-pqrdsf</urlStub>
+      <iconId>f1de</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+      <pageWidth>STANDARD</pageWidth>
+      <page a:uuid="d1f7fd5c-f8ef-4c96-ba75-db40ecace46f">
+        <staticName>Tipo PQRDSF</staticName>
+        <description/>
+        <urlStub>tipo-pqrdsf</urlStub>
+        <uiObject
+          a:uuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1580791" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>WIDE</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="a62f89ab-a662-47e3-874e-a325eefb109c">
+        <staticName>Categorias PQRDSF</staticName>
+        <description/>
+        <urlStub>categorias-pqrdsf</urlStub>
+        <uiObject
+          a:uuid="_a-0000eeb0-0577-8000-9be7-011c48011c48_1373089" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="250a6df7-6ec1-4451-ada4-d0de7fa5a5dc">
+        <staticName>Tipo interviniente</staticName>
+        <description/>
+        <urlStub>tipo-interviniente</urlStub>
+        <uiObject
+          a:uuid="_a-0000eec9-0818-8000-9beb-011c48011c48_1395915" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+      <autoContextUpdateEnabled>false</autoContextUpdateEnabled>
+      <siteBrandingEnabled>true</siteBrandingEnabled>
+      <darkThemeEnabled>false</darkThemeEnabled>
+    </page>
+    <page a:uuid="117d45f9-5ee1-46a4-93ab-3597f0f8b5b5">
+      <staticName>Configuración general</staticName>
+      <description/>
+      <urlStub>configuracion-general</urlStub>
+      <iconId>f1de</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+      <pageWidth>STANDARD</pageWidth>
+      <page a:uuid="9513a742-f406-40c7-aab1-f9917288e4d3">
+        <staticName>Medios recepción</staticName>
+        <description/>
+        <urlStub>medios-recepcion</urlStub>
+        <uiObject
+          a:uuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1560951" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="7beb149d-56ae-4929-b4c1-6788bf2c4042">
+        <staticName>Vinculación entidad</staticName>
+        <description/>
+        <urlStub>vinculacion-entidad</urlStub>
+        <uiObject
+          a:uuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1580630" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <page a:uuid="1f30d654-fb76-41dc-8a8b-afba4c0d7145">
+        <staticName>Preguntas IA</staticName>
+        <description/>
+        <urlStub>preguntas-ia</urlStub>
+        <uiObject
+          a:uuid="_a-0000ef03-0467-8000-9bf2-011c48011c48_1580650" xsi:type="a:ContentFreeformRule"/>
+        <iconId>f016</iconId>
+        <visibilityExpr>fn!true()</visibilityExpr>
+        <pageWidth>FULL</pageWidth>
+        <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+        <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+        <siteBrandingEnabled>true</siteBrandingEnabled>
+        <darkThemeEnabled>false</darkThemeEnabled>
+      </page>
+      <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+      <autoContextUpdateEnabled>false</autoContextUpdateEnabled>
+      <siteBrandingEnabled>true</siteBrandingEnabled>
+      <darkThemeEnabled>false</darkThemeEnabled>
+    </page>
+    <page a:uuid="e29669b3-6bf5-40f1-a5cc-98dfe26f0329">
+      <staticName>Manual de Usuario</staticName>
+      <description/>
+      <urlStub>manual-de-usuario</urlStub>
+      <uiObject a:uuid="_a-0000ef54-29a7-8000-9ce2-011c48011c48_6032722" xsi:type="a:ContentFreeformRule"/>
+      <iconId>f02d</iconId>
+      <visibilityExpr>fn!true()</visibilityExpr>
+      <pageWidth>WIDE</pageWidth>
+      <areUrlParamsEncrypted>true</areUrlParamsEncrypted>
+      <autoContextUpdateEnabled>true</autoContextUpdateEnabled>
+      <siteBrandingEnabled>true</siteBrandingEnabled>
+      <darkThemeEnabled>false</darkThemeEnabled>
+    </page>
+    <visibility>268435456</visibility>
+    <headerBackgroundColor>#1d2d44</headerBackgroundColor>
+    <selectedTabBackgroundColor>#aa2426</selectedTabBackgroundColor>
+    <faviconHref>https://uploads-ssl.webflow.com/5eda713b81168b525b87b99c/5eda83dbfce8e03ec2b330a6_Logo%20F2.png</faviconHref>
+    <logoRef a:uuid="SYSTEM_CONTENT_SITES_NO_LOGO" xsi:type="a:CollaborationDocument"/>
+    <logoHref>https://assets-global.website-files.com/5eda713b81168b525b87b99c/5eda7d3b55b72c83a51e4a65_no%20oficial_Mesa%20de%20trabajo%201%20copia-p-500.png</logoHref>
+    <accentColor>#aa2426</accentColor>
+    <showName>true</showName>
+    <tempoLinkVisibility>HIDDEN</tempoLinkVisibility>
+    <showRecordNews>true</showRecordNews>
+    <tasksInSitesVisibility>HIDDEN</tasksInSitesVisibility>
+    <staticLogoAltText>Supportical</staticLogoAltText>
+    <buttonShape>SQUARED</buttonShape>
+    <loadingBarColor>#aa2426</loadingBarColor>
+    <navigationBarStyle>SIDEBAR</navigationBarStyle>
+    <inputShape>SQUARED</inputShape>
+    <isSystem>false</isSystem>
+    <displayName>Sede virtual</displayName>
+    <isStaticDisplayName>true</isStaticDisplayName>
+    <nameExprIsEvaluable>true</nameExprIsEvaluable>
+    <primaryNavLayoutType>SIDEBAR</primaryNavLayoutType>
+    <buttonLabelCase>UPPERCASE</buttonLabelCase>
+    <dialogShape>SQUARED</dialogShape>
+    <pageNameCase>MATCH_LABEL_PARAM</pageNameCase>
+    <showUserProfile>true</showUserProfile>
+    <showUserSettings>true</showUserSettings>
+    <showUserMenu>true</showUserMenu>
+  </site>
+  <roleMap>
+    <role name="site_administrator">
+      <users/>
+      <groups>
+        <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+      </groups>
+    </role>
+    <role name="site_viewer">
+      <users/>
+      <groups>
+        <groupUuid>2ecd9162-3121-486b-886b-00cba71a3a41</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="fa9a1640-616d-44c7-8506-86b7afa6b31e"/>
+    <historyInfo versionUuid="9d9e4395-9bdf-4257-b716-0654a03e274c"/>
+    <historyInfo versionUuid="7d2c2064-7b4d-48a4-83ae-7cc3d2e3df93"/>
+    <historyInfo versionUuid="bc9221c9-a742-4f7b-a473-331e79b3d62a"/>
+    <historyInfo versionUuid="fef2c91d-893b-4d3b-bf66-8e680e9ea0b8"/>
+    <historyInfo versionUuid="4622c390-fe58-4d55-804d-a3b58ff323cd"/>
+  </history>
+</siteHaul>

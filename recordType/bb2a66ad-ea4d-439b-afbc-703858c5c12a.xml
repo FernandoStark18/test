@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recordTypeHaul xmlns:a="http://www.appian.com/ae/types/2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <versionUuid>9ac82943-2a2c-4be4-8465-f8271b804ae5</versionUuid>
+  <recordType a:uuid="bb2a66ad-ea4d-439b-afbc-703858c5c12a" name="Job Type Transaction Count">
+    <a:pluralName>Job Type</a:pluralName>
+    <a:description>Record based on the view -  TM_V_JOB_TYPE_TRANSACTION_COUNTS</a:description>
+    <a:urlStub>K4d4BQ</a:urlStub>
+    <a:source
+      a:uuid="9481ae23-e8e1-499d-9578-29e1f8f99518@_a-0000e393-277a-8000-8592-01ef9001ef90_95291" xsi:type="a:DataStoreEntity"/>
+    <a:listViewTemplateExpr>#"SYSTEM_SYSRULES_recordGridField"(
+  columns: {
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Id",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/id",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/id"],
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Is Active",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/isActive",
+      value: #"SYSTEM_SYSRULES_linkField"(
+        links: {
+          #"SYSTEM_SYSRULES_recordLink"(
+            label: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/isActive"],
+            recordType: #"urn:appian:record-type:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a",
+            identifier: fv!identifier
+          )
+        }
+      ),
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Name",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/name",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/name"]
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Description",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/description",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/description"]
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Model Uuid",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/modelUuid",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/modelUuid"]
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Max Running",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxRunning",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxRunning"],
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Max Allowed To Start",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/maxAllowedToStart"],
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Queued Count",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/queuedCount",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/queuedCount"],
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Running Count",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/runningCount",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/runningCount"],
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Completed Count",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/completedCount",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/completedCount"],
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Failed Count",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/failedCount",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/failedCount"],
+      align: "END"
+    ),
+    #"SYSTEM_SYSRULES_gridColumn"(
+      label: "Cancelled Count",
+      sortField: #"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/cancelledCount",
+      value: fv!row[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/cancelledCount"],
+      align: "END"
+    )
+  },
+  pageSize: 50,
+  shadeAlternateRows: true
+)</a:listViewTemplateExpr>
+    <a:fieldCfg a:uuid="db81ec54-89be-4ebe-8317-8f9f50b55a08" name="Status">
+      <a:description/>
+      <a:sourceRef>isActive</a:sourceRef>
+      <a:isSortable>false</a:isSortable>
+      <a:isSearchable>false</a:isSearchable>
+      <a:isFacet>true</a:isFacet>
+      <a:facetType>CUSTOM_BUCKETS_CLOSED</a:facetType>
+      <a:isExclusiveFacet>true</a:isExclusiveFacet>
+      <a:facetLabelExpr>"Status"</a:facetLabelExpr>
+      <a:facetOption>
+        <a:labelExpr>"Active"</a:labelExpr>
+        <a:facetOperator>IN</a:facetOperator>
+        <a:lowerLimitExpr/>
+        <a:upperLimitExpr/>
+        <a:values>true</a:values>
+      </a:facetOption>
+      <a:facetOption>
+        <a:labelExpr>"Inactive"</a:labelExpr>
+        <a:facetOperator>IN</a:facetOperator>
+        <a:lowerLimitExpr/>
+        <a:upperLimitExpr/>
+        <a:values>false</a:values>
+      </a:facetOption>
+      <a:sortOrderIndex>0</a:sortOrderIndex>
+      <a:facetOrderIndex>0</a:facetOrderIndex>
+      <a:visibilityExpr/>
+      <a:defaultOptionExpr>"Active"</a:defaultOptionExpr>
+      <a:allowMultipleSelections>true</a:allowMultipleSelections>
+      <a:relatedRecordUserFilterSort>UNSORTED</a:relatedRecordUserFilterSort>
+    </a:fieldCfg>
+    <a:detailViewCfg>
+      <a:nameExpr>#"SYSTEM_SYSRULES_rtd_getDefaultSummaryViewName"()</a:nameExpr>
+      <a:uiExpr/>
+      <a:visibilityExpr>=true()</a:visibilityExpr>
+      <a:urlStub>summary</a:urlStub>
+      <a:headerExpr/>
+      <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+      <a:recordUiSecurityType>EXPRESSION</a:recordUiSecurityType>
+    </a:detailViewCfg>
+    <a:isSystem>false</a:isSystem>
+    <a:dataSrcExpr/>
+    <a:facetsListExpr/>
+    <a:titleExpr>rv!record[#"urn:appian:record-field:v1:bb2a66ad-ea4d-439b-afbc-703858c5c12a/name"]</a:titleExpr>
+    <a:defaultFiltersExpr/>
+    <a:layoutType>GRID</a:layoutType>
+    <a:security>16383</a:security>
+    <a:hideLatestNews>false</a:hideLatestNews>
+    <a:hideNewsView>true</a:hideNewsView>
+    <a:hideRelatedActionsView>true</a:hideRelatedActionsView>
+    <a:isExportable>true</a:isExportable>
+    <a:listViewSrcExpr/>
+    <a:recordViewSrcExpr/>
+    <a:recordListActionCfg a:uuid="bab395fc-ee3d-41ae-a21b-6a349eca9569">
+      <a:staticTitle>Añadir tipo de trabajo</a:staticTitle>
+      <a:staticDescription>Configurar un nuevo tipo de trabajo</a:staticDescription>
+      <a:iconId>f067</a:iconId>
+      <a:target a:uuid="0002e46f-a581-8000-855d-014d98014d98" xsi:type="a:ProcessModel"/>
+      <a:visibilityExpr>#"_a-0000e470-9a48-8000-8592-01ef9001ef90_106893"()</a:visibilityExpr>
+      <a:referenceKey>addJobType</a:referenceKey>
+      <a:showInRecordList>true</a:showInRecordList>
+      <a:recordUiSecurityType>EXPRESSION</a:recordUiSecurityType>
+      <a:dialogWidth>WIDE</a:dialogWidth>
+      <a:dialogHeight>TALL</a:dialogHeight>
+    </a:recordListActionCfg>
+    <a:recordTypeSearchCfg>
+      <searchFieldsSrc>DEFAULT</searchFieldsSrc>
+      <placeholderSrc>DEFAULT</placeholderSrc>
+      <placeholder/>
+    </a:recordTypeSearchCfg>
+    <a:iconId/>
+    <a:listAutoRefreshInterval>0.0</a:listAutoRefreshInterval>
+    <a:enabledFeatures>255</a:enabledFeatures>
+    <a:isVisibleInRecordTypeList>false</a:isVisibleInRecordTypeList>
+    <a:recordActionLaunchType>DIALOG</a:recordActionLaunchType>
+    <a:showSearchBox>true</a:showSearchBox>
+    <a:isVisibleInDataFabric>false</a:isVisibleInDataFabric>
+    <a:usesRollingSyncLimit>false</a:usesRollingSyncLimit>
+    <a:usesRecoverySync>false</a:usesRecoverySync>
+    <a:isScheduledIndexingEnabled>false</a:isScheduledIndexingEnabled>
+    <a:smartSearchAcceptableFailureRate>0.0</a:smartSearchAcceptableFailureRate>
+    <a:skipFailedSmartServicesSync>false</a:skipFailedSmartServicesSync>
+    <a:creationSource>UNKNOWN</a:creationSource>
+    <a:sqlEnabled>false</a:sqlEnabled>
+  </recordType>
+  <roleMap>
+    <role name="record_type_administrator">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e41e-1753-8000-9af5-01075c01075c_1143</groupUuid>
+      </groups>
+    </role>
+    <role name="record_type_viewer">
+      <users/>
+      <groups>
+        <groupUuid>_e-0000e41e-1753-8000-9af5-01075c01075c_1145</groupUuid>
+      </groups>
+    </role>
+  </roleMap>
+  <history>
+    <historyInfo versionUuid="8dc5f7a6-5b11-4e83-be80-c3769827c5fb"/>
+    <historyInfo versionUuid="1db786e1-3317-4394-a249-f594b22669d0"/>
+    <historyInfo versionUuid="cdff0d84-7180-46f2-94fb-74e9edc71fa7"/>
+    <historyInfo versionUuid="d3ca0b02-64cf-4ab1-ab6b-5c1a4f6a3d80"/>
+    <historyInfo versionUuid="d511c69a-53ba-42da-8c2b-e9b0b6723362"/>
+    <historyInfo versionUuid="a383857e-dc13-40e1-a971-eb393018d1bc"/>
+    <historyInfo versionUuid="9ac82943-2a2c-4be4-8465-f8271b804ae5"/>
+  </history>
+  <migrationVersion>1</migrationVersion>
+</recordTypeHaul>
