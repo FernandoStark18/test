@@ -1,0 +1,16 @@
+com.appiancorp.plugins.regexfunctions
+Appian Regular Expression Functions
+2.2.36
+
+appian.colorPicker
+Color Picker Component
+1.0.0
+
+com.appiancorp.ps.plugins.contenttools
+Content Tools
+1.11.3
+
+msgraphmailpoller
+MSGraph Mail Poller
+4.3.2
+

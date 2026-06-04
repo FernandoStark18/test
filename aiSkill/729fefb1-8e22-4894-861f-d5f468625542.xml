@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aiSkillRemoteHaul xmlns:a="http://www.appian.com/ae/types/2009">
+  <versionUuid>9a346ca3-9b02-4793-a936-396f295cd3f7</versionUuid>
+  <remoteDesignObject>
+    <uuid>729fefb1-8e22-4894-861f-d5f468625542</uuid>
+    <name>PQR_LLM_CLASIFICACION_CUERPO_JSON</name>
+    <description>Salida tipo JSON por parte del cuerpo</description>
+    <content><![CDATA[{"id":"729fefb1-8e22-4894-861f-d5f468625542","ai_skill_type":"text_summarization","models":[{"type":"genAI","id":"d56e4214-2db9-4faf-8832-ade8f0c4f604","model":"appian/anthropic.claude-haiku-4-5-20251001-v1:0","multimodal_model":"appian/anthropic.claude-sonnet-4-5-20250929-v1:0","operation_mode":"TEXT","prompt":"I'm an analyst who reviews form submissions for a personal injury law firm. I review many forms, so it's helpful to have a one or two sentence summary of the potential client's situation. Based on the submission provided, please summarize the issue and the severity in one or two sentences.","temperature":40,"examples":[{"input":"Hi there,\n\nMy name is John Smith, and I recently experienced a slip and fall accident at a hotel pool on April 1st, 2024. Unfortunately, this resulted in a back injury that required medical attention. I've incurred costs for an emergency room visit (estimated at $1,500) and ongoing chiropractor sessions (approximately $100 per visit). I'm reaching out to request a consultation with one of your attorneys to discuss the incident further and explore potential legal options for compensation. Looking forward to hearing back from you soon.\n\nBest regards,\nJohn Smith","output":"John Smith slipped and fell at a hotel pool on April 1st, resulting in a back injury requiring medical treatment including an ER visit and ongoing chiropractic care, with costs estimated at $1,600 so far."}],"metadata":{},"extended_thinking":false,"template_version":null}],"featuresEnabled":["CUSTOM_ENTITY_EXTRACTION"]}]]></content>
+    <parameterizedProperties></parameterizedProperties>
+    <exportVersion>1.0.0</exportVersion>
+    </remoteDesignObject>
+  <roleMap>
+    <role name="VIEWER">
+      <users></users>
+      <groups>
+        <groupUuid>2ecd9162-3121-486b-886b-00cba71a3a41</groupUuid>
+        </groups>
+      </role>
+    <role name="ADMINISTRATOR">
+      <users></users>
+      <groups>
+        <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+        </groups>
+      </role>
+    </roleMap>
+  <history>
+    <historyInfo versionUuid="9a346ca3-9b02-4793-a936-396f295cd3f7"></historyInfo>
+    </history>
+  </aiSkillRemoteHaul>

@@ -1,0 +1,9 @@
+[
+  {
+    "objectUuid": "0002e393-2dbe-8000-855d-014d98014d98",
+    "designGuidanceKey": "sysrule.designGuidance.processModel.asynchronousSubprocess",
+    "dismissed": true,
+    "instanceCount": 1,
+    "objectTypeName": "{http://www.appian.com/ae/types/2009}ProcessModel"
+  }
+]

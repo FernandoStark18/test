@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aiSkillRemoteHaul xmlns:a="http://www.appian.com/ae/types/2009">
+  <versionUuid>1d810e27-751c-4637-9249-cd2d797f936e</versionUuid>
+  <remoteDesignObject>
+    <uuid>7ba11a03-3a99-43ac-b412-f362c075cf66</uuid>
+    <name>PQR_link_deteccion</name>
+    <description>Ia Skill que nos brinda la información si hay un link en los documentos para su pronta revisión </description>
+    <content><![CDATA[{"id":"7ba11a03-3a99-43ac-b412-f362c075cf66","ai_skill_type":"pii_detection_from_doc","models":[{"type":"genAI","id":"d6d45733-a34a-43e0-a9e4-a777c5553d96","model":"appian/anthropic.claude-haiku-4-5-20251001-v1:0","multimodal_model":"appian/anthropic.claude-sonnet-4-5-20250929-v1:0","operation_mode":"TEXT","prompt":"Realizar la verificación si el documento del correo extraído tiene un enlace el cual lo redirija a otra página externa al documento, e indique cual es el enlace para su revisión manual.","temperature":5,"examples":[{"input":"De: maria.gonzalez@contraloria.gov.co\nPara: equipo.auditoria@contraloria.gov.co\nAsunto: Documentos auditoría Q1 2025\n \nBuenas tardes,\n \nAdjunto el acceso a la carpeta con los informes del primer trimestre.\n \nhttps://drive.google.com/drive/folders/1aBcDeFgHiJkLmNoPqRsTuVwXyZ\n \nQuedo pendiente de comentarios.","output":"{\n  \"type\": \"link\",\n  \"has_link\": \"yes\",\n  \"value\": \"https://drive.google.com/drive/folders/1aBcDeFgHiJkLmNoPqRsTuVwXyZ\"\n}"},{"input":"De: carlos.perez@contraloria.gov.co\nPara: equipo.auditoria@contraloria.gov.co\nAsunto: Reunión de seguimiento\n \nBuenos días equipo,\n \nLes recuerdo que mañana a las 10:00 a.m. tenemos la reunión de seguimiento\ndel plan de mejoramiento. Por favor confirmar asistencia respondiendo este correo.\n \nSaludos,\nCarlos Pérez","output":"{\n  \"type\": \"link\",\n  \"has_link\": \"no\",\n  \"value\": null\n}"}],"metadata":{},"extended_thinking":false,"template_version":null}],"featuresEnabled":["CUSTOM_ENTITY_EXTRACTION"]}]]></content>
+    <parameterizedProperties></parameterizedProperties>
+    <exportVersion>1.0.0</exportVersion>
+    </remoteDesignObject>
+  <roleMap>
+    <role name="VIEWER">
+      <users></users>
+      <groups>
+        <groupUuid>2ecd9162-3121-486b-886b-00cba71a3a41</groupUuid>
+        </groups>
+      </role>
+    <role name="ADMINISTRATOR">
+      <users></users>
+      <groups>
+        <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+        </groups>
+      </role>
+    </roleMap>
+  <history>
+    <historyInfo versionUuid="1d810e27-751c-4637-9249-cd2d797f936e"></historyInfo>
+    <historyInfo versionUuid="7a85e179-b9a7-4928-90a0-91e91fb150e3"></historyInfo>
+    </history>
+  </aiSkillRemoteHaul>

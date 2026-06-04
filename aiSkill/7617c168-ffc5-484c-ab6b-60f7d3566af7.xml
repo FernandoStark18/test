@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aiSkillRemoteHaul xmlns:a="http://www.appian.com/ae/types/2009">
+  <versionUuid>0b57b7ae-df7c-4bd1-8cbc-34199ad070a6</versionUuid>
+  <remoteDesignObject>
+    <uuid>7617c168-ffc5-484c-ab6b-60f7d3566af7</uuid>
+    <name>PQR_Resumen_atencion_ciudadana</name>
+    <description>Resume los correos de atencion ciudadana para subirlos a SGDA</description>
+    <content><![CDATA[{"id":"7617c168-ffc5-484c-ab6b-60f7d3566af7","ai_skill_type":"email_summarization","models":[{"type":"genAI","id":"04c03d0d-df8c-45d1-aab6-a6424a548fdf","model":"appian/anthropic.claude-haiku-4-5-20251001-v1:0","multimodal_model":"appian/anthropic.claude-sonnet-4-5-20250929-v1:0","operation_mode":"TEXT","prompt":"Actúa como un experto en gestión documental y analista de procesos administrativos para una entidad que utiliza Appian. Tu tarea es analizar el texto de una comunicación ciudadana (PQRDSF) y estructurar la información para su automatización.\n\nInstrucciones de análisis:\n\nDetección de Radicado: Busca cualquier código alfanumérico que se identifique como radicado, número de solicitud o referencia. Si no existe, indica que no tiene.\n\nClasificación: Categoriza la solicitud estrictamente en uno de estos tipos: Petición, Queja, Reclamo, Denuncia, Sugerencia o Felicitación.\n\nExtracción de Entidades: Identifica nombres, documentos de identidad (cédula), correos y teléfonos.\n\nResumen Ejecutivo: Crea una descripción técnica de los hechos de máximo 280 caracteres.\n\nDeterminación de Plazos: Según la categoría, estima si el trámite es prioritario (ej. denuncias o quejas que mencionan términos legales).\n\nRestricciones de formato:\n\nResponde únicamente con un objeto JSON.\n\nNo añadas texto introductorio (\"Aquí tienes el resumen...\") ni comentarios al final.\n\nUsa null para los datos no encontrados.\n\nEsquema JSON requerido:\n{\n\"metadatos\": {\n\"tiene_radicado\": booleano,\n\"numero_radicado\": \"texto\",\n\"categoria\": \"tipo_pqrdsf\",\n\"prioridad\": \"Alta/Media/Baja\"\n},\n\"ciudadano\": {\n\"nombre_completo\": \"texto\",\n\"documento_identidad\": \"texto\",\n\"contacto\": {\n\"email\": \"texto\",\n\"telefono\": \"texto\"\n}\n},\n\"contenido\": {\n\"resumen\": \"texto corto\",\n\"pretension_concreta\": \"lo que el ciudadano solicita\",\n\"palabras_clave\": [\"lista\", \"de\", \"temas\"]\n}\n}","temperature":5,"examples":[{"input":"Señores CONTRALORIA GENERAL DE LA REPUBLICA\n\nReciban un cordial saludo\n\nLes informamos que se recibió en MINISTERIO DE COMERCIO, INDUSTRIA Y TURISMO una reclamación por la cual agradecemos efectuar la validación correspondiente.\n\nEn el documento adjunto encontrarán el detalle del caso.\n\n","output":"{\ntype:tipo_de_pqrdsf\nvalue:reclamación\n}\n{\ntype:notas\nvalue:reclamacion del ministerio de comercio, industria y turismo\n}"}],"metadata":{},"extended_thinking":false,"template_version":null}],"featuresEnabled":["CUSTOM_ENTITY_EXTRACTION"]}]]></content>
+    <parameterizedProperties></parameterizedProperties>
+    <exportVersion>1.0.0</exportVersion>
+    </remoteDesignObject>
+  <roleMap>
+    <role name="VIEWER">
+      <users></users>
+      <groups>
+        <groupUuid>2ecd9162-3121-486b-886b-00cba71a3a41</groupUuid>
+        </groups>
+      </role>
+    <role name="ADMINISTRATOR">
+      <users></users>
+      <groups>
+        <groupUuid>4aa0aee5-92aa-438c-a7f3-85bc62d15dc4</groupUuid>
+        </groups>
+      </role>
+    </roleMap>
+  <history>
+    <historyInfo versionUuid="0b57b7ae-df7c-4bd1-8cbc-34199ad070a6"></historyInfo>
+    <historyInfo versionUuid="1ba423ac-9ee2-48aa-b12b-baef9264537f"></historyInfo>
+    </history>
+  </aiSkillRemoteHaul>
